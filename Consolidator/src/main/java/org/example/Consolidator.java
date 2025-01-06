@@ -12,11 +12,10 @@ import static org.example.Utilities.printErrorMessage;
 public class Consolidator {
 
     public static void main(String[] args)  {
-        String STARTING_FOLDER = args[0];
-
-        if (STARTING_FOLDER != null) {
+        try {
+            String STARTING_FOLDER = args[0];
             consolidate(STARTING_FOLDER);
-        } else {
+        } catch (Exception e) {
             System.out.println("no starting folder provided");
         }
     }
