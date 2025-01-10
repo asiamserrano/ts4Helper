@@ -5,14 +5,23 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import ts4.helper.TS4Downloader.constants.WebsiteEnum;
-import ts4.helper.TS4Downloader.downloader.CurseForge;
+import ts4.helper.TS4Downloader.downloader.CurseForgeDownloader;
+import ts4.helper.TS4Downloader.downloader.PatreonDownloader;
+
+import static ts4.helper.TS4Downloader.constants.StringConstants.NEW_LINE;
 
 @RestController
 @RequestMapping("/event")
@@ -36,8 +45,17 @@ public class EventController {
         return value;
     }
 
-    @PostMapping("/request")
-    public String request(@RequestBody String url) {
+    @PostMapping("/downloadLinks")
+    public String downloadLinks(@RequestBody String body) {
+        String[] urls = body.split(NEW_LINE);
+        List<String> responses = new ArrayList<>();
+        for (String url : urls) {
+            responses.add(downloadLink(url));
+        }
+        return String.join(NEW_LINE, responses);
+    }
+
+    private String downloadLink(String url) {
         Request request = new Request.Builder()
                 .url(url)
                 .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
@@ -50,28 +68,53 @@ public class EventController {
         try(Response response = call.execute()) {
             String content = response.body().string();
             WebsiteEnum websiteEnum = WebsiteEnum.contains(url);
-            switch (websiteEnum) {
-                case null -> {
-                    return content;
-                }
-                case CURSE_FORGE -> {
-                    return curseForge(content);
-                }
-            }
+            boolean result = getResponse(websiteEnum, content);
+            return result ? getSuccessfulMessage(url) : content;
         } catch (Exception ex) {
-            log.error("could not make call");
-            return null;
+            log.error("could not make call", ex);
+            throw new RuntimeException();
         }
     }
 
-    private String curseForge(String content) throws Exception {
+    private String getSuccessfulMessage(String url) {
+        return "COMPLETED: " + url;
+    }
+
+    private boolean getResponse(WebsiteEnum websiteEnum, String content) throws Exception {
+        if (websiteEnum == null) {
+            return false;
+        } else {
+            switch (websiteEnum) {
+                case CURSE_FORGE -> {
+                    return curseForge(content);
+                }
+                case PATREON -> {
+                    return patreon(content);
+                }
+                default -> {
+                    return false;
+                }
+            }
+        }
+    }
+
+    private boolean curseForge(String content) throws Exception {
         if (!content.contains("Just a moment...")) {
-            if (CurseForge.download(content, location)) {
-                return "SUCCESSFUL";
+            if (CurseForgeDownloader.download(content, location)) {
+                return true;
             }
         }
         log.error(content);
-        return "FAILURE";
+        return false;
+    }
+
+    private boolean patreon(String content) throws Exception {
+        if (PatreonDownloader.download(content, location)) {
+            return true;
+        } else {
+            log.error(content);
+            return false;
+        }
     }
 
 }

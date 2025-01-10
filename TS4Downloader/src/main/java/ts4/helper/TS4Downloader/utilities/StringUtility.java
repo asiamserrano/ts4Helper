@@ -1,5 +1,9 @@
 package ts4.helper.TS4Downloader.utilities;
 
+import com.google.common.io.Resources;
+
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,22 +16,24 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.STANDARD_REGEX;
 
 public abstract class StringUtility {
 
-//    private static final String REGEX = "%s.*?%s";
-
-    public static String format(String format, String a, String b) {
-        return String.format(format, a, b);
-    }
-
     public static String regexBetween(String content, String p1, String p2) {
-        String s = format(STANDARD_REGEX, prepareForRegex(p1), prepareForRegex(p2));
-        Pattern p = Pattern.compile(s);
-        Matcher m = p.matcher(content);
-
+        Matcher m = getRegexBetweenMatcher(content, p1, p2);
         if (m.find()) {
             return m.group().replace(p1, EMPTY).replace(p2, EMPTY).replace(SINGLE_QUOTE, EMPTY);
         } else {
             return EMPTY;
         }
+    }
+
+    public static Matcher getRegexBetweenMatcher(String content, String p1, String p2) {
+        String s = String.format(STANDARD_REGEX, prepareForRegex(p1), prepareForRegex(p2));
+        Pattern p = Pattern.compile(s);
+        return p.matcher(content);
+    }
+
+    public static String loadResource(String resource) throws Exception {
+        URL contentURL = Resources.getResource(resource);
+        return Resources.toString(contentURL, StandardCharsets.UTF_8).strip();
     }
 
     private static final List<String> ESCAPE_CHARACTERS = new ArrayList<>() {{

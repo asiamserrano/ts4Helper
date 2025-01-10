@@ -1,12 +1,8 @@
 package ts4.helper.TS4Downloader.constants;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-//@AllArgsConstructor
-//@Getter
 public enum WebsiteEnum {
-    CURSE_FORGE("www.curseforge.com");
+    CURSE_FORGE("www.curseforge.com"),
+    PATREON("www.patreon.com");
 
     private final String url;
 

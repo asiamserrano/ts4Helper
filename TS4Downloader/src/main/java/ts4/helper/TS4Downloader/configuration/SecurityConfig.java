@@ -14,16 +14,16 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.slf4j.Logger;
 
+import static ts4.helper.TS4Downloader.constants.ConfigConstants.PROFILE;
+import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG_POLICY;
+import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG_ANT_MATCHERS;
+
 @Configuration
 @EnableMethodSecurity
 @Order(2)
 @EnableWebSecurity
-@Profile("local")
+@Profile(PROFILE)
 public class SecurityConfig {
-
-    private static final String SECURITY_CONFIG_POLICY = "script-src 'self'";
-
-    private static final String[] SECURITY_CONFIG_ANT_MATCHERS = new String[] { "/**" };
 
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
