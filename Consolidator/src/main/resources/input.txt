@@ -1,0 +1,28 @@
+accept:
+text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+accept-encoding:
+gzip, deflate, br, zstd
+accept-language:
+en-US,en;q=0.9
+cookie:
+a_csrf=7VgXF02hPLycZg65wxWbhE-g3ZF7hMaLzVF9QYOteLI; patreon_locale_code=en-US; patreon_location_country_code=US; patreon_device_id=73d4df1d-b5cb-49c7-9a34-8b30cbe29644; __cf_bm=Mn.S_5bffoqyM8AKlh2dymFLuLarp7n0vQL7zEL3mzw-1736463031-1.0.1.1-o1D91XP0jKTdlA3t5efV.CPnRH2Wr__Ogm39z6_j5_61yr2vi156uOJBR0v9_R7mkA.hpRonxbAP1QrDf0bljUdCdP.NvX9rPQY.ywKIZlc; __ssid=c2c3dda92723a89077ab95c1dff74bf; analytics_session_id=bc9d4c0d-def2-4fbd-b59c-367cdca49e77
+priority:
+u=0, i
+sec-ch-ua:
+"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+sec-ch-ua-mobile:
+?0
+sec-ch-ua-platform:
+"macOS"
+sec-fetch-dest:
+document
+sec-fetch-mode:
+navigate
+sec-fetch-site:
+none
+sec-fetch-user:
+?1
+upgrade-insecure-requests:
+1
+user-agent:
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
