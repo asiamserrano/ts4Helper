@@ -2,6 +2,8 @@ package ts4.helper.TS4Downloader.utilities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ts4.helper.TS4Downloader.constants.SimsFindsEnum;
+import ts4.helper.TS4Downloader.constants.WebsiteEnum;
 
 import java.io.File;
 import java.util.Arrays;
@@ -37,6 +39,7 @@ public abstract class FileUtility {
             throw new Exception("file is not directory");
         }
     }
+
 
     //    public static void deleteFile(File theFile) {
 //        if (!theFile.delete()) {

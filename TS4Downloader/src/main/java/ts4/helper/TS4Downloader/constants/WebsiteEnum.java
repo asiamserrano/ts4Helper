@@ -1,8 +1,12 @@
 package ts4.helper.TS4Downloader.constants;
 
+import lombok.Getter;
+
+@Getter
 public enum WebsiteEnum {
     CURSE_FORGE("www.curseforge.com"),
-    PATREON("www.patreon.com");
+    PATREON("www.patreon.com"),
+    SIMS_FINDS("www.simsfinds.com");
 
     private final String url;
 
@@ -17,10 +21,6 @@ public enum WebsiteEnum {
             }
         }
         return null;
-    }
-
-    public String getUrl() {
-        return this.url;
     }
 
 }

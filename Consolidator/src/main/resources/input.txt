@@ -1,28 +1,5 @@
-accept:
-text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-accept-encoding:
-gzip, deflate, br, zstd
-accept-language:
-en-US,en;q=0.9
-cookie:
-a_csrf=7VgXF02hPLycZg65wxWbhE-g3ZF7hMaLzVF9QYOteLI; patreon_locale_code=en-US; patreon_location_country_code=US; patreon_device_id=73d4df1d-b5cb-49c7-9a34-8b30cbe29644; __cf_bm=Mn.S_5bffoqyM8AKlh2dymFLuLarp7n0vQL7zEL3mzw-1736463031-1.0.1.1-o1D91XP0jKTdlA3t5efV.CPnRH2Wr__Ogm39z6_j5_61yr2vi156uOJBR0v9_R7mkA.hpRonxbAP1QrDf0bljUdCdP.NvX9rPQY.ywKIZlc; __ssid=c2c3dda92723a89077ab95c1dff74bf; analytics_session_id=bc9d4c0d-def2-4fbd-b59c-367cdca49e77
-priority:
-u=0, i
-sec-ch-ua:
-"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
-sec-ch-ua-mobile:
-?0
-sec-ch-ua-platform:
-"macOS"
-sec-fetch-dest:
-document
-sec-fetch-mode:
-navigate
-sec-fetch-site:
-none
-sec-fetch-user:
-?1
-upgrade-insecure-requests:
-1
-user-agent:
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+icicle-boots-sims4.package                  302419  https://click.simsfinds.com/download?flid=166877568818857&pass=2307102333&version=1669295111&key=50197a2317f47b156ac8439f5e65aa5c&cid=302419
+nike-pegasus-kids-and-toddlers-sims4        309086  https://click.simsfinds.com/download?flid=165821558918238&pass=2307102333&version=1658215589&key=d49008dd4216dc822463bac1c1db3c81&cid=309086
+
+acacia-chunky-garter-boots-sims4            308980  https://click.simsfinds.com/download?flid=165803023918231&pass=2307102333&version=1658030239&key=cc0e2cc56d9f78a0b04a3b2c8a7413a8&cid=308980
+lovely-shoes-slider-and-non-slider-sims4    307424  https://click.simsfinds.com/download?flid=166929491718893&pass=2307102333&version=1669295047&key=bab488b0b22d264996e222b8d39bc9f6&cid=307424

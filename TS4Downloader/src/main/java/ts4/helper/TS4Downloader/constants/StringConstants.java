@@ -6,4 +6,5 @@ public class StringConstants {
     public static final String STANDARD_REGEX = "%s.*?%s";
     public static final String COMMA = ",";
     public static final String NEW_LINE = "\n";
+    public static final String AMPERSAND = "&";
 }
