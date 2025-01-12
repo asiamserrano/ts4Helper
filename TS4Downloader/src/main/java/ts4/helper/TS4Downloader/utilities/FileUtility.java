@@ -54,10 +54,11 @@ public abstract class FileUtility {
 //    }
 
 
-    //    public static void deleteFile(File theFile) {
-//        if (!theFile.delete()) {
+        public static void deleteFile(File theFile) {
+        if (!theFile.delete()) {
+            log.error("unable to delete file: {}", theFile);
 //            printErrorMessage(UNABLE_TO_DELETE, theFile);
-//        }
-//    }
+        }
+    }
 
 }

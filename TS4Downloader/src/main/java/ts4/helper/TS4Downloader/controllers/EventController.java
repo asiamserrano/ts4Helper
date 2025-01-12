@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ts4.helper.TS4Downloader.downloaders.SimsFindsDownloader;
+import ts4.helper.TS4Downloader.enums.DownloadResponseEnum;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.downloaders.CurseForgeDownloader;
 import ts4.helper.TS4Downloader.downloaders.PatreonDownloader;
 import ts4.helper.TS4Downloader.models.DownloadResponse;
+import ts4.helper.TS4Downloader.utilities.ConsolidateUtility;
 import ts4.helper.TS4Downloader.utilities.FileUtility;
 import ts4.helper.TS4Downloader.utilities.URLUtility;
 
@@ -29,7 +31,10 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.NEW_LINE;
 
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_REQUEST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_SAMPLE_GET_MAPPING;
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_DOWNLOAD_LINKS_GET_MAPPING;
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING;
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
+
+import static ts4.helper.TS4Downloader.enums.DownloadResponseEnum.SUCCESSFUL;
 
 @RestController
 @RequestMapping(EVENT_CONTROLLER_REQUEST_MAPPING)
@@ -54,25 +59,44 @@ public class EventController {
         return value;
     }
 
-    @PostMapping(EVENT_CONTROLLER_DOWNLOAD_LINKS_GET_MAPPING)
+    @PostMapping(EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING)
+    public void consolidate(@RequestParam String location) {
+        File file = new File(location);
+        ConsolidateUtility.consolidate(file);
+    }
+
+    @PostMapping(EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING)
     public String downloadLinks(@RequestParam String location, @RequestBody String body) {
         File directory = new File(location);
         if (FileUtility.createDirectory(directory)) {
             String[] urls = body.split(NEW_LINE);
             List<String> responses = new ArrayList<>();
+            WebsiteEnum websiteEnum;
+            DownloadResponse response;
+            URL url;
             for (String str : urls) {
                 try {
-                    URL url = URLUtility.createURL(str);
+                    url = URLUtility.createURL(str);
                     File starting_directory = new File(location);
-                    WebsiteEnum websiteEnum = WebsiteEnum.contains(url);
-                    DownloadResponse response = getResponse(websiteEnum, url, starting_directory);
-                    String result = response.result;
-                    log.info(result);
-                    responses.add(result);
+                    websiteEnum = WebsiteEnum.contains(url);
+                    response = getResponse(websiteEnum, url, starting_directory);
+                    if (response.downloadResponseEnum.equals(SUCCESSFUL)) {
+                        log.info(response.toString());
+                    } else {
+                        url = response.url;
+                        websiteEnum = WebsiteEnum.contains(url);
+                        response = getResponse(websiteEnum, url, starting_directory);
+                        if (response.downloadResponseEnum.equals(SUCCESSFUL)) {
+                            log.info(response.toString());
+                        } else {
+                            responses.add(url.toString());
+                        }
+                    }
                 } catch (Exception ex) {
                     log.error("could not make call for {}", str, ex);
                 }
             }
+            ConsolidateUtility.consolidate(directory);
             return String.join(NEW_LINE, responses);
         } else {
             log.error("location path is invalid: {}", location);
@@ -81,7 +105,7 @@ public class EventController {
     }
 
     private DownloadResponse getResponse(WebsiteEnum websiteEnum, URL url, File starting_directory) throws Exception {
-        DownloadResponse defaultResponse = new DownloadResponse(false, url);
+        DownloadResponse defaultResponse = new DownloadResponse(url);
         if (websiteEnum == null) {
             return defaultResponse;
         } else {
