@@ -3,9 +3,41 @@ package ts4.helper.TS4Downloader.utilities;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+
+import static ts4.helper.TS4Downloader.enums.ExtensionEnum.PACKAGE;
+import static ts4.helper.TS4Downloader.constants.StringConstants.DS_Store;
+import static ts4.helper.TS4Downloader.constants.StringConstants.NEW_LINE;
 
 @Slf4j
 public abstract class FileUtility {
+
+    public static void main(String[] args) throws Exception {
+
+    }
+
+    public static void writeToFile(File file, String string, boolean append) throws Exception {
+        FileWriter fileWriter = new FileWriter(file, append);
+        fileWriter.write(string);
+        fileWriter.write(NEW_LINE);
+        fileWriter.close();
+    }
+
+    public static void deleteNonPackageFiles(File directory) {
+        String filename;
+        for (File file : Objects.requireNonNull(directory.listFiles())) {
+            filename = file.getName();
+            if (!filename.contains(PACKAGE.extension) && !filename.equals(DS_Store)) {
+                deleteFile(file);
+            }
+        }
+    }
 
     public static boolean createDirectory(File directory) {
         if (!directory.exists()) {
@@ -53,11 +85,9 @@ public abstract class FileUtility {
 //        }
 //    }
 
-
-        public static void deleteFile(File theFile) {
+    public static void deleteFile(File theFile) {
         if (!theFile.delete()) {
             log.error("unable to delete file: {}", theFile);
-//            printErrorMessage(UNABLE_TO_DELETE, theFile);
         }
     }
 

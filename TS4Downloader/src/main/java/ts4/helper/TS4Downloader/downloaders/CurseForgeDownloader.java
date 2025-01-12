@@ -30,7 +30,7 @@ public class CurseForgeDownloader extends DownloaderImpl {
     }
 
     public static void main(String[] args) throws Exception {
-//        String location = "/Users/asiaserrano/ChromeDownloads";
+//        File starting_directory = new File("/Users/asiaserrano/zzz");
 //        String content = StringUtility.loadResource("html_file.html");
 //        CurseForgeDownloader downloader = new CurseForgeDownloader(new OkHttpClient());
 //        downloader.fo(content, location);

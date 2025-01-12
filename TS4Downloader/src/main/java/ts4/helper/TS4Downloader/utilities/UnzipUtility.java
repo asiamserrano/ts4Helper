@@ -12,8 +12,11 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
 import static ts4.helper.TS4Downloader.enums.ExtensionEnum.ZIP;
 import static ts4.helper.TS4Downloader.enums.ExtensionEnum.PACKAGE;
+
+import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
 @Slf4j
 public class UnzipUtility {
@@ -36,7 +39,7 @@ public class UnzipUtility {
             }
         } else if (isZipFile(file)) {
             log.info("unzipping zip file: {}", file);
-            String destDirName = file.getName().replace(ZIP.extension, "");
+            String destDirName = file.getName().replace(ZIP.extension, EMPTY);
             File destDir = new File(file.getParent(), destDirName);
             String fileZip = file.getAbsolutePath();
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip));
@@ -65,7 +68,7 @@ public class UnzipUtility {
             if (zipEntry == null) {
                 break;
             } else {
-                String[] parts = zipEntry.getName().split("/");
+                String[] parts = zipEntry.getName().split(FORWARD_SLASH);
                 String zipEntryName = parts[parts.length - 1];
                 File newFile = new File(destDir, zipEntryName);
                 boolean isZipEntryDirectory = zipEntry.isDirectory();

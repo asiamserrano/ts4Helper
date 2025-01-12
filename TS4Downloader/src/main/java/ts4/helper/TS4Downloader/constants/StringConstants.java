@@ -8,4 +8,5 @@ public abstract class StringConstants {
     public static final String NEW_LINE = "\n";
     public static final String AMPERSAND = "&";
     public static final String DS_Store = ".DS_Store";
+    public static final String FORWARD_SLASH = "/";
 }

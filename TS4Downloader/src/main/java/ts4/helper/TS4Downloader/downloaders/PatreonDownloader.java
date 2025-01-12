@@ -26,10 +26,10 @@ public class PatreonDownloader extends DownloaderImpl {
     }
 
     public static void main(String[] args) throws Exception {
-//        String location = "/Users/asiaserrano/ChromeDownloads";
-//        String content = StringUtility.loadResource("html_file.html");
-//        PatreonDownloader downloader = new PatreonDownloader();
-//        downloader.download(content, location);
+        File starting_directory = new File("/Users/asiaserrano/zzz");
+        URL url = URLUtility.createURL("https://www.patreon.com/posts/nitropanic-sims-113295801");
+        PatreonDownloader downloader = new PatreonDownloader(new OkHttpClient());
+        downloader.download(url, starting_directory);
     }
 
     public DownloadResponse download(URL url, File starting_directory) throws Exception {
@@ -53,7 +53,7 @@ public class PatreonDownloader extends DownloaderImpl {
                 createModel(directory, match, models);
             }
         }
-        for (PatreonModel model: models) if(!URLUtility.download(model)) return false;
+        for (PatreonModel model: models) if(!URLUtility.download(model.source, model.destination)) return false;
         return true;
     }
 

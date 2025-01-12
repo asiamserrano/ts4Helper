@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 
-public enum DownloadResponseEnum {
-    SUCCESSFUL,
-    FAILURE,
-    UNKNOWN;
+public enum ResponseEnum {
+    SUCCESSFUL, FAILURE, UNKNOWN;
 
 }

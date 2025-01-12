@@ -21,11 +21,11 @@ import java.util.List;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.PROFILE;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.COOKIE_JAR_BEAN;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.CURSE_FORGE_COOKIE_BEAN;
-import static ts4.helper.TS4Downloader.constants.ConfigConstants.CURSE_FORGE_HTTP_URL_BEAN;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.OK_HTTP_CLIENT_BEAN;
-import static ts4.helper.TS4Downloader.constants.ConfigConstants.HTTPS_SCHEME;
 
 import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE;
+
+import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
 
 @Profile(PROFILE)
 @Configuration
@@ -36,11 +36,11 @@ public class OkHttpConfig {
     private String curseForgeCookieFile;
 
     @Bean(name = COOKIE_JAR_BEAN)
-    public CookieJar cookieJar(final HttpUrl curseForgeHttpUrl, final Cookie curseForgeCookie) {
+    public CookieJar cookieJar(final Cookie curseForgeCookie) {
         return new CookieJar() {
 
             private final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>() {{
-                put(curseForgeHttpUrl, Collections.singletonList(curseForgeCookie));
+                put(CURSE_FORGE.httpUrl, Collections.singletonList(curseForgeCookie));
             }};
 
             @Override
@@ -59,21 +59,13 @@ public class OkHttpConfig {
         };
     }
 
-    @Bean(name = CURSE_FORGE_HTTP_URL_BEAN)
-    public HttpUrl curseForgeHttpUrl() {
-        return new HttpUrl.Builder()
-                .scheme(HTTPS_SCHEME)
-                .host(CURSE_FORGE.url)
-                .build();
-    }
-
     @Bean(name = CURSE_FORGE_COOKIE_BEAN)
     public Cookie curseForgeCookie() {
         try {
             String cookie = StringUtility.loadResource(curseForgeCookieFile);
             return new Cookie.Builder()
                     .domain(CURSE_FORGE.url)
-                    .path("/")
+                    .path(FORWARD_SLASH)
                     .name("cookie-name")
                     .value(cookie)
                     .httpOnly()
@@ -94,11 +86,5 @@ public class OkHttpConfig {
             throw new RuntimeException();
         }
     }
-
-//    @Bean(name = REQUEST_BUILDER_BEAN)
-//    public Request.Builder requestBuilder() {
-//        return new Request.Builder()
-//                .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36");
-//    }
 
 }

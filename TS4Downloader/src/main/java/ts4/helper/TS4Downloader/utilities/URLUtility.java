@@ -10,6 +10,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -21,17 +22,10 @@ public abstract class URLUtility {
         URI uri = new URI(url);
         return uri.toURL();
     }
-
-    public static String getURLString(URL url) {
-        String host = url.getHost();
-        String path = url.getPath();
-        return String.format("%s%s", host, path);
-    }
-
-    public static boolean download(PatreonModel model) throws Exception {
-        URL source = model.source;
-        File destination = model.destination;
-        return download(source, destination);
+    public static List<URL> createURLs(String[] strings) throws Exception {
+        List<URL> urls = new ArrayList<>();
+        for (String string: strings) urls.add(URLUtility.createURL(string));
+        return urls;
     }
 
     public static boolean download(URL source, File destination) throws Exception {

@@ -45,14 +45,12 @@ public class SimsFindsDownloader extends DownloaderImpl {
     // https://click.simsfinds.com/download?flid=173321671320709&pass=2307102333&version=1733216713&key=9e4a77dd0c64425f1da52a38303d83e3&cid=316599
 
     public static void main(String[] args) throws Exception {
-//        String location = "/Users/asiaserrano/ChromeDownloads";
-//        OkHttpClient okHttpClient = new OkHttpClient();
-//        SimsFindsDownloader downloader = new SimsFindsDownloader(okHttpClient);
-//        String url = "https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4";
-////        String url = "https://www.simsfinds.com/downloads/319350/snowflake-boots-sims4";
-//        SimsFindsModel model = new SimsFindsModel(DOWNLOADS, url);
-//        String content = downloader.getContent(model);
-//        downloader.download(content, location);
+        File starting_directory = new File("/Users/asiaserrano/zzz");
+        SimsFindsDownloader downloader = new SimsFindsDownloader(new OkHttpClient());
+//        URL url = URLUtility.createURL("https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4");
+        URL url = URLUtility.createURL("https://www.simsfinds.com/downloads/319350/snowflake-boots-sims4");
+        DownloadResponse downloadResponse = downloader.download(url, starting_directory);
+        log.info("response: {}", downloadResponse);
     }
 
     public DownloadResponse download(URL url, File starting_directory) throws Exception {
@@ -83,6 +81,7 @@ public class SimsFindsDownloader extends DownloaderImpl {
         Response response = OkHttpUtility.sendRequest(source, this.client);
         ExtensionEnum extensionEnum = ExtensionEnum.get(response);
         response.close();
+        if (extensionEnum == null) return false;
         String file_name = directory.getName();
         File destination = new File(directory, file_name + extensionEnum.extension);
         return FileUtility.createDirectory(directory) && URLUtility.download(source, destination);

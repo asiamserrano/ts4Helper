@@ -2,6 +2,8 @@ package ts4.helper.TS4Downloader.models;
 
 import ts4.helper.TS4Downloader.enums.SimsFindsEnum;
 
+import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
+
 public class SimsFindsModel {
 
     public final String filename;
@@ -9,7 +11,7 @@ public class SimsFindsModel {
     public final SimsFindsEnum simsFindsEnum;
 
     public SimsFindsModel(SimsFindsEnum simsFindsEnum, String url) {
-        String[] strings = url.split("/");
+        String[] strings = url.split(FORWARD_SLASH);
         this.filename = strings[strings.length - 1];
         this.url = url;
         this.simsFindsEnum = simsFindsEnum;

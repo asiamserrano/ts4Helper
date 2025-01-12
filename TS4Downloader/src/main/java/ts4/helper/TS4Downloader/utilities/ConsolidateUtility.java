@@ -13,12 +13,9 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.DS_Store;
 public abstract class ConsolidateUtility {
 
     public static void consolidate(File original) {
-//        File original = new File(path);
         Set<File> set = getFolderContents(original);
 
         for (File myFile: set) {
-//            String newPath = String.format(PATH_JOINER_FORMAT, original.getAbsolutePath(), myFile.getName());
-
             File newFile = new File(original, myFile.getName());
             if (!myFile.renameTo(newFile)) {
                 log.error("unable to move object: {}", newFile);
