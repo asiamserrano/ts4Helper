@@ -1,14 +1,12 @@
-package ts4.helper.TS4Downloader.model;
+package ts4.helper.TS4Downloader.models;
 
-import lombok.Getter;
-import ts4.helper.TS4Downloader.constants.SimsFindsEnum;
+import ts4.helper.TS4Downloader.enums.SimsFindsEnum;
 
-@Getter
 public class SimsFindsModel {
 
-    private String filename;
-    private String url;
-    private SimsFindsEnum simsFindsEnum;
+    public final String filename;
+    public final String url;
+    public final SimsFindsEnum simsFindsEnum;
 
     public SimsFindsModel(SimsFindsEnum simsFindsEnum, String url) {
         String[] strings = url.split("/");

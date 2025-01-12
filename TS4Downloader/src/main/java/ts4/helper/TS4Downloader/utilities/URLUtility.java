@@ -1,7 +1,7 @@
 package ts4.helper.TS4Downloader.utilities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import ts4.helper.TS4Downloader.models.PatreonModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,11 +10,12 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
+@Slf4j
 public abstract class URLUtility {
-
-    private static final Logger log = LoggerFactory.getLogger(URLUtility.class);
 
 //    public static URL loadURLFile(String file) {
 //        URL resource = URLUtility.class.getClassLoader().getResource(file);
@@ -35,6 +36,12 @@ public abstract class URLUtility {
         return uri.toURL();
     }
 
+    public static String getURLString(URL url) {
+        String host = url.getHost();
+        String path = url.getPath();
+        return String.format("%s%s", host, path);
+    }
+
 //    private static boolean download(File directory, File destination, URL source) throws Exception {
 //        List<String> filenames = FileUtility.getDirectoryFilenames(directory);
 //        String destination_file = destination.getName();
@@ -46,23 +53,29 @@ public abstract class URLUtility {
 //        }
 //    }
 
+    public static boolean download(PatreonModel model) throws Exception {
+        URL source = model.source;
+        File destination = model.destination;
+        return download(source, destination);
+    }
+
     public static boolean download(URL source, File destination) throws Exception {
         File directory = new File(destination.getParent());
-        List<String> filenames = FileUtility.getDirectoryFilenames(directory);
-        String destination_file = destination.getName();
-        if (!filenames.contains(destination_file)) {
+        List<File> files = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
+        if (!files.contains(destination)) {
             try(FileOutputStream fileOutputStream = new FileOutputStream(destination)) {
                 ReadableByteChannel readableByteChannel = Channels.newChannel(source.openStream());
                 FileChannel fileChannel = fileOutputStream.getChannel();
                 fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
                 log.info("downloaded url {} to {}", source, destination);
+                if (UnzipUtility.isZipFile(destination)) UnzipUtility.unzip(destination);
                 return true;
             } catch (Exception e) {
                 log.error("unable to download url {} to {}", source, destination);
                 return false;
             }
         } else {
-            log.info("{} already exists", destination_file);
+            log.info("{} already exists", destination);
             return true;
         }
     }

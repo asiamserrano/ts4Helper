@@ -1,6 +1,6 @@
 package ts4.helper.TS4Downloader.configuration;
 
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.slf4j.Logger;
 
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.PROFILE;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG_POLICY;
@@ -23,9 +22,8 @@ import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG
 @Order(2)
 @EnableWebSecurity
 @Profile(PROFILE)
+@Slf4j
 public class SecurityConfig {
-
-    private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) {

@@ -1,5 +1,8 @@
-package ts4.helper.TS4Downloader.downloader;
+package ts4.helper.TS4Downloader.downloaders;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import ts4.helper.TS4Downloader.utilities.FileUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
 import ts4.helper.TS4Downloader.utilities.URLUtility;
@@ -10,7 +13,10 @@ import java.net.URL;
 import static ts4.helper.TS4Downloader.constants.StringConstants.SINGLE_QUOTE;
 import static ts4.helper.TS4Downloader.constants.StringConstants.COMMA;
 
-public class CurseForgeDownloader {
+@Slf4j
+@Component
+@AllArgsConstructor
+public class CurseForgeDownloader implements Downloader {
 
     /*
     https://www.curseforge.com/sims4/create-a-sim/goldfish-spring-breath-dress
@@ -22,25 +28,30 @@ public class CurseForgeDownloader {
     public static void main(String[] args) throws Exception {
         String location = "/Users/asiaserrano/ChromeDownloads";
         String content = StringUtility.loadResource("html_file.html");
-        download(content, location);
+        CurseForgeDownloader downloader = new CurseForgeDownloader();
+        downloader.download(content, location);
     }
 
-    public static boolean download(String content, String location) throws Exception {
-        String file_name = StringUtility.regexBetween(content, "\"fileName\":\"", SINGLE_QUOTE);
-        File directory = getDirectory(location, file_name);
-        File destination = new File(directory, file_name);
-        URL source = getSource(content);
-        return FileUtility.createDirectory(directory) && URLUtility.download(source, destination);
+    public boolean download(String content, String location) throws Exception {
+        if (content.contains("Just a moment...")) {
+            return false;
+        } else {
+            String file_name = StringUtility.regexBetween(content, "\"fileName\":\"", SINGLE_QUOTE);
+            File directory = getDirectory(location, file_name);
+            File destination = new File(directory, file_name);
+            URL source = getSource(content);
+            return FileUtility.createDirectory(directory) && URLUtility.download(source, destination);
+        }
     }
 
-    private static URL getSource(String content) throws Exception {
+    private URL getSource(String content) throws Exception {
         String id1 = StringUtility.regexBetween(content, "\"identifier\":\"", SINGLE_QUOTE);
         String id2 = StringUtility.regexBetween(content, "\"mainFile\":{\"id\":", COMMA);
         String source_url = String.format(DOWNLOAD_URL, id1, id2);
         return URLUtility.createURL(source_url);
     }
 
-    private static File getDirectory(String location, String file_name) throws Exception {
+    private File getDirectory(String location, String file_name) throws Exception {
         String folder_name = file_name.split("\\.")[0];
         return new File(location, folder_name);
     }

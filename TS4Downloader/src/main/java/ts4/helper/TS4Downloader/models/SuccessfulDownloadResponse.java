@@ -1,4 +1,4 @@
-package ts4.helper.TS4Downloader.model;
+package ts4.helper.TS4Downloader.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

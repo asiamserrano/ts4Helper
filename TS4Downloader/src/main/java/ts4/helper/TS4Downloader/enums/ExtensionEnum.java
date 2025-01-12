@@ -1,27 +1,21 @@
-package ts4.helper.TS4Downloader.constants;
+package ts4.helper.TS4Downloader.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import okhttp3.Response;
 
 @AllArgsConstructor
-@Getter
 public enum ExtensionEnum {
     ZIP("zip", ".zip"),
     PACKAGE("octet-stream", ".package");
 
-    private final String type;
-    private final String extension;
-
-//    public ExtensionEnum(Response response) {
-//        String contentType = response.header("Content-Type");
-//    }
+    public final String type;
+    public final String extension;
 
     public static ExtensionEnum get(Response response) {
         String contentType = response.header("Content-Type");
         if (contentType != null) {
             for (ExtensionEnum extensionEnum : ExtensionEnum.values()) {
-                if (contentType.contains(extensionEnum.getType())) {
+                if (contentType.contains(extensionEnum.type)) {
                     return extensionEnum;
                 }
             }

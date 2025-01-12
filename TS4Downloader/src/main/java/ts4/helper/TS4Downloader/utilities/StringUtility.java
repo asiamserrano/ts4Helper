@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 import static ts4.helper.TS4Downloader.constants.StringConstants.SINGLE_QUOTE;
-
 import static ts4.helper.TS4Downloader.constants.StringConstants.STANDARD_REGEX;
 
 public abstract class StringUtility {
