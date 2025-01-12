@@ -1,8 +1,9 @@
 package ts4.helper.TS4Downloader.downloaders;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Component;
+import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.models.PatreonModel;
 import ts4.helper.TS4Downloader.utilities.FileUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
@@ -18,23 +19,28 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
 @Slf4j
 @Component
-@AllArgsConstructor
-public class PatreonDownloader implements Downloader {
+public class PatreonDownloader extends DownloaderImpl {
 
-    public static void main(String[] args) throws Exception {
-        String location = "/Users/asiaserrano/ChromeDownloads";
-        String content = StringUtility.loadResource("html_file.html");
-        PatreonDownloader downloader = new PatreonDownloader();
-        downloader.download(content, location);
+    public PatreonDownloader(OkHttpClient client) {
+        super(client);
     }
 
-    public boolean download(String content, String location) throws Exception {
+    public static void main(String[] args) throws Exception {
+//        String location = "/Users/asiaserrano/ChromeDownloads";
+//        String content = StringUtility.loadResource("html_file.html");
+//        PatreonDownloader downloader = new PatreonDownloader();
+//        downloader.download(content, location);
+    }
+
+    public DownloadResponse download(URL url, File starting_directory) throws Exception {
+        String content = getURLContent(url);
         String directory_name = content
                 .split("elementtiming=\"post-title\"")[1]
                 .split(">")[1]
                 .split("<")[0];
-        File directory = new File(location, directory_name);
-        return FileUtility.createDirectory(directory) && download(content, directory);
+        File directory = new File(starting_directory, directory_name);
+        boolean result = FileUtility.createDirectory(directory) && download(content, directory);
+        return new DownloadResponse(result, url);
     }
 
     private boolean download(String content, File directory) throws Exception {

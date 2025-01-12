@@ -1,10 +1,7 @@
 package ts4.helper.TS4Downloader.controllers;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.File;
+import java.net.URL;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -23,8 +21,8 @@ import ts4.helper.TS4Downloader.downloaders.SimsFindsDownloader;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.downloaders.CurseForgeDownloader;
 import ts4.helper.TS4Downloader.downloaders.PatreonDownloader;
+import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.utilities.FileUtility;
-import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 import ts4.helper.TS4Downloader.utilities.URLUtility;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.NEW_LINE;
@@ -36,6 +34,7 @@ import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTR
 @RestController
 @RequestMapping(EVENT_CONTROLLER_REQUEST_MAPPING)
 @Slf4j
+@NoArgsConstructor
 public class EventController {
 
     @Autowired
@@ -46,12 +45,6 @@ public class EventController {
 
     @Autowired
     private SimsFindsDownloader simsFindsDownloader;
-
-    private final OkHttpClient client;
-
-    public EventController(final OkHttpClient client) {
-        this.client = client;
-    }
 
     @GetMapping(EVENT_CONTROLLER_SAMPLE_GET_MAPPING)
     public String sample() {
@@ -67,43 +60,43 @@ public class EventController {
         if (FileUtility.createDirectory(directory)) {
             String[] urls = body.split(NEW_LINE);
             List<String> responses = new ArrayList<>();
-            for (String url : urls) {
-                try(Response response = OkHttpUtility.sendRequest(url, client)) {
-                    String content = response.body().string();
+            for (String str : urls) {
+                try {
+                    URL url = URLUtility.createURL(str);
+                    File starting_directory = new File(location);
                     WebsiteEnum websiteEnum = WebsiteEnum.contains(url);
-                    boolean result = getResponse(websiteEnum, content, location);
-                    responses.add(result ? getSuccessfulMessage(url) : content);
+                    DownloadResponse response = getResponse(websiteEnum, url, starting_directory);
+                    String result = response.result;
+                    log.info(result);
+                    responses.add(result);
                 } catch (Exception ex) {
-                    log.error("could not make call", ex);
+                    log.error("could not make call for {}", str, ex);
                 }
             }
             return String.join(NEW_LINE, responses);
         } else {
             log.error("location path is invalid: {}", location);
-            return null;
+            return "unable to download links to location: " + location;
         }
     }
 
-    private String getSuccessfulMessage(String url) {
-        return "COMPLETED: " + url;
-    }
-
-    private boolean getResponse(WebsiteEnum websiteEnum, String content, String location) throws Exception {
+    private DownloadResponse getResponse(WebsiteEnum websiteEnum, URL url, File starting_directory) throws Exception {
+        DownloadResponse defaultResponse = new DownloadResponse(false, url);
         if (websiteEnum == null) {
-            return false;
+            return defaultResponse;
         } else {
             switch (websiteEnum) {
                 case CURSE_FORGE -> {
-                    return curseForgeDownloader.download(content, location);
+                    return curseForgeDownloader.download(url, starting_directory);
                 }
                 case PATREON -> {
-                    return patreonDownloader.download(content, location);
+                    return patreonDownloader.download(url, starting_directory);
                 }
                 case SIMS_FINDS -> {
-                    return simsFindsDownloader.download(content, location);
+                    return simsFindsDownloader.download(url, starting_directory);
                 }
                 default -> {
-                    return false;
+                    return defaultResponse;
                 }
             }
         }

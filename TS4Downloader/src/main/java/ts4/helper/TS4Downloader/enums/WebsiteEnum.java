@@ -2,6 +2,8 @@ package ts4.helper.TS4Downloader.enums;
 
 import lombok.AllArgsConstructor;
 
+import java.net.URL;
+
 @AllArgsConstructor
 public enum WebsiteEnum {
     CURSE_FORGE("www.curseforge.com"),
@@ -10,9 +12,9 @@ public enum WebsiteEnum {
 
     public final String url;
 
-    public static WebsiteEnum contains(String url) {
+    public static WebsiteEnum contains(URL url) {
         for (WebsiteEnum websiteEnum : WebsiteEnum.values()) {
-            if (url.contains(websiteEnum.url)) {
+            if (url.getHost().equals(websiteEnum.url)) {
                 return websiteEnum;
             }
         }

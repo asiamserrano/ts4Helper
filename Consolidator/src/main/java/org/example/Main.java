@@ -9,11 +9,14 @@ public class Main {
         String string = "https://www.patreon.com/posts/sxv-year-of-11-75418958";
         URI uri = new URI(string);
         URL url = uri.toURL();
+        String url_string = url.toString();
+        System.out.println(url_string);
+
 //        String urlString = (String) url;
 //        System.out.println(url.getPath());
 //        System.out.println(url.getHost());
-        String s = String.format("%s%s", url.getHost(), url.getPath());
-        System.out.println(s);
-        System.out.println(string.split("//")[1]);
+//        String s = String.format("%s%s", url.getHost(), url.getPath());
+//        System.out.println(s);
+//        System.out.println(string.split("//")[1]);
     }
 }

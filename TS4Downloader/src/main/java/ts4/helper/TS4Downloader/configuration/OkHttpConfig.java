@@ -1,7 +1,10 @@
 package ts4.helper.TS4Downloader.configuration;
 
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
+import okhttp3.Cookie;
+import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

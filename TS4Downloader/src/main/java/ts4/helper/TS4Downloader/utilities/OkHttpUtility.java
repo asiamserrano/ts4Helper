@@ -11,14 +11,7 @@ import java.net.URL;
 public abstract class OkHttpUtility {
 
     public static HttpUrl extract(HttpUrl url) {
-        return new HttpUrl.Builder()
-                .scheme(url.scheme())
-                .host(url.host())
-                .build();
-    }
-
-    public static Response sendRequest(String url, OkHttpClient client) throws Exception {
-        return sendRequest(URLUtility.createURL(url), client);
+        return new HttpUrl.Builder().scheme(url.scheme()).host(url.host()).build();
     }
 
     public static Response sendRequest(URL url, OkHttpClient client) throws Exception {
@@ -28,6 +21,13 @@ public abstract class OkHttpUtility {
                 .build();
         Call call = client.newCall(request);
         return call.execute();
+    }
+
+    public static String getContent(URL url, OkHttpClient client) throws Exception {
+        Response response = sendRequest(url, client);
+        String string = response.body().string();
+        response.close();
+        return string;
     }
 
 }

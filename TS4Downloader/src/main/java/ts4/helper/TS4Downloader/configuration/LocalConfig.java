@@ -2,7 +2,6 @@ package ts4.helper.TS4Downloader.configuration;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -28,13 +27,13 @@ public class LocalConfig {
     }
 
     @Bean(name = CURSE_FORGE_DOWNLOADER_BEAN)
-    public CurseForgeDownloader curseForgeDownloader() {
-        return new CurseForgeDownloader();
+    public CurseForgeDownloader curseForgeDownloader(final OkHttpClient client) {
+        return new CurseForgeDownloader(client);
     }
 
     @Bean(name = PATREON_DOWNLOADER_BEAN)
-    public PatreonDownloader patreonDownloader() {
-        return new PatreonDownloader();
+    public PatreonDownloader patreonDownloader(final OkHttpClient client) {
+        return new PatreonDownloader(client);
     }
 
     @Bean(name = SIMS_FINDS_DOWNLOADER_BEAN)

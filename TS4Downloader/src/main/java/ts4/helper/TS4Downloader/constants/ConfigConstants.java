@@ -9,7 +9,6 @@ public abstract class ConfigConstants {
     public static final String CURSE_FORGE_COOKIE_BEAN = "curseForgeCookie";
     public static final String CURSE_FORGE_HTTP_URL_BEAN = "curseForgeHttpUrl";
     public static final String OK_HTTP_CLIENT_BEAN = "client";
-//    public static final String REQUEST_BUILDER_BEAN = "requestBuilder";
     public static final String CURSE_FORGE_DOWNLOADER_BEAN = "curseForgeDownloader";
     public static final String PATREON_DOWNLOADER_BEAN = "patreonDownloader";
     public static final String SIMS_FINDS_DOWNLOADER_BEAN = "simsFindsDownloader";
