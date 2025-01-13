@@ -5,6 +5,9 @@ public abstract class ControllerConstants {
     public static final String EVENT_CONTROLLER_SAMPLE_GET_MAPPING = "/sample";
     public static final String EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING = "/downloadLinks";
     public static final String EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING = "/consolidate";
-    public static final String EVENT_CONTROLLER_CURSE_FORGE_COOKIE_STATUS_GET_MAPPING = "/curseForgeCookieStatus";
+
+    public static final String CURSE_FORGE_CONTROLLER_REQUEST_MAPPING = "/curseForge";
+    public static final String CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING = "/cookieStatus";
+    public static final String CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING = "/updateCookie";
 
 }

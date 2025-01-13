@@ -4,12 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 import static ts4.helper.TS4Downloader.enums.ExtensionEnum.PACKAGE;
 import static ts4.helper.TS4Downloader.constants.StringConstants.DS_Store;
@@ -34,6 +29,7 @@ public abstract class FileUtility {
         for (File file : Objects.requireNonNull(directory.listFiles())) {
             filename = file.getName();
             if (!filename.contains(PACKAGE.extension) && !filename.equals(DS_Store)) {
+                log.info("deleting {}", file);
                 deleteFile(file);
             }
         }

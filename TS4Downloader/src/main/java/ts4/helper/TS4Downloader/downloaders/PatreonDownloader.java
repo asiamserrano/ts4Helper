@@ -1,5 +1,6 @@
 package ts4.helper.TS4Downloader.downloaders;
 
+import com.fasterxml.jackson.databind.deser.DataFormatReaders;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,7 @@ import ts4.helper.TS4Downloader.utilities.URLUtility;
 
 import java.io.File;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
@@ -27,9 +27,18 @@ public class PatreonDownloader extends DownloaderImpl {
 
     public static void main(String[] args) throws Exception {
         File starting_directory = new File("/Users/asiaserrano/zzz");
-        URL url = URLUtility.createURL("https://www.patreon.com/posts/nitropanic-sims-113295801");
+
         PatreonDownloader downloader = new PatreonDownloader(new OkHttpClient());
-        downloader.download(url, starting_directory);
+
+        List<String> strings = Arrays.asList("https://www.patreon.com/posts/wire-high-heels-113597759",
+                "https://www.patreon.com/posts/dallz-high-hells-108322493");
+
+        for (String string: strings) {
+            URL url = URLUtility.createURL(string);
+            downloader.download(url, starting_directory);
+            log.info("----------");
+        }
+
     }
 
     public DownloadResponse download(URL url, File starting_directory) throws Exception {
@@ -49,19 +58,18 @@ public class PatreonDownloader extends DownloaderImpl {
         String match;
         while (matcher.find()) {
             match = matcher.group();
-            if (!match.contains("1.png")) {
-                createModel(directory, match, models);
+            if (!match.contains("1.png") && !match.contains("1.jpg")) {
+                models.add(createModel(directory, match));
             }
         }
         for (PatreonModel model: models) if(!URLUtility.download(model.source, model.destination)) return false;
-        return true;
+        return !models.isEmpty();
     }
 
-    private void createModel(File directory, String match, Set<PatreonModel> models) throws Exception {
+    private PatreonModel createModel(File directory, String match) throws Exception {
         URL source = getSource(match);
         File destination = getDestination(match, directory);
-        PatreonModel model = new PatreonModel(source, destination);
-        models.add(model);
+        return new PatreonModel(source, destination);
     }
 
     private URL getSource(String match) throws Exception {

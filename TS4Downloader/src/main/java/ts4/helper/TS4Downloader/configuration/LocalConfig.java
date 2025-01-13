@@ -30,10 +30,10 @@ public class LocalConfig {
     @Value("${spring.application.non.downloaded.links.filename}")
     private String nonDownloadedLinksFilename;
 
-    @Bean(name = REST_TEMPLATE_BEAN)
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+//    @Bean(name = REST_TEMPLATE_BEAN)
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
 
     @Bean(name = CURSE_FORGE_DOWNLOADER_BEAN)
     public CurseForgeDownloader curseForgeDownloader(final OkHttpClient client) {

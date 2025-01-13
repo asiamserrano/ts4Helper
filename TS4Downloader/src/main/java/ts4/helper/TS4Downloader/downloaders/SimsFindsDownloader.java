@@ -55,8 +55,9 @@ public class SimsFindsDownloader extends DownloaderImpl {
 
     public DownloadResponse download(URL url, File starting_directory) throws Exception {
         String content = getURLContent(url);
-        String url_str = StringUtility.regexBetween(content, "\"og:url\" content=\"", SINGLE_QUOTE);
-        SimsFindsModel model = new SimsFindsModel(DOWNLOADS, url_str);
+        String url_str = StringUtility.getStringBetweenRegex(content, "\"og:url\" content=\"", SINGLE_QUOTE);
+        URL newURL = URLUtility.createURL(url_str);
+        SimsFindsModel model = new SimsFindsModel(DOWNLOADS, newURL);
         return download(model, starting_directory);
     }
 
@@ -67,10 +68,19 @@ public class SimsFindsDownloader extends DownloaderImpl {
         SimsFindsModel download_model = getDownloadURL(continue_content, continue_model);
         if (download_model.urlContains("flid=0")) {
             String download_content = getContent(download_model);
-            String external_url = StringUtility.regexBetween(download_content, "<title>", "</title");
-            return new DownloadResponse(URLUtility.createURL(external_url));
+            String external_url = StringUtility.getStringBetweenRegex(download_content, "<title>", "</title");
+//            log.info("continue_model url: {}", continue_model.url);
+//            log.info("download_model url: {}", download_model.url);
+//            log.info("simsfinds external url: {}", external_url);
+
+            if (external_url.isEmpty()) {
+                return new DownloadResponse(false, downloads_model.url);
+            } else {
+                return new DownloadResponse(URLUtility.createURL(external_url));
+            }
         } else {
-            URL url = URLUtility.createURL(download_model.url);
+//            URL url = URLUtility.createURL(download_model.url);
+            URL url = download_model.url;
             File directory = new File(location, download_model.filename);
             boolean bool = download(directory, url);
             return new DownloadResponse(bool, url);
@@ -87,16 +97,16 @@ public class SimsFindsDownloader extends DownloaderImpl {
         return FileUtility.createDirectory(directory) && URLUtility.download(source, destination);
     }
 
-    private SimsFindsModel getContinueURL(String content, SimsFindsModel model) {
-        String key = StringUtility.regexBetween(content, "key=", SINGLE_QUOTE);
-        String url = "https://www.simsfinds.com/continue?key=" + key;
+    private SimsFindsModel getContinueURL(String content, SimsFindsModel model) throws Exception {
+        String key = StringUtility.getStringBetweenRegex(content, "key=", SINGLE_QUOTE);
+        URL url = URLUtility.createURL("https://www.simsfinds.com/continue?key=" + key);
         return new SimsFindsModel(CONTINUE, url, model);
     }
 
-    private SimsFindsModel getDownloadURL(String content, SimsFindsModel model) {
-        String[] info = StringUtility.regexBetween(content, "data-at5t768r9=\"", SINGLE_QUOTE).split(COMMA);
-        String flid = StringUtility.regexBetween(content, "data-at8r136r7=\"", SINGLE_QUOTE);
-        String pass = StringUtility.regexBetween(content, "data-passe=\"", SINGLE_QUOTE);
+    private SimsFindsModel getDownloadURL(String content, SimsFindsModel model) throws Exception {
+        String[] info = StringUtility.getStringBetweenRegex(content, "data-at5t768r9=\"", SINGLE_QUOTE).split(COMMA);
+        String flid = StringUtility.getStringBetweenRegex(content, "data-at8r136r7=\"", SINGLE_QUOTE);
+        String pass = StringUtility.getStringBetweenRegex(content, "data-passe=\"", SINGLE_QUOTE);
 
         Map<String, String> map = new HashMap<>();
         map.put("cid", info[0]);
@@ -109,12 +119,13 @@ public class SimsFindsDownloader extends DownloaderImpl {
                 .map(e -> String.format("%s=%s", e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
 
-        String url = "https://click.simsfinds.com/download?" + String.join(AMPERSAND, list);
+//        String url = "https://click.simsfinds.com/download?" + String.join(AMPERSAND, list);
+        URL url = URLUtility.createURL("https://click.simsfinds.com/download?" + String.join(AMPERSAND, list));
         return new SimsFindsModel(DOWNLOAD, url, model);
     }
 
     private String getContent(SimsFindsModel model) throws Exception {
-        URL url = URLUtility.createURL(model.url);
+        URL url = model.url;
         return getURLContent(url);
     }
 

@@ -1,6 +1,5 @@
 package ts4.helper.TS4Downloader.enums;
 
-import lombok.AllArgsConstructor;
 import okhttp3.HttpUrl;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 
@@ -18,7 +17,7 @@ public enum WebsiteEnum {
 
     WebsiteEnum(String url) {
         this.url = url;
-        this.httpUrl = OkHttpUtility.create(HTTPS_SCHEME, this.url);
+        this.httpUrl = OkHttpUtility.createHttpUrl(HTTPS_SCHEME, this.url);
     }
 
     public static WebsiteEnum contains(URL url) {

@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,16 +34,14 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
 @Slf4j
 public class OkHttpConfig {
 
-    @Value("${spring.application.curseforge.cookie}")
-    private String curseForgeCookieFile;
+//    @Value("${spring.application.curseforge.cookie}")
+//    private String curseForgeCookieFile;
 
     @Bean(name = COOKIE_JAR_BEAN)
-    public CookieJar cookieJar(final Cookie curseForgeCookie) {
+    public CookieJar cookieJar() {
         return new CookieJar() {
 
-            private final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>() {{
-                put(CURSE_FORGE.httpUrl, Collections.singletonList(curseForgeCookie));
-            }};
+            private final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
 
             @Override
             public void saveFromResponse(@NotNull HttpUrl url, @NotNull List<Cookie> cookies) {
@@ -59,23 +59,16 @@ public class OkHttpConfig {
         };
     }
 
-    @Bean(name = CURSE_FORGE_COOKIE_BEAN)
-    public Cookie curseForgeCookie() {
-        try {
-            String cookie = StringUtility.loadResource(curseForgeCookieFile);
-            return new Cookie.Builder()
-                    .domain(CURSE_FORGE.url)
-                    .path(FORWARD_SLASH)
-                    .name("cookie-name")
-                    .value(cookie)
-                    .httpOnly()
-                    .secure()
-                    .build();
-        } catch(Exception e) {
-            log.error("unable to create curseForgeCookie {}", e.getMessage());
-            throw new RuntimeException();
-        }
-    }
+//    @Bean(name = CURSE_FORGE_COOKIE_BEAN)
+//    public Cookie curseForgeCookie() {
+//        try {
+//            String cookie = StringUtility.loadResource(curseForgeCookieFile);
+//            return OkHttpUtility.createCookie(cookie, CURSE_FORGE);
+//        } catch(Exception e) {
+//            log.error("unable to create curseForgeCookie {}", e.getMessage());
+//            throw new RuntimeException();
+//        }
+//    }
 
     @Bean(name = OK_HTTP_CLIENT_BEAN)
     public OkHttpClient client(final CookieJar cookieJar) {
