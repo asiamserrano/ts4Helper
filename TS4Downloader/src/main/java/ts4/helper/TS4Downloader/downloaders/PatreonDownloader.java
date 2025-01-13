@@ -26,7 +26,7 @@ public class PatreonDownloader extends DownloaderImpl {
     }
 
     public static void main(String[] args) throws Exception {
-        File starting_directory = new File("/Users/asiaserrano/zzz");
+        File starting_directory = new File("/Users/asia/zzz");
 
         PatreonDownloader downloader = new PatreonDownloader(new OkHttpClient());
 
