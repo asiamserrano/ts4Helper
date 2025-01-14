@@ -8,7 +8,8 @@ import java.net.URL;
 import static ts4.helper.TS4Downloader.constants.OkHttpConstants.USER_AGENT_HEADER;
 import static ts4.helper.TS4Downloader.constants.OkHttpConstants.USER_AGENT_VALUE;
 import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
-import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE;
+
+import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
 
 public abstract class OkHttpUtility {
 
@@ -33,8 +34,16 @@ public abstract class OkHttpUtility {
         return string;
     }
 
-    public static HttpUrl extract(HttpUrl url) {
-        return createHttpUrl(url.scheme(), url.host());
+//    public static HttpUrl extract(HttpUrl url) {
+//        return createHttpUrl(url.scheme(), url.host());
+//    }
+
+    public static HttpUrl createHttpUrl(HttpUrl httpUrl) {
+        return createHttpUrl(httpUrl.scheme(), httpUrl.host());
+    }
+
+    public static HttpUrl createHttpUrl(WebsiteEnum websiteEnum) {
+        return createHttpUrl(HTTPS_SCHEME, websiteEnum.domain);
     }
 
     public static HttpUrl createHttpUrl(String scheme, String host) {
@@ -46,7 +55,7 @@ public abstract class OkHttpUtility {
 
     public static Cookie createCookie(String cookie, WebsiteEnum websiteEnum) {
         return new Cookie.Builder()
-                .domain(websiteEnum.url)
+                .domain(websiteEnum.domain)
                 .path(FORWARD_SLASH)
                 .name("cookie-name")
                 .value(cookie)

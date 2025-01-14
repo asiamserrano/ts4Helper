@@ -1,6 +1,7 @@
 package ts4.helper.TS4Downloader.utilities;
 
 import lombok.extern.slf4j.Slf4j;
+import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.models.PatreonModel;
 
 import java.io.File;
@@ -48,5 +49,11 @@ public abstract class URLUtility {
             return true;
         }
     }
+
+//    public static WebsiteEnum getWebsite(URL url) {
+//        for (WebsiteEnum website : WebsiteEnum.values())
+//            if (url.toString().contains(website.url)) return website;
+//        return null;
+//    }
 
 }

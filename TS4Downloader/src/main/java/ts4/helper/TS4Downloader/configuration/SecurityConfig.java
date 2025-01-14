@@ -9,12 +9,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.PROFILE;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG_POLICY;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.SECURITY_CONFIG_ANT_MATCHERS;
+
+import org.springframework.security.config.http.SessionCreationPolicy;
+
 
 @EnableMethodSecurity
 @EnableWebSecurity
@@ -31,7 +33,8 @@ public class SecurityConfig {
                     .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                     .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .csrf(AbstractHttpConfigurer::disable)
-                    .authorizeHttpRequests(requests -> requests.requestMatchers(SECURITY_CONFIG_ANT_MATCHERS).permitAll().anyRequest().authenticated())
+                    .authorizeHttpRequests(requests -> requests.requestMatchers(SECURITY_CONFIG_ANT_MATCHERS)
+                            .permitAll().anyRequest().authenticated())
                     .build();
         } catch (Exception ex) {
             log.error("Failed to create security filter chain bean: {}", ex.getMessage());

@@ -15,3 +15,30 @@ https://www.curseforge.com/api/v1/mods/1008775/files/6029686/download
 https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
 https://www.curseforge.com/members/ssalon1/projects?page=7&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
 https://edge.forgecdn.net/files/4390/153/Sentate-2022-TheodoraDress.zip
+
+####################################
+
+### TRANSITION LINK
+--- DESTINATION ---                                     --- SOURCE ---
+[www.patreon.com/file?]                                 https://www.patreon.com/posts/wire-high-heels-113597759
+www.simsfinds.com/continue?key=                         https://www.simsfinds.com/downloads/319350/snowflake-boots-sims4
+www.curseforge.com/api/v1/mods/                         https://www.curseforge.com/sims4/create-a-sim/goldfish-spring-breath-dress
+
+click.simsfinds.com/download?flid=                      https://www.simsfinds.com/continue?key=9e4a77dd0c64425f1da52a38303d83e3
+*any*                                                   https://click.simsfinds.com/download?flid=0&pass=2307102333&version=1675093910&key=f987fc317309e21ce0fdadaaa140c47e&cid=319350
+
+[www.curseforge.com/sims4/create-a-sim]                 https://www.curseforge.com/members/ssalon1/projects?page=7&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+[edge.forgecdn.net/files/]                              https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
+
+### TRANSITION LINKS
+
+### DIRECT DOWNLOAD
+www.patreon.com     https://www.patreon.com/file?h=56379158&m=122652383
+www.curseforge.com  https://edge.forgecdn.net/files/4390/153/Sentate-2022-TheodoraDress.zip
+www.curseforge.com  https://www.curseforge.com/api/v1/mods/1008775/files/6029686/download
+www.simsfinds.com   https://click.simsfinds.com/download?flid=173321671320709&pass=2307102333&version=1733216713&key=9e4a77dd0c64425f1da52a38303d83e3&cid=316599
+
+### UNHANDLED LINK
+https://glammoosecc.tumblr.com/post/659007240863383552/dallasgirls-birkenstocks-non-hq-recolored-28
+https://overkillsimmer.blogspot.com/2022/08/alexia-shoes.html
+https://shushilda.com/catalog/sims-4-cc/shoes-sims4/adidas-superstar-ts4/

@@ -22,20 +22,12 @@ import java.util.List;
 
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.PROFILE;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.COOKIE_JAR_BEAN;
-import static ts4.helper.TS4Downloader.constants.ConfigConstants.CURSE_FORGE_COOKIE_BEAN;
 import static ts4.helper.TS4Downloader.constants.ConfigConstants.OK_HTTP_CLIENT_BEAN;
-
-import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE;
-
-import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
 
 @Profile(PROFILE)
 @Configuration
 @Slf4j
 public class OkHttpConfig {
-
-//    @Value("${spring.application.curseforge.cookie}")
-//    private String curseForgeCookieFile;
 
     @Bean(name = COOKIE_JAR_BEAN)
     public CookieJar cookieJar() {
@@ -45,30 +37,20 @@ public class OkHttpConfig {
 
             @Override
             public void saveFromResponse(@NotNull HttpUrl url, @NotNull List<Cookie> cookies) {
-                HttpUrl extracted = OkHttpUtility.extract(url);
+                HttpUrl extracted = OkHttpUtility.createHttpUrl(url);
                 cookieStore.put(extracted, cookies);
             }
 
             @NotNull
             @Override
             public List<Cookie> loadForRequest(@NotNull HttpUrl url) {
-                HttpUrl extracted = OkHttpUtility.extract(url);
+                HttpUrl extracted = OkHttpUtility.createHttpUrl(url);
                 List<Cookie> cookies = cookieStore.get(extracted);
                 return cookies != null ? cookies : new ArrayList<Cookie>();
             }
+
         };
     }
-
-//    @Bean(name = CURSE_FORGE_COOKIE_BEAN)
-//    public Cookie curseForgeCookie() {
-//        try {
-//            String cookie = StringUtility.loadResource(curseForgeCookieFile);
-//            return OkHttpUtility.createCookie(cookie, CURSE_FORGE);
-//        } catch(Exception e) {
-//            log.error("unable to create curseForgeCookie {}", e.getMessage());
-//            throw new RuntimeException();
-//        }
-//    }
 
     @Bean(name = OK_HTTP_CLIENT_BEAN)
     public OkHttpClient client(final CookieJar cookieJar) {
