@@ -340,3 +340,102 @@ This generated password is for development use only. Your security configuration
 2025-01-14T00:47:25.834-05:00  INFO 7349 --- [TS4Downloader] [http-nio-9080-exec-1] t.h.T.controllers.EventController        : NEED TO DOWNLOAD: https://click.simsfinds.com/download?flid=173321671320709&pass=2307102333&version=1733216713&key=9e4a77dd0c64425f1da52a38303d83e3&cid=316599
 2025-01-14T00:48:15.567-05:00  INFO 7349 --- [TS4Downloader] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
 2025-01-14T00:48:15.570-05:00  INFO 7349 --- [TS4Downloader] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-01-14T17:55:47.560-05:00  INFO 25298 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : Starting Ts4DownloaderApplication using Java 21.0.5 with PID 25298 (/Users/asia/repos/ts4Helper/TS4Downloader/target/classes started by asia in /Users/asia/repos/ts4Helper/TS4Downloader)
+2025-01-14T17:55:47.562-05:00  INFO 25298 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : No active profile set, falling back to 1 default profile: "default"
+2025-01-14T17:55:47.912-05:00  INFO 25298 --- [TS4Downloader] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9080 (http)
+2025-01-14T17:55:47.916-05:00  INFO 25298 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-14T17:55:47.916-05:00  INFO 25298 --- [TS4Downloader] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-14T17:55:47.926-05:00  INFO 25298 --- [TS4Downloader] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-14T17:55:47.927-05:00  INFO 25298 --- [TS4Downloader] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 345 ms
+2025-01-14T17:55:47.943-05:00  WARN 25298 --- [TS4Downloader] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eventController' defined in file [/Users/asia/repos/ts4Helper/TS4Downloader/target/classes/ts4/helper/TS4Downloader/controllers/EventController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'java.io.File' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-14T17:55:47.944-05:00  INFO 25298 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-01-14T17:55:47.948-05:00  INFO 25298 --- [TS4Downloader] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-14T17:55:47.955-05:00 ERROR 25298 --- [TS4Downloader] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in ts4.helper.TS4Downloader.controllers.EventController required a bean of type 'java.io.File' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.io.File' in your configuration.
+
+2025-01-14T17:55:51.956-05:00  INFO 25306 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : Starting Ts4DownloaderApplication using Java 21.0.5 with PID 25306 (/Users/asia/repos/ts4Helper/TS4Downloader/target/classes started by asia in /Users/asia/repos/ts4Helper/TS4Downloader)
+2025-01-14T17:55:51.957-05:00  INFO 25306 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : No active profile set, falling back to 1 default profile: "default"
+2025-01-14T17:55:52.236-05:00  INFO 25306 --- [TS4Downloader] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9080 (http)
+2025-01-14T17:55:52.240-05:00  INFO 25306 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-14T17:55:52.240-05:00  INFO 25306 --- [TS4Downloader] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-14T17:55:52.249-05:00  INFO 25306 --- [TS4Downloader] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-14T17:55:52.249-05:00  INFO 25306 --- [TS4Downloader] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 276 ms
+2025-01-14T17:55:52.265-05:00  WARN 25306 --- [TS4Downloader] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eventController' defined in file [/Users/asia/repos/ts4Helper/TS4Downloader/target/classes/ts4/helper/TS4Downloader/controllers/EventController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'java.io.File' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-14T17:55:52.266-05:00  INFO 25306 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-01-14T17:55:52.270-05:00  INFO 25306 --- [TS4Downloader] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-14T17:55:52.275-05:00 ERROR 25306 --- [TS4Downloader] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in ts4.helper.TS4Downloader.controllers.EventController required a bean of type 'java.io.File' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.io.File' in your configuration.
+
+2025-01-14T17:56:58.653-05:00  INFO 25330 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : Starting Ts4DownloaderApplication using Java 21.0.5 with PID 25330 (/Users/asia/repos/ts4Helper/TS4Downloader/target/classes started by asia in /Users/asia/repos/ts4Helper/TS4Downloader)
+2025-01-14T17:56:58.654-05:00  INFO 25330 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : No active profile set, falling back to 1 default profile: "default"
+2025-01-14T17:56:58.942-05:00  INFO 25330 --- [TS4Downloader] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9080 (http)
+2025-01-14T17:56:58.947-05:00  INFO 25330 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-14T17:56:58.947-05:00  INFO 25330 --- [TS4Downloader] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-14T17:56:58.957-05:00  INFO 25330 --- [TS4Downloader] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-14T17:56:58.957-05:00  INFO 25330 --- [TS4Downloader] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 289 ms
+2025-01-14T17:56:58.973-05:00  WARN 25330 --- [TS4Downloader] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'eventController' defined in file [/Users/asia/repos/ts4Helper/TS4Downloader/target/classes/ts4/helper/TS4Downloader/controllers/EventController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'okhttp3.OkHttpClient' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-14T17:56:58.974-05:00  INFO 25330 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-01-14T17:56:58.979-05:00  INFO 25330 --- [TS4Downloader] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-14T17:56:58.986-05:00 ERROR 25330 --- [TS4Downloader] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in ts4.helper.TS4Downloader.controllers.EventController required a bean of type 'okhttp3.OkHttpClient' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'okhttp3.OkHttpClient' in your configuration.
+
+2025-01-14T17:57:27.267-05:00  INFO 25355 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : Starting Ts4DownloaderApplication using Java 21.0.5 with PID 25355 (/Users/asia/repos/ts4Helper/TS4Downloader/target/classes started by asia in /Users/asia/repos/ts4Helper/TS4Downloader)
+2025-01-14T17:57:27.268-05:00  INFO 25355 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : The following 1 profile is active: "local"
+2025-01-14T17:57:27.602-05:00  INFO 25355 --- [TS4Downloader] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9080 (http)
+2025-01-14T17:57:27.607-05:00  INFO 25355 --- [TS4Downloader] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-14T17:57:27.607-05:00  INFO 25355 --- [TS4Downloader] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-14T17:57:27.617-05:00  INFO 25355 --- [TS4Downloader] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-14T17:57:27.618-05:00  INFO 25355 --- [TS4Downloader] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 329 ms
+2025-01-14T17:57:27.741-05:00  WARN 25355 --- [TS4Downloader] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 7dbc6d87-f453-440d-a263-595b4afbf7cb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-01-14T17:57:27.746-05:00  INFO 25355 --- [TS4Downloader] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-01-14T17:57:27.938-05:00  INFO 25355 --- [TS4Downloader] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9080 (http) with context path '/'
+2025-01-14T17:57:27.941-05:00  INFO 25355 --- [TS4Downloader] [main] t.h.T.Ts4DownloaderApplication           : Started Ts4DownloaderApplication in 0.815 seconds (process running for 1.014)
+2025-01-14T17:58:05.735-05:00  INFO 25355 --- [TS4Downloader] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-14T17:58:05.739-05:00  INFO 25355 --- [TS4Downloader] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete

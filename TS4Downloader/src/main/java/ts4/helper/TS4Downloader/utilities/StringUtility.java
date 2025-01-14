@@ -49,7 +49,7 @@ public abstract class StringUtility {
     }
 
     private static final List<String> ESCAPE_CHARACTERS = new ArrayList<>() {{
-        add("{"); add("}"); add("("); add(")");
+        add("{"); add("}"); add("("); add(")"); add("&");
     }};
 
     private static String prepareForRegex(String string) {
