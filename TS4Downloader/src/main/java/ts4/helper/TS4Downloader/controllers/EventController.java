@@ -78,12 +78,12 @@ public class EventController {
         String response = downloadLinks(directory, urls);
         ZonedDateTime END = ZonedDateTime.now();
         log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
-        return response.replaceAll("\\\\",EMPTY);
+        return response.replaceAll(BACK_SLASHES, EMPTY);
     }
 
+    @SuppressWarnings("unchecked")
     private String downloadLinks(File directory, List<URL> urls) {
         if (urls.isEmpty()) {
-
             JSONObject jsonObject = new JSONObject();
             JSONArray jsonArray;
             for (ResponseEnum responseEnum: MAP.keySet()) {
@@ -92,14 +92,7 @@ public class EventController {
                 jsonArray.addAll(value.stream().map(URL::toString).toList());
                 jsonObject.put(responseEnum.toString(), jsonArray);
             }
-
             return jsonObject.toJSONString();
-
-//            Collections.sort(RESPONSES);
-//            String responses = String.join(NEW_LINE, RESPONSES);
-//            RESPONSES = new ArrayList<>();
-//            return responses;
-
         } else {
             List<URL> parsedURLs, newURLs = new ArrayList<>();
             WebsiteEnum websiteEnum;
@@ -113,13 +106,11 @@ public class EventController {
                 } else {
                     parsedURLs = websiteEnum.getURLs(url, client);
                     if (parsedURLs == null) {
-//                        log.info("download url: {}", url);
                         try {
                             response = OkHttpUtility.sendRequest(url, client);
-                            String contentType = response.header("Content-Type");
+                            log.info("RESPONSE: {}", response);
+//                            String contentType = response.header("Content-Type");
                             response.close();
-//                            log.info("{} content type for url {}", contentType, url);
-//                            RESPONSES.add(String.format("%-10s%-40s%s", "DOWNLOAD", contentType, url));
                             responseEnum = DOWNLOAD;
                         } catch (Exception e) {
                             log.error("unable to get content type from response for url {}", url, e);
@@ -133,7 +124,6 @@ public class EventController {
                     }
                 }
                 if (responseEnum != SUCCESSFUL) {
-//                    RESPONSES.add(String.format("%-20s%s", responseEnum, url));
                     List<URL> value = MAP.get(responseEnum);
                     if (value == null) {
                         value = Collections.singletonList(url);
@@ -146,6 +136,17 @@ public class EventController {
             }
             return downloadLinks(directory, newURLs);
         }
+    }
+
+    private List<URL> getURLs(URL url, ResponseEnum responseEnum) {
+        List<URL> value = MAP.get(responseEnum);
+        if (value == null) {
+            value = Collections.singletonList(url);
+        } else {
+            value = new ArrayList<>(value);
+            value.add(url);
+        }
+        return value;
     }
 
 }

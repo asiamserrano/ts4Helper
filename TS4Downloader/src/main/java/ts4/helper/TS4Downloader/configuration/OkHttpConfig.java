@@ -6,17 +6,12 @@ import okhttp3.HttpUrl;
 import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
-import ts4.helper.TS4Downloader.utilities.StringUtility;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 

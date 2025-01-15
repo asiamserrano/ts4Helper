@@ -13,29 +13,27 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 import static ts4.helper.TS4Downloader.enums.DomainEnum.PATREON;
 import static ts4.helper.TS4Downloader.enums.DomainEnum.SIMS_FINDS;
 import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
 import static ts4.helper.TS4Downloader.enums.DomainEnum.FORGE_CDN;
 
-import static ts4.helper.TS4Downloader.constants.StringConstants.AMPERSAND;
-import static ts4.helper.TS4Downloader.constants.StringConstants.COMMA;
-import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
-import static ts4.helper.TS4Downloader.constants.StringConstants.SINGLE_QUOTE;
-
 @Slf4j
 public enum WebsiteEnum {
-
+    // INPUT
     PATREON_POSTS("www.%s/posts/", PATREON),
-    PATREON_FILE("www.%s/file?", PATREON),
-    SIMS_FINDS_DOWNLOADS("www.%s/downloads/",SIMS_FINDS),
-    SIMS_FINDS_CONTINUE("www.%s/continue?", SIMS_FINDS),
-    SIMS_FINDS_DOWNLOAD("click.%s/download?", SIMS_FINDS),
-    //SIMS_FINDS_DOWNLOAD_EXTERNAL("click.%s/download?flid=0", SIMS_FINDS),
-    //SIMS_FINDS_DOWNLOAD_DIRECT("click.%s/download?flid=1", SIMS_FINDS),
-    CURSE_FORGE_CAS("www.%s/sims4/create-a-sim/", CURSE_FORGE),
     CURSE_FORGE_MEMBERS("www.%s/members/", CURSE_FORGE),
     CURSE_FORGE_CREATORS("my.%s/?", CURSE_FORGE),
+    SIMS_FINDS_DOWNLOADS("www.%s/downloads/", SIMS_FINDS),
+    CURSE_FORGE_CAS("www.%s/sims4/create-a-sim/", CURSE_FORGE),
+
+    // TRANSITION
+    SIMS_FINDS_CONTINUE("www.%s/continue?", SIMS_FINDS),
+
+    // DOWNLOAD
+    PATREON_FILE("www.%s/file?", PATREON),
+    SIMS_FINDS_DOWNLOAD("click.%s/download?", SIMS_FINDS), // *SPECIAL*
     CURSE_FORGE_API("www.%s/api/v1/mods/", CURSE_FORGE),
     CURSE_FORGE_CDN("edge.%s/files/", FORGE_CDN);
 
@@ -104,7 +102,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                     parse = (content) ->
                             StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE)
                                     .stream()
-                                    .map(s -> s.replaceAll("\\\\", EMPTY))
+                                    .map(s -> s.replaceAll(BACK_SLASHES, EMPTY))
                                     .toList();
                     return getURLs(url, "projectsPage=", parse);
                 }
@@ -112,8 +110,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                     return null;
                 }
                 case SIMS_FINDS_DOWNLOAD: {
-                    String content = StringUtility.getStringBetweenRegex(url.toString(), "flid=", AMPERSAND);
-                    long number = Long.parseLong(content);
+                    long number = getFLIDLong(url);
                     if (number > 0) return null;
                 }
                 default: {
@@ -144,17 +141,17 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                 return getURL(url, "https://www.simsfinds.com/continue?key=" + key);
             }
             case SIMS_FINDS_CONTINUE: {
-                String[] info = StringUtility.getStringBetweenRegex(content, "data-at5t768r9=\"", SINGLE_QUOTE)
-                        .split(COMMA);
-                String flid = StringUtility.getStringBetweenRegex(content, "data-at8r136r7=\"", SINGLE_QUOTE);
-                String pass = StringUtility.getStringBetweenRegex(content, "data-passe=\"", SINGLE_QUOTE);
-
-                Map<String, String> map = new HashMap<>();
-                map.put("cid", info[0]);
-                map.put("key", info[1]);
-                map.put("version", info[3]);
-                map.put("pass", pass);
-                map.put("flid", flid);
+                String SQ = SINGLE_QUOTE;
+                String[] info = StringUtility.getStringBetweenRegex(content, "data-at5t768r9=\"", SQ).split(COMMA);
+                String flid = StringUtility.getStringBetweenRegex(content, "data-at8r136r7=\"", SQ);
+                String pass = StringUtility.getStringBetweenRegex(content, "data-passe=\"", SQ);
+                Map<String, String> map = new HashMap<>() {{
+                    put("cid", info[0]);
+                    put("key", info[1]);
+                    put("version", info[3]);
+                    put("pass", pass);
+                    put("flid", flid);
+                }};
 
                 List<String> list = map.entrySet().stream()
                         .map(e -> String.format("%s=%s", e.getKey(), e.getValue()))
@@ -162,7 +159,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                 return getURL(url, "https://click.simsfinds.com/download?" + String.join(AMPERSAND, list));
             }
             case SIMS_FINDS_DOWNLOAD: {
-                if (url.toString().contains("flid=0")) {
+                if (getFLIDLong(url) == 0) {
                     String external_url = StringUtility.getStringBetweenRegex(content, "<title>", "</title");
                     return getURL(url, external_url);
                 } else {
@@ -170,8 +167,8 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                 }
             }
             case CURSE_FORGE_CAS: {
-                if (content.contains("Just a moment...")) {
-                    return getDefaultURLs("curse forge cookie is invalid");
+                if (isContentInvalid(content)) {
+                    return getInvalidCookieURLs(url);
                 } else {
                     String download_url = "https://www.curseforge.com/api/v1/mods/%s/files/%s/download";
                     String id1 = StringUtility.getStringBetweenRegex(content, "\"identifier\":\"", SINGLE_QUOTE);
@@ -186,6 +183,11 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
         }
     }
 
+    private long getFLIDLong(URL url) {
+        String content = StringUtility.getStringBetweenRegex(url.toString(), "flid=", AMPERSAND);
+        return Long.parseLong(content);
+    }
+
     private List<URL> getURL(URL url, String string) {
         return getURLs(url, Collections.singletonList(string));
     }
@@ -197,7 +199,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
             return urls;
         } catch (Exception e) {
             String strings = String.join(", ", list);
-            return getDefaultURLs(String.format("could not get urls for %s from list: [%s]", url.toString(), strings));
+            return getDefaultURLs(String.format("could not get urls for %s from list: [%s]", url, strings));
         }
     }
 
@@ -208,17 +210,14 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
 
     private static List<URL> getURLs(URL url, String page_marker, ParseFunction parseFunction) {
         try {
-            String page_string = StringUtility.getStringBetweenRegex(url.toString(), page_marker, "&");
+            String page_string = StringUtility.getStringBetweenRegex(url.toString(), page_marker, AMPERSAND);
             int next, page = Integer.parseInt(page_string);
             log.info("searching page {}", page);
             String content = OkHttpUtility.getContent(url, OK_HTTP_CLIENT);
             List<String> links = new ArrayList<>(parseFunction.parse(content));
             if (links.isEmpty()) {
-                if (content.contains("Just a moment...")) {
-//                    log.info("retrying {}", url);
-//                    Thread.sleep(2000);
-//                    return getURLs(url, page_marker, parseFunction);
-                    return getDefaultURLs(String.format("could not parse url: %s", url));
+                if (isContentInvalid(content)) {
+                    return getInvalidCookieURLs(url);
                 } else {
                     List<URL> urls = new ArrayList<>();
                     for(String str : LIST) urls.add(URLUtility.createURL(str));
@@ -236,142 +235,14 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
             return getDefaultURLs("error when parsing " + url);
         }
     }
-//
-//    public List<URL> getURLs(URL url, OkHttpClient client) {
-//        LIST = new ArrayList<>();
-//        OK_HTTP_CLIENT = client;
-//        ParseFunction parse;
-//        return switch (this) {
-//            case CURSE_FORGE_MEMBERS: {
-//                parse = (content) ->
-//                        StringUtility.getSetBetweenRegex(content, "btn-cta\" href=\"/", "\">")
-//                                .stream()
-//                                .filter(str -> str.contains("/install"))
-//                                .map(str -> str.replace("/install", ""))
-//                                .map(str -> String.format("https://www.%s/%s", CURSE_FORGE.name, str))
-//                                .toList();
-//                yield getURLs(url, "page=", parse);
-//            }
-//            case CURSE_FORGE_CREATORS: {
-//                parse = (content) ->
-//                        StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE)
-//                                .stream()
-//                                .map(s -> s.replaceAll("\\\\", EMPTY))
-//                                .toList();
-//                yield getURLs(url, "projectsPage=", parse);
-//            }
-//            default: {
-//                try {
-//                    String content = OkHttpUtility.getContent(url, client);
-//                    yield getURLs(url, content);
-//                } catch (Exception e) {
-//                    yield null;
-//                }
-//            }
-////            default: { yield getDefaultURLs(String.format("unknown how to handle %s", url)); }
-//        };
-//    }
-//
-//    private List<URL> getURLs(URL url, String content) {
-//        switch (this) {
-//            case PATREON_POSTS: {
-//                Set<String> set = StringUtility.getSetBetweenRegex(content, "<a href=\"/file?", SINGLE_QUOTE);
-//                List<String> list = set.stream()
-//                        .map(s -> "https://www.patreon.com/file?" + s.replace("amp;", EMPTY))
-//                        .toList();
-//                return getURLs(url, list);
-//            }
-//            case SIMS_FINDS_DOWNLOADS: {
-//                String key = StringUtility.getStringBetweenRegex(content, "key=", SINGLE_QUOTE);
-//                return getURL(url, "https://www.simsfinds.com/continue?key=" + key);
-//            }
-//            case SIMS_FINDS_CONTINUE: {
-//                String[] info = StringUtility.getStringBetweenRegex(content, "data-at5t768r9=\"", SINGLE_QUOTE).split(COMMA);
-//                String flid = StringUtility.getStringBetweenRegex(content, "data-at8r136r7=\"", SINGLE_QUOTE);
-//                String pass = StringUtility.getStringBetweenRegex(content, "data-passe=\"", SINGLE_QUOTE);
-//
-//                Map<String, String> map = new HashMap<>();
-//                map.put("cid", info[0]);
-//                map.put("key", info[1]);
-//                map.put("version", info[3]);
-//                map.put("pass", pass);
-//                map.put("flid", flid);
-//
-//                List<String> list = map.entrySet().stream()
-//                        .map(e -> String.format("%s=%s", e.getKey(), e.getValue()))
-//                        .collect(Collectors.toList());
-//                return getURL(url, "https://click.simsfinds.com/download?" + String.join(AMPERSAND, list));
-//            }
-//            case SIMS_FINDS_DOWNLOAD: {
-//                if (url.toString().contains("flid=0")) {
-//                    String external_url = StringUtility.getStringBetweenRegex(content, "<title>", "</title");
-//                    return getURL(url, external_url);
-//                } else {
-//                    return null;
-//                }
-//            }
-//            case CURSE_FORGE_CAS: {
-//                String download_url = "https://www.curseforge.com/api/v1/mods/%s/files/%s/download";
-//                String id1 = StringUtility.getStringBetweenRegex(content, "\"identifier\":\"", SINGLE_QUOTE);
-//                String id2 = StringUtility.getStringBetweenRegex(content, "\"mainFile\":{\"id\":", COMMA);
-//                String source_url = String.format(download_url, id1, id2);
-//                return getURL(url, source_url);
-//            }
-//            default: {
-//                return null;
-////                return getDefaultURLs(String.format("unknown how to handle %s content: %s", this.domain, content));
-//            }
-//        }
-//    }
-//
-//    private List<URL> getURL(URL url, String string) {
-//        return getURLs(url, Collections.singletonList(string));
-//    }
-//
-//    private List<URL> getURLs(URL url, List<String> list) {
-//        try {
-//            List<URL> urls = new ArrayList<>();
-//            for (String s: list) urls.add(URLUtility.createURL(s));
-//            return urls;
-//        } catch (Exception e) {
-//            String strings = String.join(", ", list);
-//            return getDefaultURLs(String.format("could not get urls for %s from list: [%s]", url.toString(), strings));
-//        }
-//    }
-//
-//    private static List<URL> getURLs(URL url, String page_marker, ParseFunction parseFunction) {
-//        try {
-//            String page_string = StringUtility.getStringBetweenRegex(url.toString(), page_marker, "&");
-//            int next, page = Integer.parseInt(page_string);
-//            log.info("searching page {}", page);
-//            String content = OkHttpUtility.getContent(url, OK_HTTP_CLIENT);
-//            List<String> links = new ArrayList<>(parseFunction.parse(content));
-//            if (links.isEmpty()) {
-//                if (content.contains("Just a moment...")) {
-//                    log.info("retrying {}", url);
-//                    Thread.sleep(2000);
-//                    return getURLs(url, page_marker, parseFunction);
-//                } else {
-//                    List<URL> urls = new ArrayList<>();
-//                    for(String str : LIST) urls.add(URLUtility.createURL(str));
-//                    return urls;
-//                }
-//            } else {
-//                next = page + 1;
-//                for (String link : links) log.info(link);
-//                LIST.addAll(links);
-//                String urlString = url.toString().replace(page_marker + page, page_marker + next);
-//                URL newUrl = URLUtility.createURL(urlString);
-//                return getURLs(newUrl, page_marker, parseFunction);
-//            }
-//        } catch (Exception e) {
-//            return getDefaultURLs("error when parsing " + url);
-//        }
-//    }
-//
-//    private static List<URL> getDefaultURLs(String message) {
-//        log.error(message);
-//        return new ArrayList<>();
-//    }
+
+    private static boolean isContentInvalid(String content) {
+        return content.contains("Just a moment...");
+    }
+
+    private static List<URL> getInvalidCookieURLs(URL url) {
+        String message = String.format("curse forge cookie is invalid. could not parse %s", url);
+        return getDefaultURLs(message);
+    }
 
 }
