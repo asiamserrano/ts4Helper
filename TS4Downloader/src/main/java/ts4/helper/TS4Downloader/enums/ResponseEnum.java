@@ -5,6 +5,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 
 public enum ResponseEnum {
-    SUCCESSFUL, FAILURE, UNKNOWN;
+    SUCCESSFUL, FAILURE, UNKNOWN, DOWNLOAD
 
 }

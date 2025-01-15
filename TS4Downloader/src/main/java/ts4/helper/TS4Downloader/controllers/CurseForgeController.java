@@ -1,91 +1,91 @@
-//package ts4.helper.TS4Downloader.controllers;
-//
-//import lombok.AllArgsConstructor;
-//import lombok.extern.slf4j.Slf4j;
-//import okhttp3.Cookie;
-//import okhttp3.CookieJar;
-//import okhttp3.OkHttpClient;
-//import okhttp3.Response;
-//import org.springframework.web.bind.annotation.*;
-//import ts4.helper.TS4Downloader.enums.ResponseEnum;
-//import ts4.helper.TS4Downloader.models.DownloadResponse;
-//import ts4.helper.TS4Downloader.utilities.*;
-//
-//import java.io.File;
-//import java.net.URL;
-//import java.util.*;
-//import java.util.regex.Matcher;
-//
-//import static ts4.helper.TS4Downloader.constants.StringConstants.*;
-//import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
-//import static ts4.helper.TS4Downloader.enums.ResponseEnum.FAILURE;
-//import static ts4.helper.TS4Downloader.enums.ResponseEnum.UNKNOWN;
-//
-//import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_REQUEST_MAPPING;
-//import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING;
-//import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING;
-//
-//import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE;
-//
-//@RestController
-//@RequestMapping(CURSE_FORGE_CONTROLLER_REQUEST_MAPPING)
-//@Slf4j
-//@AllArgsConstructor
-//public class CurseForgeController {
-//
-//    private OkHttpClient client;
-//    private CookieJar cookieJar;
-//
-//    @GetMapping(CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING)
-//    public ResponseEnum cookieStatus() {
-//        ResponseEnum responseEnum;
+package ts4.helper.TS4Downloader.controllers;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import ts4.helper.TS4Downloader.enums.DomainEnum;
+import ts4.helper.TS4Downloader.enums.ResponseEnum;
+import ts4.helper.TS4Downloader.utilities.*;
+
+import java.io.File;
+import java.net.URL;
+import java.util.*;
+import java.util.regex.Matcher;
+
+import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
+import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
+import static ts4.helper.TS4Downloader.enums.ResponseEnum.FAILURE;
+import static ts4.helper.TS4Downloader.enums.ResponseEnum.UNKNOWN;
+
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_REQUEST_MAPPING;
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING;
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING;
+
+import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
+
+@RestController
+@RequestMapping(CURSE_FORGE_CONTROLLER_REQUEST_MAPPING)
+@Slf4j
+@AllArgsConstructor
+public class CurseForgeController {
+
+    private OkHttpClient client;
+    private CookieJar cookieJar;
+
+    @GetMapping(CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING)
+    public ResponseEnum cookieStatus() {
+        ResponseEnum responseEnum;
+        try {
+            HttpUrl httpUrl = OkHttpUtility.createHttpUrl(CURSE_FORGE);
+            Response response = OkHttpUtility.sendRequest(httpUrl, client);
+            boolean bool = response.isSuccessful();
+            response.close();
+            responseEnum = bool ? SUCCESSFUL : FAILURE;
+            log.info("curse forge cookie is {}", bool ? "active" : "inactive");
+        } catch (Exception e) {
+            log.error("cannot check status of curse forge cookie. Exception: {} ", e.getMessage());
+            responseEnum = UNKNOWN;
+        }
+        return responseEnum;
+    }
+
+    @PostMapping(CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING)
+    public ResponseEnum updateCookie(@RequestBody String body) {
+        String cookie_body = body.strip();
+        Cookie cookie = OkHttpUtility.createCookie(cookie_body, CURSE_FORGE);
+        List<Cookie> cookies = Collections.singletonList(cookie);
+        HttpUrl httpUrl = OkHttpUtility.createHttpUrl(CURSE_FORGE);
+        cookieJar.saveFromResponse(httpUrl, cookies);
+        log.info("cookie for {} set to {}", httpUrl.host(), cookie_body);
+        return cookieStatus();
+    }
+
+//    @GetMapping("/searchResults")
+//    public String searchResults(@RequestBody String searchURL) {
 //        try {
-//            Response response = OkHttpUtility.sendRequest(CURSE_FORGE.httpUrl, client);
-//            boolean bool = response.isSuccessful();
-//            response.close();
-//            responseEnum = bool ? SUCCESSFUL : FAILURE;
-//            log.info("curse forge cookie is {}", bool ? "active" : "inactive");
-//        } catch (Exception e) {
-//            log.error("cannot check status of curse forge cookie. Exception: {} ", e.getMessage());
-//            responseEnum = UNKNOWN;
+//
+////            String url = String.format("https://www.curseforge.com/members/%s/projects?", member);
+////            String parameters = "page=%d&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc";
+//
+////            URL url = URLUtility.createURL(searchURL);
+////            log.info("curse forge search url: {}", url);
+////            String content = OkHttpUtility.getContent(url, client);
+////            String prefix = "<a href=\"/sims4/create-a-sim/";
+////            Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, SINGLE_QUOTE);
+////            Set<String> set = new HashSet<>();
+////            while (matcher.find()) {
+////                String match = matcher.group().replace(prefix, EMPTY).replace(SINGLE_QUOTE, EMPTY);
+////                set.add("https://www.curseforge.com/sims4/create-a-sim/" + match);
+////            }
+//            return String.join(NEW_LINE, set);
+//        } catch (Exception ex) {
+//            return "error";
 //        }
-//        return responseEnum;
+//
 //    }
-//
-//    @PostMapping(CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING)
-//    public ResponseEnum updateCookie(@RequestBody String body) {
-//        String cookie_body = body.strip();
-//        Cookie cookie = OkHttpUtility.createCookie(cookie_body, CURSE_FORGE);
-//        List<Cookie> cookies = Collections.singletonList(cookie);
-//        cookieJar.saveFromResponse(CURSE_FORGE.httpUrl, cookies);
-//        log.info("cookie for {} set to {}", CURSE_FORGE.url, cookie_body);
-//        return cookieStatus();
-//    }
-//
-////    @GetMapping("/searchResults")
-////    public String searchResults(@RequestBody String searchURL) {
-////        try {
-////
-//////            String url = String.format("https://www.curseforge.com/members/%s/projects?", member);
-//////            String parameters = "page=%d&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc";
-////
-//////            URL url = URLUtility.createURL(searchURL);
-//////            log.info("curse forge search url: {}", url);
-//////            String content = OkHttpUtility.getContent(url, client);
-//////            String prefix = "<a href=\"/sims4/create-a-sim/";
-//////            Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, SINGLE_QUOTE);
-//////            Set<String> set = new HashSet<>();
-//////            while (matcher.find()) {
-//////                String match = matcher.group().replace(prefix, EMPTY).replace(SINGLE_QUOTE, EMPTY);
-//////                set.add("https://www.curseforge.com/sims4/create-a-sim/" + match);
-//////            }
-////            return String.join(NEW_LINE, set);
-////        } catch (Exception ex) {
-////            return "error";
-////        }
-////
-////    }
-//
+
 //    @GetMapping("/parseCreator")
 //    public String parseCreator(@RequestParam String creator) {
 //        try {
@@ -155,67 +155,67 @@
 //        log.info("searching {} url: {}", type, url);
 //        return OkHttpUtility.getContent(url, client);
 //    }
+
+
+//    https://www.curseforge.com/members/ssalon1/projects?page=7&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+
+//    private Set<String> getCurseForgeLinks(String creator, int page, Set<String> previous) throws Exception {
+//        //https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
+//        String searchURL = String.format(creator, page);
+//        Set<String> result = getLink(searchURL, "href=\"/sims4/create-a-sim/", "/download/");
+//        if (result.isEmpty()) {
+//            return previous;
+//        } else {
+//            result.addAll(previous);
+//            return getEdgeLinks(creator,page + 1, result);
+//        }
+//    }
+//    private Set<String> getEdgeLinks(String creator, int page, Set<String> previous) throws Exception {
+//        //https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
+//        String searchURL = String.format(creator, page);
+//        Set<String> result = getLink(searchURL,"\"downloadLink\":\"", SINGLE_QUOTE);
+//        if (result.isEmpty()) {
+//            return previous;
+//        } else {
+//            result.addAll(previous);
+//            return getEdgeLinks(creator,page + 1, result);
+//        }
+//    }
 //
-//
-////    https://www.curseforge.com/members/ssalon1/projects?page=7&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
-//
-////    private Set<String> getCurseForgeLinks(String creator, int page, Set<String> previous) throws Exception {
-////        //https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
-////        String searchURL = String.format(creator, page);
-////        Set<String> result = getLink(searchURL, "href=\"/sims4/create-a-sim/", "/download/");
-////        if (result.isEmpty()) {
-////            return previous;
-////        } else {
-////            result.addAll(previous);
-////            return getEdgeLinks(creator,page + 1, result);
-////        }
-////    }
-////    private Set<String> getEdgeLinks(String creator, int page, Set<String> previous) throws Exception {
-////        //https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9
-////        String searchURL = String.format(creator, page);
-////        Set<String> result = getLink(searchURL,"\"downloadLink\":\"", SINGLE_QUOTE);
-////        if (result.isEmpty()) {
-////            return previous;
-////        } else {
-////            result.addAll(previous);
-////            return getEdgeLinks(creator,page + 1, result);
-////        }
-////    }
-////
-////    private Set<String> getLink(String searchURL, String prefix, String suffix) throws Exception {
-////        URL url = URLUtility.createURL(searchURL);
-////        log.info("curse forge search url: {}", url);
-////        String content = OkHttpUtility.getContent(url, client);
-////        log.info(content);
-////        Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, suffix);
-////        Set<String> set = new HashSet<>();
-////        while (matcher.find()) {
-////            String match = matcher.group()
-////                    .replace(prefix, EMPTY)
-////                    .replace(suffix, EMPTY)
-////                    .replaceAll("\\\\", EMPTY);
-////            set.add(match);
-////        }
-////        return set;
-////    }
-//
-////    private Set<String> getEdgeLink(String searchURL, String prefix, String suffix) throws Exception {
-////        URL url = URLUtility.createURL(searchURL);
-////        log.info("curse forge search url: {}", url);
-////        String content = OkHttpUtility.getContent(url, client);
-////        log.info(content);
-////        Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, suffix);
-////        Set<String> set = new HashSet<>();
-////        while (matcher.find()) {
-////            String match = matcher.group()
-////                    .replace(prefix, EMPTY)
-////                    .replace(suffix, EMPTY)
-////                    .replaceAll("\\\\", EMPTY);
-////            set.add(match);
-////        }
-////        return set;
-////    }
-//
+//    private Set<String> getLink(String searchURL, String prefix, String suffix) throws Exception {
+//        URL url = URLUtility.createURL(searchURL);
+//        log.info("curse forge search url: {}", url);
+//        String content = OkHttpUtility.getContent(url, client);
+//        log.info(content);
+//        Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, suffix);
+//        Set<String> set = new HashSet<>();
+//        while (matcher.find()) {
+//            String match = matcher.group()
+//                    .replace(prefix, EMPTY)
+//                    .replace(suffix, EMPTY)
+//                    .replaceAll("\\\\", EMPTY);
+//            set.add(match);
+//        }
+//        return set;
+//    }
+
+//    private Set<String> getEdgeLink(String searchURL, String prefix, String suffix) throws Exception {
+//        URL url = URLUtility.createURL(searchURL);
+//        log.info("curse forge search url: {}", url);
+//        String content = OkHttpUtility.getContent(url, client);
+//        log.info(content);
+//        Matcher matcher = StringUtility.getRegexBetweenMatcher(content, prefix, suffix);
+//        Set<String> set = new HashSet<>();
+//        while (matcher.find()) {
+//            String match = matcher.group()
+//                    .replace(prefix, EMPTY)
+//                    .replace(suffix, EMPTY)
+//                    .replaceAll("\\\\", EMPTY);
+//            set.add(match);
+//        }
+//        return set;
+//    }
+
 //    @PostMapping("/edge")
 //    public String edge(@RequestParam String location, @RequestBody String body) {
 //        File file, directory = new File(location);
@@ -240,6 +240,6 @@
 //            return "error";
 //        }
 //    }
-//
-//
-//}
+
+
+}

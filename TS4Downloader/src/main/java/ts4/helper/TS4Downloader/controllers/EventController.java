@@ -3,7 +3,10 @@ package ts4.helper.TS4Downloader.controllers;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import org.checkerframework.checker.units.qual.A;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +24,12 @@ import java.net.http.HttpRequest;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
-import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.utilities.*;
 
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_REQUEST_MAPPING;
@@ -35,8 +38,8 @@ import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTR
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.*;
-import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CREATORS;
-import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_MEMBERS;
+//import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CREATORS;
+//import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_MEMBERS;
 
 
 @RestController
@@ -50,6 +53,7 @@ public class EventController {
 
     private static int RETRIES = 0;
     private static List<String> RESPONSES = new ArrayList<>();
+    private static Map<ResponseEnum, List<URL>> MAP;
 
     @GetMapping(EVENT_CONTROLLER_SAMPLE_GET_MAPPING)
     public String sample() {
@@ -67,146 +71,99 @@ public class EventController {
 
     @PostMapping(EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING)
     public String downloadLinks(@RequestParam String location, @RequestBody URL[] body) {
+        MAP = new HashMap<>();
         File directory = new File(location);
         List<URL> urls = Arrays.asList(body);
-        return downloadLinks(directory, urls);
-
-
-//        log.info("saving to: {}", directory);
-//        String[] strings = body.split(NEW_LINE);
-//        URL url;
-//        ResponseEnum responseEnum;
-//        Set<String> hosts = new HashSet<>();
-//        for (String string: strings) {
-//            try {
-//                url = URLUtility.createURL(string);
-//
-////                log.info("host: {}", url.getHost());
-//                hosts.add(url.getHost());
-//                responseEnum = SUCCESSFUL;
-//            } catch (Exception e) {
-//                responseEnum = FAILURE;
-//            }
-//        }
-
-//        if (FileUtility.createDirectory(directory)) {
-//            String[] strings = body.split(NEW_LINE);
-//            try {
-//                List<URL> urls = URLUtility.createURLs(strings);
-//                RESPONSES = downloadLinks(urls, directory);
-//            } catch (Exception ex) {
-//                log.error("could not create urls", ex);
-//            }
-//            ConsolidateUtility.consolidate(directory);
-//            FileUtility.deleteNonPackageFiles(directory);
-//            response = String.join(NEW_LINE, RESPONSES);
-//        } else {
-//            log.error("location path is invalid: {}", location);
-//            response = "unable to download links to location: " + location;
-//        }
-//        RETRIES = 0;
-//        RESPONSES = new ArrayList<>();
-//        Collections.sort(RESPONSES);
-//        String responses = String.join(NEW_LINE, RESPONSES);
-//        RESPONSES = new ArrayList<>();
-//        return responses;
+        ZonedDateTime START = ZonedDateTime.now();
+        String response = downloadLinks(directory, urls);
+        ZonedDateTime END = ZonedDateTime.now();
+        log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
+        return response.replaceAll("\\\\",EMPTY);
     }
 
     private String downloadLinks(File directory, List<URL> urls) {
         if (urls.isEmpty()) {
-            Collections.sort(RESPONSES);
-            String responses = String.join(NEW_LINE, RESPONSES);
-            RESPONSES = new ArrayList<>();
-            return responses;
+
+            JSONObject jsonObject = new JSONObject();
+            JSONArray jsonArray;
+            for (ResponseEnum responseEnum: MAP.keySet()) {
+                List<URL> value = MAP.get(responseEnum);
+                jsonArray = new JSONArray();
+                jsonArray.addAll(value.stream().map(URL::toString).toList());
+                jsonObject.put(responseEnum.toString(), jsonArray);
+            }
+
+            return jsonObject.toJSONString();
+
+//            Collections.sort(RESPONSES);
+//            String responses = String.join(NEW_LINE, RESPONSES);
+//            RESPONSES = new ArrayList<>();
+//            return responses;
+
         } else {
-            List<URL> newURLs = new ArrayList<>();
+            List<URL> parsedURLs, newURLs = new ArrayList<>();
             WebsiteEnum websiteEnum;
             ResponseEnum responseEnum;
+            Response response;
+            log.info("# of urls: {}", urls.size());
             for (URL url : urls) {
                 websiteEnum = WebsiteEnum.getByURL(url);
                 if (websiteEnum == null) {
                     responseEnum = UNKNOWN;
                 } else {
-                    List<URL> responses = websiteEnum.getURLs(url, client);
-                    if (responses == null) {
-                        responseEnum = null;
-                    } else if (responses.isEmpty()) {
+                    parsedURLs = websiteEnum.getURLs(url, client);
+                    if (parsedURLs == null) {
+//                        log.info("download url: {}", url);
+                        try {
+                            response = OkHttpUtility.sendRequest(url, client);
+                            String contentType = response.header("Content-Type");
+                            response.close();
+//                            log.info("{} content type for url {}", contentType, url);
+//                            RESPONSES.add(String.format("%-10s%-40s%s", "DOWNLOAD", contentType, url));
+                            responseEnum = DOWNLOAD;
+                        } catch (Exception e) {
+                            log.error("unable to get content type from response for url {}", url, e);
+                            responseEnum = FAILURE;
+                        }
+                    } else if (parsedURLs.isEmpty()) {
                         responseEnum = FAILURE;
                     } else {
+                        newURLs.addAll(parsedURLs);
                         responseEnum = SUCCESSFUL;
                     }
                 }
-                if (responseEnum == null) {
-                    log.info("DOWNLOAD: {}", url);
-                } else {
-                    RESPONSES.add(String.format("%-20s%s", responseEnum, url));
+                if (responseEnum != SUCCESSFUL) {
+//                    RESPONSES.add(String.format("%-20s%s", responseEnum, url));
+                    List<URL> value = MAP.get(responseEnum);
+                    if (value == null) {
+                        value = Collections.singletonList(url);
+                    } else {
+                        value = new ArrayList<>(value);
+                        value.add(url);
+                    }
+                    MAP.put(responseEnum, value);
                 }
             }
             return downloadLinks(directory, newURLs);
         }
     }
 
-//    private List<String> downloadLinks(List<URL> urls, File directory) throws Exception {
-//        if (urls.isEmpty()) {
-//            return RESPONSES;
-//        } else {
-//           if (RETRIES < 3) {
-//               List<URL> list = new ArrayList<>();
-//               URL newURL;
-//               DownloadResponse response;
-//               WebsiteEnum websiteEnum;
-//               for (URL url: urls) {
-//                   log.info("downloading url {}", url);
-//                   websiteEnum = WebsiteEnum.contains(url);
-//                   response = getResponse(websiteEnum, url, directory);
-//                   if (response.responseEnum.equals(SUCCESSFUL)) {
-//                       log.info(response.toString());
-//                   } else {
-//                       newURL = response.url;
-//                       websiteEnum = WebsiteEnum.contains(newURL);
-//                       if (websiteEnum == null) {
-//                           writeNonDownloadedLink(newURL);
-//                       } else {
-//                           list.add(newURL);
-//                       }
-//                   }
-//               }
-//               RETRIES++;
-//               return downloadLinks(list, directory);
-//           } else {
-//               for (URL url : urls) writeNonDownloadedLink(url);
-//               return RESPONSES;
-//           }
-//        }
-//    }
-//
-//    private void writeNonDownloadedLink(URL url) throws Exception {
-//        String urlString = url.toString();
-//        FileUtility.writeToFile(nonDownloadedLinksFile, urlString, true);
-//        RESPONSES.add(urlString);
-//    }
-
-    private DownloadResponse getResponse(WebsiteEnum websiteEnum, URL url, File starting_directory) throws Exception {
-        DownloadResponse defaultResponse = new DownloadResponse(url);
-        return defaultResponse;
-//        if (websiteEnum == null) {
-//            return defaultResponse;
-//        } else {
-//            switch (websiteEnum) {
-//                case CURSE_FORGE -> {
-//                    return curseForgeDownloader.download(url, starting_directory);
-//                }
-//                case PATREON -> {
-//                    return patreonDownloader.download(url, starting_directory);
-//                }
-//                case SIMS_FINDS -> {
-//                    return simsFindsDownloader.download(url, starting_directory);
-//                }
-//                default -> {
-//                    return defaultResponse;
-//                }
-//            }
-//        }
-    }
-
 }
+
+//                if (websiteEnum == null) {
+//                    responseEnum = UNKNOWN;
+//                } else {
+//                    newURLs = websiteEnum.getURLs(url, client);
+//                    if (newURLs == null) {
+//                        responseEnum = null;
+//                    } else if (newURLs.isEmpty()) {
+//                        responseEnum = FAILURE;
+//                    } else {
+//                        responseEnum = SUCCESSFUL;
+//                    }
+//                }
+//                if (responseEnum == null) {
+//                    log.info("DOWNLOAD: {}", url);
+//                } else {
+//                    RESPONSES.add(String.format("%-20s%s", responseEnum, url));
+//                }

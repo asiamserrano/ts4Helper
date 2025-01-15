@@ -11,7 +11,13 @@ import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
 import ts4.helper.TS4Downloader.utilities.URLUtility;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
@@ -25,7 +31,29 @@ import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        String content = StringUtility.loadResource("html_file.html");
+//        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime start = ZonedDateTime.now();
+        Thread.sleep(Duration.ofSeconds(10));
+        ZonedDateTime end = ZonedDateTime.now();
+        long diff = ChronoUnit.SECONDS.between(start, end);
+        System.out.println(diff);
+
+////        String content = OkHttpUtility.getContent(url, new OkHttpClient());
+//        String content = StringUtility.loadResource("html_file.html");
+//        if (content.contains("Just a moment...")) {
+//            System.out.println("curse forge cookie invalid");
+//        } else {
+//            String download_url = "https://www.curseforge.com/api/v1/mods/%s/files/%s/download";
+//            String id1 = StringUtility.getStringBetweenRegex(content, "\"identifier\":\"", SINGLE_QUOTE);
+//            String id2 = StringUtility.getStringBetweenRegex(content, "\"mainFile\":{\"id\":", COMMA);
+//            String source_url = String.format(download_url, id1, id2);
+//            URL newURL = URLUtility.createURL(source_url);
+//            System.out.println(newURL);
+//        }
+
+
+
+//        String content = StringUtility.loadResource("html_file.html");
 //        String url_str = "https://alenaivanisova.my.curseforge.com/?projectsPage=14&projectsSearch=&projectsSort=9";
 //        URL url = URLUtility.createURL(url_str);
 
@@ -35,12 +63,12 @@ public class Main {
 //        Set<String> set = StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE);
 //        List<String> lines = set.stream().map(s -> s.replaceAll("\\\\", EMPTY)).toList();
 
-        List<String> links = new ArrayList<>(StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE))
-                .stream()
-                .map(s -> s.replaceAll("\\\\", EMPTY))
-                .toList();
-
-        for (String line : links) System.out.println(line);
+//        List<String> links = new ArrayList<>(StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE))
+//                .stream()
+//                .map(s -> s.replaceAll("\\\\", EMPTY))
+//                .toList();
+//
+//        for (String line : links) System.out.println(line);
 
 
 

@@ -1,6 +1,7 @@
 package ts4.helper.TS4Downloader.utilities;
 
 import okhttp3.*;
+import ts4.helper.TS4Downloader.enums.DomainEnum;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 
 import java.net.URL;
@@ -10,6 +11,8 @@ import static ts4.helper.TS4Downloader.constants.OkHttpConstants.USER_AGENT_VALU
 import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
 
 import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
+
+import static ts4.helper.TS4Downloader.enums.DomainEnum.FORGE_CDN;
 
 public abstract class OkHttpUtility {
 
@@ -46,6 +49,11 @@ public abstract class OkHttpUtility {
         return createHttpUrl(HTTPS_SCHEME, websiteEnum.domain);
     }
 
+    public static HttpUrl createHttpUrl(DomainEnum domainEnum) {
+        String domain = domainEnum == FORGE_CDN ? "edge" : "www";
+        return createHttpUrl(HTTPS_SCHEME, String.format("%s.%s", domain, domainEnum.name));
+    }
+
     public static HttpUrl createHttpUrl(String scheme, String host) {
         return new HttpUrl.Builder()
                 .scheme(scheme)
@@ -53,9 +61,10 @@ public abstract class OkHttpUtility {
                 .build();
     }
 
-    public static Cookie createCookie(String cookie, WebsiteEnum websiteEnum) {
+    public static Cookie createCookie(String cookie, DomainEnum domainEnum) {
+        HttpUrl httpUrl = createHttpUrl(domainEnum);
         return new Cookie.Builder()
-                .domain(websiteEnum.domain)
+                .domain(httpUrl.host())
                 .path(FORWARD_SLASH)
                 .name("cookie-name")
                 .value(cookie)
