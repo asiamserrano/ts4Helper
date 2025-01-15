@@ -2,8 +2,6 @@ package ts4.helper.TS4Downloader.enums;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import org.apache.logging.log4j.util.Strings;
-import org.checkerframework.checker.units.qual.A;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
 import ts4.helper.TS4Downloader.utilities.URLUtility;
@@ -212,7 +210,6 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
         try {
             String page_string = StringUtility.getStringBetweenRegex(url.toString(), page_marker, AMPERSAND);
             int next, page = Integer.parseInt(page_string);
-            log.info("searching page {}", page);
             String content = OkHttpUtility.getContent(url, OK_HTTP_CLIENT);
             List<String> links = new ArrayList<>(parseFunction.parse(content));
             if (links.isEmpty()) {
@@ -225,7 +222,6 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                 }
             } else {
                 next = page + 1;
-                for (String link : links) log.info(link);
                 LIST.addAll(links);
                 String urlString = url.toString().replace(page_marker + page, page_marker + next);
                 URL newUrl = URLUtility.createURL(urlString);

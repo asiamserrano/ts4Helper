@@ -7,7 +7,6 @@ import okhttp3.Response;
 import org.checkerframework.checker.units.qual.A;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.File;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpRequest;
-import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
@@ -38,8 +31,6 @@ import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTR
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.*;
-//import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CREATORS;
-//import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_MEMBERS;
 
 
 @RestController
@@ -75,14 +66,14 @@ public class EventController {
         File directory = new File(location);
         List<URL> urls = Arrays.asList(body);
         ZonedDateTime START = ZonedDateTime.now();
-        String response = downloadLinks(directory, urls);
+        String response = downloadLinks(directory, urls, 1);
         ZonedDateTime END = ZonedDateTime.now();
         log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
         return response.replaceAll(BACK_SLASHES, EMPTY);
     }
 
     @SuppressWarnings("unchecked")
-    private String downloadLinks(File directory, List<URL> urls) {
+    private String downloadLinks(File directory, List<URL> urls, int iteration) {
         if (urls.isEmpty()) {
             JSONObject jsonObject = new JSONObject();
             JSONArray jsonArray;
@@ -94,48 +85,39 @@ public class EventController {
             }
             return jsonObject.toJSONString();
         } else {
-            List<URL> parsedURLs, newURLs = new ArrayList<>();
-            WebsiteEnum websiteEnum;
-            ResponseEnum responseEnum;
-            Response response;
-            log.info("# of urls: {}", urls.size());
+            log.info("iteration: {} | # of urls: {}", iteration, urls.size());
+            List <URL> newURLs = new ArrayList<>();
             for (URL url : urls) {
-                websiteEnum = WebsiteEnum.getByURL(url);
-                if (websiteEnum == null) {
-                    responseEnum = UNKNOWN;
-                } else {
-                    parsedURLs = websiteEnum.getURLs(url, client);
-                    if (parsedURLs == null) {
-                        try {
-                            response = OkHttpUtility.sendRequest(url, client);
-                            log.info("RESPONSE: {}", response);
-//                            String contentType = response.header("Content-Type");
-                            response.close();
-                            responseEnum = DOWNLOAD;
-                        } catch (Exception e) {
-                            log.error("unable to get content type from response for url {}", url, e);
-                            responseEnum = FAILURE;
-                        }
-                    } else if (parsedURLs.isEmpty()) {
-                        responseEnum = FAILURE;
-                    } else {
-                        newURLs.addAll(parsedURLs);
-                        responseEnum = SUCCESSFUL;
-                    }
-                }
-                if (responseEnum != SUCCESSFUL) {
-                    List<URL> value = MAP.get(responseEnum);
-                    if (value == null) {
-                        value = Collections.singletonList(url);
-                    } else {
-                        value = new ArrayList<>(value);
-                        value.add(url);
-                    }
-                    MAP.put(responseEnum, value);
-                }
+                log.info(url.toString());
+                newURLs.addAll(getNewURLs(url));
             }
-            return downloadLinks(directory, newURLs);
+            return downloadLinks(directory, newURLs, iteration + 1);
         }
+    }
+
+    private List<URL> getNewURLs(URL url) {
+        WebsiteEnum websiteEnum = WebsiteEnum.getByURL(url);
+        List<URL> parsedURLs;
+        ResponseEnum responseEnum;
+        if (websiteEnum == null) {
+            responseEnum = UNKNOWN;
+            parsedURLs = new ArrayList<>();
+        } else {
+            parsedURLs = websiteEnum.getURLs(url, client);
+            if (parsedURLs == null) {
+                responseEnum = DOWNLOAD;
+            } else {
+                responseEnum = parsedURLs.isEmpty() ? FAILURE : SUCCESSFUL;
+            }
+        }
+
+        if (responseEnum == SUCCESSFUL) {
+            return parsedURLs;
+        } else {
+            MAP.put(responseEnum, getURLs(url, responseEnum));
+            return new ArrayList<>();
+        }
+
     }
 
     private List<URL> getURLs(URL url, ResponseEnum responseEnum) {
@@ -150,21 +132,3 @@ public class EventController {
     }
 
 }
-
-//                if (websiteEnum == null) {
-//                    responseEnum = UNKNOWN;
-//                } else {
-//                    newURLs = websiteEnum.getURLs(url, client);
-//                    if (newURLs == null) {
-//                        responseEnum = null;
-//                    } else if (newURLs.isEmpty()) {
-//                        responseEnum = FAILURE;
-//                    } else {
-//                        responseEnum = SUCCESSFUL;
-//                    }
-//                }
-//                if (responseEnum == null) {
-//                    log.info("DOWNLOAD: {}", url);
-//                } else {
-//                    RESPONSES.add(String.format("%-20s%s", responseEnum, url));
-//                }
