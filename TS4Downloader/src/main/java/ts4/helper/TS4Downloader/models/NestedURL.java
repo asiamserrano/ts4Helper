@@ -1,11 +1,16 @@
 package ts4.helper.TS4Downloader.models;
 
 import lombok.AllArgsConstructor;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
@@ -18,32 +23,49 @@ import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CAS;
 @AllArgsConstructor
 public class NestedURL {
 
-    public final URL parent;
-    public final URL child;
+    public final URL url;
+    public final NestedURL previous;
+    public final List<NestedURL> next;
 
-    private static final Set<WebsiteEnum> PARENT_WEBSITES = new HashSet<>() {{
-        add(PATREON_POSTS);
-        add(SIMS_FINDS_DOWNLOADS);
-        add(CURSE_FORGE_MEMBERS);
-        add(CURSE_FORGE_CREATORS);
-        add(CURSE_FORGE_CAS);
-    }};
-
-    public NestedURL(WebsiteEnum websiteEnum, URL url) {
-        if (PARENT_WEBSITES.contains(websiteEnum)) {
-            this.parent = url;
-            this.child = null;
-        } else {
-            this.parent = null;
-            this.child = url;
-        }
+    public NestedURL(URL url) {
+        this.url = url;
+        this.previous = null;
+        this.next = new ArrayList<>();
     }
 
-    @Override
-    public String toString() {
-        String parentString = this.parent == null ? EMPTY : this.parent.toString();
-        String childString = this.child == null ? EMPTY : this.child.toString();
-        return String.format("PARENT=%s | CHILD=%s", parentString, childString);
+    private NestedURL(URL url, NestedURL previous) {
+        this.url = url;
+        this.previous = previous;
+        this.next = new ArrayList<>();
+    }
+
+//    @SuppressWarnings("unchecked")
+//    public JSONObject toJSON() {
+////        JSONObject jsonObject = new JSONObject();
+////        jsonObject.put("url", url.toString());
+////        if (!next.isEmpty()) {
+////            JSONArray jsonArray = new JSONArray();
+////            jsonArray.addAll(next.stream().map(NestedURL::toJSON).toList());
+////            jsonObject.put("next", jsonArray);
+////        }
+////        return jsonObject;
+//
+//        if (previous == null) {
+//
+//        } else if (next.isEmpty()) {
+//
+//        } else {
+//
+//        }
+//
+//    }
+
+    public void add(List<URL> urls) {
+        urls.forEach(this::add);
+    }
+
+    public void add(URL url) {
+        this.next.add(new NestedURL(url, this));
     }
 
 }

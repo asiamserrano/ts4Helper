@@ -208,6 +208,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
 
     private static List<URL> getURLs(URL url, String page_marker, ParseFunction parseFunction) {
         try {
+            log.info("parsing search page: {}", url);
             String page_string = StringUtility.getStringBetweenRegex(url.toString(), page_marker, AMPERSAND);
             int next, page = Integer.parseInt(page_string);
             String content = OkHttpUtility.getContent(url, OK_HTTP_CLIENT);
