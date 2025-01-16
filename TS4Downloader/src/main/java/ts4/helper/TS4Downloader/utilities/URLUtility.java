@@ -19,17 +19,17 @@ import java.util.Objects;
 @Slf4j
 public abstract class URLUtility {
 
-    public static URL createURL(String url) throws Exception {
-        URI uri = new URI(url);
-        return uri.toURL();
-    }
-    public static List<URL> createURLs(String[] strings) throws Exception {
-        List<URL> urls = new ArrayList<>();
-        for (String string: strings) urls.add(URLUtility.createURL(string));
-        return urls;
+    public static URL createURL(String url) {
+        try {
+            URI uri = new URI(url);
+            return uri.toURL();
+        } catch (Exception e) {
+            log.error("unable to create URL for {}", url, e);
+            throw new RuntimeException(e);
+        }
     }
 
-    public static boolean download(URL source, File destination) throws Exception {
+    public static boolean download(URL source, File destination) {
         File directory = new File(destination.getParent());
         List<File> files = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
         if (!files.contains(destination)) {
@@ -49,11 +49,5 @@ public abstract class URLUtility {
             return true;
         }
     }
-
-//    public static WebsiteEnum getWebsite(URL url) {
-//        for (WebsiteEnum website : WebsiteEnum.values())
-//            if (url.toString().contains(website.url)) return website;
-//        return null;
-//    }
 
 }

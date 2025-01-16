@@ -30,29 +30,36 @@ public class UnzipUtility {
         unzip(file);
     }
 
-    public static void unzip(File file) throws IOException {
-        Set<File> set = new HashSet<>();
-        if (file.isDirectory()) {
-            log.info("unzipping directory: {}", file);
-            for (File f: Objects.requireNonNull(file.listFiles())) {
-                if (isZipFile(f)) unzip(f);
+    public static void unzip(File file) {
+        try {
+            Set<File> set = new HashSet<>();
+            if (file.isDirectory()) {
+                log.info("unzipping directory: {}", file);
+                for (File f: Objects.requireNonNull(file.listFiles())) {
+                    if (isZipFile(f)) unzip(f);
+                }
+            } else if (isZipFile(file)) {
+                log.info("unzipping zip file: {}", file);
+                String destDirName = file.getName().replace(ZIP.extension, EMPTY);
+                File destDir = new File(file.getParent(), destDirName);
+                String fileZip = file.getAbsolutePath();
+                ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip));
+                unzip(zis, destDir, set);
+            } else {
+                log.error("cannot unzip file: {}", file);
             }
-        } else if (isZipFile(file)) {
-            log.info("unzipping zip file: {}", file);
-            String destDirName = file.getName().replace(ZIP.extension, EMPTY);
-            File destDir = new File(file.getParent(), destDirName);
-            String fileZip = file.getAbsolutePath();
-            ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip));
-            unzip(zis, destDir, set);
-        } else {
-            log.error("cannot unzip file: {}", file);
+            unzip(set);
+        } catch (Exception e) {
+            log.error("unzip failed: {}", file, e);
+            throw new RuntimeException(e);
         }
-        unzip(set);
     }
+
     public static boolean isZipFile(File file) {
         return file.getName().contains(ZIP.extension);
     }
-    private static void unzip(Set<File> directories) throws IOException {
+
+    private static void unzip(Set<File> directories) {
         if (!directories.isEmpty()) {
             Set<File> set = new HashSet<>();
             for (File directory: directories) {
@@ -61,6 +68,7 @@ public class UnzipUtility {
             unzip(set);
         }
     }
+
     private static void unzip(ZipInputStream zis, File destDir, Set<File> set) throws IOException {
         ZipEntry zipEntry;
         while (true) {
@@ -86,6 +94,7 @@ public class UnzipUtility {
         zis.closeEntry();
         zis.close();
     }
+
     private static void parse(ZipInputStream zis, File newFile, boolean isZipEntryDirectory) throws IOException {
         if (isZipEntryDirectory) {
             if (!newFile.isDirectory() && !FileUtility.createDirectory(newFile)) {

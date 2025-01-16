@@ -3,6 +3,7 @@ package ts4.helper.TS4Downloader.controllers;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
+import org.checkerframework.checker.units.qual.A;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ import java.util.concurrent.Future;
 
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
+import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.utilities.ConsolidateUtility;
 
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_REQUEST_MAPPING;
@@ -97,45 +99,47 @@ public class EventController {
             return jsonObject.toJSONString();
         } else {
             log.info("iteration: {} | # of urls: {}", iteration, urls.size());
-            List <URL> newURLs = new ArrayList<>();
-            try {
-                List<Future<?>> futures = new ArrayList<>(urls.stream().map(url ->
-                        executorService.submit((Callable<Void>) () -> {
-                            log.info(url.toString());
-                            newURLs.addAll(getNewURLs(url));
-                            return null;
-                        })).toList());
-                for(Future<?> f: futures) { f.get(); }
-            } catch (Exception e) {
-                log.error("Exception while downloading links", e);
-            }
+            List <URL> newURLs = getNewURLs(urls);
             return downloadLinks(directory, newURLs, iteration + 1);
         }
     }
 
+    private List<URL> getNewURLs(List<URL> urls) {
+        List <URL> newURLs = new ArrayList<>();
+        try {
+            List<Future<?>> futures = new ArrayList<>(urls.stream().map(url ->
+                    executorService.submit((Callable<Void>) () -> {
+                        log.info(url.toString());
+                        newURLs.addAll(getNewURLs(url));
+                        return null;
+                    })).toList());
+            for(Future<?> f: futures) { f.get(); }
+        } catch (Exception e) {
+            log.error("Exception while downloading links", e);
+        }
+        return newURLs;
+    }
+
     private List<URL> getNewURLs(URL url) {
         WebsiteEnum websiteEnum = WebsiteEnum.getByURL(url);
-        List<URL> parsedURLs;
-        ResponseEnum responseEnum;
+        DownloadResponse response;
         if (websiteEnum == null) {
-            responseEnum = UNKNOWN;
-            parsedURLs = new ArrayList<>();
+            response = new DownloadResponse(UNKNOWN);
         } else {
-            parsedURLs = websiteEnum.getURLs(url, client);
-            if (parsedURLs == null) {
-                responseEnum = DOWNLOAD;
-            } else {
-                responseEnum = parsedURLs.isEmpty() ? FAILURE : SUCCESSFUL;
-            }
+            response = websiteEnum.getURLs(url, client);
         }
+        return getNewURLs(url, response);
+    }
 
+    private List<URL> getNewURLs(URL url, DownloadResponse response ) {
+        ResponseEnum responseEnum = response.responseEnum;
         if (responseEnum == SUCCESSFUL) {
-            return parsedURLs;
+            return new ArrayList<>(response.urls);
         } else {
-            MAP.put(responseEnum, getURLs(url, responseEnum));
+            Set<String> set = getURLs(url, responseEnum);
+            MAP.put(responseEnum, set);
             return new ArrayList<>();
         }
-
     }
 
     private Set<String> getURLs(URL url, ResponseEnum responseEnum) {

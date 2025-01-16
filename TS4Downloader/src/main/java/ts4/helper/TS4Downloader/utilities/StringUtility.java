@@ -1,6 +1,7 @@
 package ts4.helper.TS4Downloader.utilities;
 
 import com.google.common.io.Resources;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +16,7 @@ import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 import static ts4.helper.TS4Downloader.constants.StringConstants.SINGLE_QUOTE;
 import static ts4.helper.TS4Downloader.constants.StringConstants.STANDARD_REGEX;
 
+@Slf4j
 public abstract class StringUtility {
 
     public static String getStringBetweenRegex(String content, String p1, String p2) {
@@ -43,9 +45,14 @@ public abstract class StringUtility {
         return p.matcher(content);
     }
 
-    public static String loadResource(String resource) throws Exception {
-        URL contentURL = Resources.getResource(resource);
-        return Resources.toString(contentURL, StandardCharsets.UTF_8).strip();
+    public static String loadResource(String resource) {
+        try {
+            URL contentURL = Resources.getResource("files/" + resource);
+            return Resources.toString(contentURL, StandardCharsets.UTF_8).strip();
+        } catch (Exception e) {
+            log.error("unable to locate resource: {}", resource, e);
+            throw new RuntimeException(e);
+        }
     }
 
     private static final List<String> ESCAPE_CHARACTERS = new ArrayList<>() {{

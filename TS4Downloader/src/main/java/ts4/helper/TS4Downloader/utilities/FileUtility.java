@@ -17,11 +17,16 @@ public abstract class FileUtility {
 
     }
 
-    public static void writeToFile(File file, String string, boolean append) throws Exception {
-        FileWriter fileWriter = new FileWriter(file, append);
-        fileWriter.write(string);
-        fileWriter.write(NEW_LINE);
-        fileWriter.close();
+    public static void writeToFile(File file, String string, boolean append) {
+        try {
+            FileWriter fileWriter = new FileWriter(file, append);
+            fileWriter.write(string);
+            fileWriter.write(NEW_LINE);
+            fileWriter.close();
+        } catch (Exception e) {
+            log.error("unable to write to file: {}", file, e);
+            throw new RuntimeException(e);
+        }
     }
 
     public static void deleteNonPackageFiles(File directory) {
