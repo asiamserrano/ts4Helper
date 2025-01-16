@@ -1,26 +1,35 @@
 package ts4.helper.TS4Downloader;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kotlin.Pair;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+import okhttp3.internal.http2.Header;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import ts4.helper.TS4Downloader.models.RetryURL;
-import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
-import ts4.helper.TS4Downloader.utilities.StringUtility;
-import ts4.helper.TS4Downloader.utilities.URLUtility;
+import ts4.helper.TS4Downloader.utilities.*;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -42,17 +51,30 @@ public class Main {
 
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
-        String content = StringUtility.loadResource("files/output.json");
-        JSONObject jsonObject = (JSONObject) JSONValue.parse(content);
+//        URL url = URLUtility.createURL("https://www.patreon.com/posts/56379158");
+        URL source = URLUtility.createURL("https://www.patreon.com/posts/wire-high-heels-113597759");
 
-        List<URL> list = ((List<String>) jsonObject.get(DOWNLOAD.toString())).stream().map(Main::createURL).toList();
-        List<RetryURL> urls = list.stream().map(RetryURL::new).toList();
-//        doWork(urls);
+        Response response = OkHttpUtility.sendRequest(source, new OkHttpClient());
+        String content = response.body().string();
+        
+//        String content = response.body().string();
+//        response.close();
+//        System.out.println(content);
 
-        URL url = urls.getLast().url;
-        Response response = OkHttpUtility.sendRequest(url, new OkHttpClient());
-        System.out.println(response.isSuccessful());
 
+//        Matcher matcher = StringUtility.getRegexBetweenMatcher(content,"\u0000", ".");
+//        while (matcher.find()) {
+//            System.out.println(matcher.group());
+//        }
+
+
+//        try(FileOutputStream fileOutputStream = new FileOutputStream(destination)) {
+//            ReadableByteChannel readableByteChannel = Channels.newChannel(source.openStream());
+//            FileChannel fileChannel = fileOutputStream.getChannel();
+//            fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+//        } catch (Exception e) {
+//            log.error("unable to download url {} to {}", source, destination, e);
+//        }
     }
 
     private static void doWork(List<RetryURL> urls) throws Exception {

@@ -219,6 +219,7 @@ click.simsfinds.com/download?flid=                      www.simsfinds.com/contin
                 } else {
                     List<URL> urls = new ArrayList<>();
                     for(String str : LIST) urls.add(URLUtility.createURL(str));
+                    LIST = new ArrayList<>();
                     return urls;
                 }
             } else {
