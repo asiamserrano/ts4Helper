@@ -14,6 +14,7 @@ import okhttp3.internal.http2.Header;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.web.util.UriComponentsBuilder;
+import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.models.NamedURL;
 import ts4.helper.TS4Downloader.models.NestedURL;
 import ts4.helper.TS4Downloader.models.RetryURL;
@@ -43,7 +44,6 @@ import java.util.stream.Collectors;
 import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
 //import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CAS;
-import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
 
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.DOWNLOAD;
 
@@ -51,41 +51,64 @@ import static ts4.helper.TS4Downloader.enums.ResponseEnum.DOWNLOAD;
 public class Main {
 
     public static final OkHttpClient client = new OkHttpClient();
-    @SuppressWarnings("unchecked")
+
     public static void main(String[] args) throws Exception {
-//        String content = StringUtility.loadResource("html_file.html");
-        // <title id="title">helgatisha Recolor EP03 Romper - The Sims 4 Download - SimsFinds</title>
-//        String name = StringUtility.getStringBetweenRegex(content, "<title id=\"title\">", "</title>");
-//        System.out.println(name);
-        //String content = StringUtility.loadResource("html_file.html");
 
-        //https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4
-        // https://www.simsfinds.com/downloads/151949/helgatisha-recolor-ep03-romper-sims4
+        //https://www.curseforge.com/sims4/create-a-sim/goldfish-cotton-pants
+        //https://www.simsfinds.com/continue?key=9e4a77dd0c64425f1da52a38303d83e3
 
-//        String start = "https://www.simsfinds.com/downloads/151949/helgatisha-recolor-ep03-romper-sims4";
-//        String start = "https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4";
+        //https://www.patreon.com/file?h=56379158&m=122655857
+        //https://www.patreon.com/posts/wire-high-heels-113597759
 
-
-        //https://www.curseforge.com/sims4/create-a-sim/eyelashes-part-1-2-and-3
-
-//        String string = "https://www.curseforge.com/sims4/create-a-sim/eyelashes-part-1-2-and-3";
-
-        //https://www.curseforge.com/api/v1/mods/669528/files/5976951/download
-
-//        List<NamedURL> namedURLS = getCurseForgeNamedURLs(string);
-
-//        List<NamedURL> namedURLS = getPatreonNamedURLs("https://www.patreon.com/posts/56379158");
-//        for(NamedURL namedURL: namedURLS) System.out.println(namedURL);
-
-        //https://alenaivanisova.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
-
-        String content = StringUtility.loadResource("html_file.html");
-
-        List<NamedURL> list = getCurgeForgeEdgeNamedURLs2(content);
-
-        for(NamedURL namedURL : list) System.out.println(namedURL);
-
+//        HttpUrl httpUrl = new HttpUrl.Builder()
+//                .scheme(HTTPS_SCHEME)
+//                .host("my.curseforge.com")
+////                .addPathSegments("file")
+////                .addPathSegments("continue")
+////                .addQueryParameter("key", EMPTY)
+////                .addPathSegments("sims4/create-a-sim")
+////                .addPathSegment(LocationPath.POSTS_PATH.value)
+////                .addPathSegment(EMPTY)
+//                .build();
+//
+//        System.out.println(httpUrl);
     }
+
+//    @SuppressWarnings("unchecked")
+//    public static void main(String[] args) throws Exception {
+////        String content = StringUtility.loadResource("html_file.html");
+//        // <title id="title">helgatisha Recolor EP03 Romper - The Sims 4 Download - SimsFinds</title>
+////        String name = StringUtility.getStringBetweenRegex(content, "<title id=\"title\">", "</title>");
+////        System.out.println(name);
+//        //String content = StringUtility.loadResource("html_file.html");
+//
+//        //https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4
+//        // https://www.simsfinds.com/downloads/151949/helgatisha-recolor-ep03-romper-sims4
+//
+////        String start = "https://www.simsfinds.com/downloads/151949/helgatisha-recolor-ep03-romper-sims4";
+////        String start = "https://www.simsfinds.com/downloads/316599/la-medusa-plataform-sandals-sims4";
+//
+//
+//        //https://www.curseforge.com/sims4/create-a-sim/eyelashes-part-1-2-and-3
+//
+////        String string = "https://www.curseforge.com/sims4/create-a-sim/eyelashes-part-1-2-and-3";
+//
+//        //https://www.curseforge.com/api/v1/mods/669528/files/5976951/download
+//
+////        List<NamedURL> namedURLS = getCurseForgeNamedURLs(string);
+//
+////        List<NamedURL> namedURLS = getPatreonNamedURLs("https://www.patreon.com/posts/56379158");
+////        for(NamedURL namedURL: namedURLS) System.out.println(namedURL);
+//
+//        //https://alenaivanisova.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
+//
+//        String content = StringUtility.loadResource("html_file.html");
+//
+//        List<NamedURL> list = getCurgeForgeEdgeNamedURLs2(content);
+//
+//        for(NamedURL namedURL : list) System.out.println(namedURL);
+//
+//    }
 
     private static List<NamedURL> getCurgeForgeEdgeNamedURLs(String url) {
         URL source = URLUtility.createURL(url);

@@ -1,7 +1,13 @@
 package ts4.helper.TS4Downloader.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+import ts4.helper.TS4Downloader.constructors.DomainPath;
+import ts4.helper.TS4Downloader.constructors.SecondLevelDomain;
+import ts4.helper.TS4Downloader.constructors.SubDomain;
+import ts4.helper.TS4Downloader.constructors.TopLevelDomain;
 import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 import ts4.helper.TS4Downloader.utilities.StringUtility;
@@ -11,12 +17,17 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
 import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 
-import static ts4.helper.TS4Downloader.enums.DomainEnum.PATREON;
-import static ts4.helper.TS4Downloader.enums.DomainEnum.SIMS_FINDS;
-import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
-import static ts4.helper.TS4Downloader.enums.DomainEnum.FORGE_CDN;
+import static ts4.helper.TS4Downloader.constructors.DomainPath.*;
+import static ts4.helper.TS4Downloader.constructors.SubDomain.*;
+import static ts4.helper.TS4Downloader.constructors.TopLevelDomain.COM;
+import static ts4.helper.TS4Downloader.constructors.TopLevelDomain.NET;
+//import static ts4.helper.TS4Downloader.enums.DomainEnum.PATREON;
+//import static ts4.helper.TS4Downloader.enums.DomainEnum.SIMS_FINDS;
+//import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
+//import static ts4.helper.TS4Downloader.enums.DomainEnum.FORGE_CDN;
 
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.FAILURE;
@@ -24,36 +35,62 @@ import static ts4.helper.TS4Downloader.enums.ResponseEnum.UNKNOWN;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.DOWNLOAD;
 
 @Slf4j
+@AllArgsConstructor
 public enum WebsiteEnum {
-    // INPUT
-    PATREON_POSTS("www.%s/posts/", PATREON),
-    CURSE_FORGE_MEMBERS("www.%s/members/", CURSE_FORGE),
-    CURSE_FORGE_CREATORS("my.%s/?", CURSE_FORGE),
-    SIMS_FINDS_DOWNLOADS("www.%s/downloads/", SIMS_FINDS),
-    CURSE_FORGE_CAS("www.%s/sims4/create-a-sim/", CURSE_FORGE),
 
-    // TRANSITION
-    SIMS_FINDS_CONTINUE("www.%s/continue?", SIMS_FINDS),
+    PATREON_POSTS(WWW, SecondLevelDomain.PATREON, COM, POSTS),
+    PATREON_FILE(WWW, SecondLevelDomain.PATREON, COM, FILE),
 
-    // DOWNLOAD
-    PATREON_FILE("www.%s/file?", PATREON),
-    SIMS_FINDS_DOWNLOAD("click.%s/download?", SIMS_FINDS), // *SPECIAL*
-    CURSE_FORGE_API("www.%s/api/v1/mods/", CURSE_FORGE),
-    CURSE_FORGE_CDN("edge.%s/files/", FORGE_CDN);
+    CURSE_FORGE_CREATORS(MY, SecondLevelDomain.CURSE_FORGE, COM, NONE),
+    CURSE_FORGE_MEMBERS(WWW, SecondLevelDomain.CURSE_FORGE, COM, MEMBERS),
 
-    public final String domain;
-    public final DomainEnum domainEnum;
+    CURSE_FORGE_CAS(WWW, SecondLevelDomain.CURSE_FORGE, COM, S4_CAS),
+    CURSE_FORGE_API(WWW, SecondLevelDomain.CURSE_FORGE, COM, API_V1_MODS),
+    CURSE_FORGE_CDN(EDGE, SecondLevelDomain.FORGE_CDN, NET, FILES),
 
-    WebsiteEnum(String format, DomainEnum domainEnum) {
-        this.domain = String.format(format, domainEnum.name);
-        this.domainEnum = domainEnum;
-    }
+    SIMS_FINDS_DOWNLOADS(WWW, SecondLevelDomain.SIMS_FINDS, COM, DOWNLOADS),
+    SIMS_FINDS_CONTINUE(WWW, SecondLevelDomain.SIMS_FINDS, COM, CONTINUE),
+    SIMS_FINDS_DOWNLOAD(CLICK, SecondLevelDomain.SIMS_FINDS, COM, DomainPath.DOWNLOAD);
+
+//    PATREON_POSTS(WWW, SecondLevelDomain.PATREON, COM, POSTS),
+//    CURSE_FORGE_MEMBERS(WWW, SecondLevelDomain.CURSE_FORGE, COM, MEMBERS),
+//    SIMS_FINDS_DOWNLOADS(WWW, SecondLevelDomain.SIMS_FINDS, COM, DOWNLOADS),
+//    CURSE_FORGE_CAS(WWW, SecondLevelDomain.CURSE_FORGE, COM, S4_CAS),
+//    CURSE_FORGE_API(WWW, SecondLevelDomain.CURSE_FORGE, COM, API_V1_MODS),
+//    CURSE_FORGE_CDN(EDGE, SecondLevelDomain.FORGE_CDN, NET, FILES),
+//    PATREON_FILE(WWW, SecondLevelDomain.PATREON, COM, FILE),
+//    SIMS_FINDS_DOWNLOAD(CLICK, SecondLevelDomain.SIMS_FINDS, COM, DomainPath.DOWNLOAD),
+//    CURSE_FORGE_CREATORS(MY, SecondLevelDomain.CURSE_FORGE, COM, NONE),
+//    SIMS_FINDS_CONTINUE(WWW, SecondLevelDomain.SIMS_FINDS, COM, CONTINUE);
+
+    public final SubDomain subDomain;
+    public final SecondLevelDomain secondLevelDomain;
+    public final TopLevelDomain topLevelDomain;
+    public final DomainPath domainPath;
 
     public static WebsiteEnum getByURL(URL url) {
         for (WebsiteEnum websiteEnum : values()) {
-            if (url.toString().contains(websiteEnum.domain)) return websiteEnum;
+            if (url.toString().contains(websiteEnum.toString())) return websiteEnum;
         }
         return null;
+    }
+
+    public HttpUrl getHttpUrl() {
+        String host = getHost();
+        return new HttpUrl.Builder()
+                .scheme(HTTPS_SCHEME)
+                .host(host)
+                .addPathSegments(domainPath.value)
+                .build();
+    }
+
+    public String getHost() {
+        return String.format("%s.%s.%s", subDomain, secondLevelDomain, topLevelDomain);
+    }
+
+    @Override
+    public String toString() {
+        return this.getHttpUrl().toString().split("//")[1];
     }
 
     private static OkHttpClient OK_HTTP_CLIENT;
@@ -73,7 +110,7 @@ public enum WebsiteEnum {
                                 .stream()
                                 .filter(str -> str.contains("/install"))
                                 .map(str -> str.replace("/install", ""))
-                                .map(str -> String.format("https://www.%s/%s", CURSE_FORGE.name, str))
+                                .map(str -> String.format("https://www.curseforge.com/%s", str))
                                 .toList();
                 return getURLs(url, "page=", parse);
             }

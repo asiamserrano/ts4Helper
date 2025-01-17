@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.utilities.OkHttpUtility;
 
 import java.util.ArrayList;
@@ -39,7 +40,14 @@ public class OkHttpConfig {
             @NotNull
             @Override
             public List<Cookie> loadForRequest(@NotNull HttpUrl url) {
-                HttpUrl extracted = OkHttpUtility.createHttpUrl(url);
+                HttpUrl httpUrl = OkHttpUtility.createHttpUrl(url);
+
+                if (url.toString().contains(WebsiteEnum.CURSE_FORGE_CREATORS.getHost())) {
+                    httpUrl = OkHttpUtility.createHttpUrl(WebsiteEnum.CURSE_FORGE_CAS.getHttpUrl());
+                }
+
+
+                HttpUrl extracted = OkHttpUtility.createHttpUrl(httpUrl);
                 List<Cookie> cookies = cookieStore.get(extracted);
                 return cookies != null ? cookies : new ArrayList<Cookie>();
             }

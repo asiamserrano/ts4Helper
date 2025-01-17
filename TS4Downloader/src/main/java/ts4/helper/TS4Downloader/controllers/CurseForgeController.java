@@ -5,16 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
-import ts4.helper.TS4Downloader.enums.DomainEnum;
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
 import ts4.helper.TS4Downloader.utilities.*;
 
-import java.io.File;
-import java.net.URL;
 import java.util.*;
-import java.util.regex.Matcher;
 
-import static ts4.helper.TS4Downloader.constants.OkHttpConstants.HTTPS_SCHEME;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.FAILURE;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.UNKNOWN;
@@ -23,7 +18,7 @@ import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_COOKIE_STATUS_GET_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING;
 
-import static ts4.helper.TS4Downloader.enums.DomainEnum.CURSE_FORGE;
+import static ts4.helper.TS4Downloader.enums.WebsiteEnum.CURSE_FORGE_CAS;
 
 @RestController
 @RequestMapping(CURSE_FORGE_CONTROLLER_REQUEST_MAPPING)
@@ -38,7 +33,7 @@ public class CurseForgeController {
     public ResponseEnum cookieStatus() {
         ResponseEnum responseEnum;
         try {
-            HttpUrl httpUrl = OkHttpUtility.createHttpUrl(CURSE_FORGE);
+            HttpUrl httpUrl = OkHttpUtility.createHttpUrl(CURSE_FORGE_CAS);
             Response response = OkHttpUtility.sendRequest(httpUrl, client);
             boolean bool = response.isSuccessful();
             response.close();
@@ -53,12 +48,11 @@ public class CurseForgeController {
 
     @PostMapping(CURSE_FORGE_CONTROLLER_UPDATE_COOKIE_POST_MAPPING)
     public ResponseEnum updateCookie(@RequestBody String body) {
-        String cookie_body = body.strip();
-        Cookie cookie = OkHttpUtility.createCookie(cookie_body, CURSE_FORGE);
-        List<Cookie> cookies = Collections.singletonList(cookie);
-        HttpUrl httpUrl = OkHttpUtility.createHttpUrl(CURSE_FORGE);
-        cookieJar.saveFromResponse(httpUrl, cookies);
-        log.info("cookie for {} set to {}", httpUrl.host(), cookie_body);
+        String curseForgeCookie = body.strip();
+        HttpUrl httpUrl = CURSE_FORGE_CAS.getHttpUrl();
+        Cookie cookie = OkHttpUtility.createCookie(curseForgeCookie, httpUrl);
+        cookieJar.saveFromResponse(httpUrl, Collections.singletonList(cookie));
+        log.info("curse forge cookie set to {}", curseForgeCookie);
         return cookieStatus();
     }
 
@@ -240,6 +234,5 @@ public class CurseForgeController {
 //            return "error";
 //        }
 //    }
-
 
 }
