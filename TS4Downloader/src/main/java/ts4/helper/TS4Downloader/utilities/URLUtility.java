@@ -2,7 +2,6 @@ package ts4.helper.TS4Downloader.utilities;
 
 import lombok.extern.slf4j.Slf4j;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
-import ts4.helper.TS4Downloader.models.PatreonModel;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -3,6 +3,7 @@ package ts4.helper.TS4Downloader.utilities;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
+import ts4.helper.TS4Downloader.models.URLModel;
 
 import java.net.URL;
 import java.util.List;
@@ -39,6 +40,10 @@ public abstract class OkHttpUtility {
             log.error("unable to send request for {}", url, e);
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getContent(URLModel urlModel, OkHttpClient client) {
+        return getContent(urlModel.url, client);
     }
 
     public static String getContent(URL url, OkHttpClient client) {

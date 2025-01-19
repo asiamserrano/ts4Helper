@@ -42,9 +42,9 @@ public class OkHttpConfig {
             public List<Cookie> loadForRequest(@NotNull HttpUrl url) {
                 HttpUrl httpUrl = OkHttpUtility.createHttpUrl(url);
 
-                if (url.toString().contains(WebsiteEnum.CURSE_FORGE_CREATORS.getHost())) {
-                    httpUrl = OkHttpUtility.createHttpUrl(WebsiteEnum.CURSE_FORGE_CAS.getHttpUrl());
-                }
+//                if (url.toString().contains(WebsiteEnum.CURSE_FORGE_CREATORS.getHost())) {
+//                    httpUrl = OkHttpUtility.createHttpUrl(WebsiteEnum.CURSE_FORGE_CAS.getHttpUrl());
+//                }
 
 
                 HttpUrl extracted = OkHttpUtility.createHttpUrl(httpUrl);

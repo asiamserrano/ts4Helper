@@ -3,7 +3,6 @@ package ts4.helper.TS4Downloader.controllers;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import org.checkerframework.checker.units.qual.A;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,35 +17,31 @@ import java.net.URL;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Callable;
+//import java.util.concurrent.*;
+
+import ts4.helper.TS4Downloader.threads.URLModelThread;
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
-import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.models.DownloadResponse;
+import ts4.helper.TS4Downloader.models.URLModel;
 import ts4.helper.TS4Downloader.utilities.ConsolidateUtility;
 
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_REQUEST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_SAMPLE_GET_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_THREAD_POOL_SIZE;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.BACK_SLASHES;
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
-import static ts4.helper.TS4Downloader.enums.ResponseEnum.FAILURE;
-import static ts4.helper.TS4Downloader.enums.ResponseEnum.DOWNLOAD;
-import static ts4.helper.TS4Downloader.enums.ResponseEnum.UNKNOWN;
 
 @RestController
 @RequestMapping(EVENT_CONTROLLER_REQUEST_MAPPING)
@@ -56,9 +51,8 @@ public class EventController {
 
     private File nonDownloadedLinksFile;
     private OkHttpClient client;
-    private ExecutorService executorService;
 
-    private static Map<ResponseEnum, Set<String>> MAP;
+    private static JSONObject MAP;
 
     @GetMapping(EVENT_CONTROLLER_SAMPLE_GET_MAPPING)
     public String sample() {
@@ -76,105 +70,53 @@ public class EventController {
 
     @PostMapping(EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING)
     public String downloadLinks(@RequestParam String location, @RequestBody URL[] body) {
-        MAP = new HashMap<>();
+        MAP = new JSONObject();
         File directory = new File(location);
-        List<URL> urls = Arrays.asList(body);
+        List<URLModel> urlModels = Arrays.stream(body).map(s -> new URLModel(s, EMPTY)).toList();
         ZonedDateTime START = ZonedDateTime.now();
-        String response = downloadLinks(directory, urls, 1);
+        String response = downloadLinks(directory, urlModels, 1);
         ZonedDateTime END = ZonedDateTime.now();
         log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
         return response.replaceAll(BACK_SLASHES, EMPTY);
     }
 
     @SuppressWarnings("unchecked")
-    private String downloadLinks(File directory, List<URL> urls, int iteration) {
-        if (urls.isEmpty()) {
-            JSONObject jsonObject = new JSONObject();
-            MAP.keySet().parallelStream().forEach(responseEnum -> {
-                Set<String> value = MAP.get(responseEnum);
-                JSONArray jsonArray = new JSONArray();
-                jsonArray.addAll(value);
-                jsonObject.put(responseEnum.toString(), jsonArray);
-            });
-            return jsonObject.toJSONString();
+    private String downloadLinks(File directory, List<URLModel> urlModels, int iteration) {
+        if (urlModels.isEmpty()) {
+            return MAP.toJSONString();
         } else {
-            log.info("iteration: {} | # of urls: {}", iteration, urls.size());
-            List <URL> newURLs = getNewURLs(urls);
+            log.info("iteration: {} | # of urls: {}", iteration, urlModels.size());
+            List <URLModel> newURLs = new ArrayList<>();
+            List <DownloadResponse> responses = new ArrayList<>();
+            try(ExecutorService executor = Executors.newFixedThreadPool(EVENT_CONTROLLER_THREAD_POOL_SIZE)) {
+                urlModels.forEach(urlModel -> {
+                    try {
+                        log.info("downloading link {}", urlModel.url);
+                        Callable<DownloadResponse> worker = new URLModelThread(urlModel, client);
+                        DownloadResponse response = executor.submit(worker).get();
+                        responses.add(response);
+                    } catch (Exception e) {
+                        log.error("unable to get future for url: {}", urlModel, e);
+                    }
+                });
+                executor.shutdown();
+                while (!executor.isTerminated()) {}
+                responses.forEach(response -> {
+                    ResponseEnum responseEnum = response.responseEnum;
+                    if (responseEnum == SUCCESSFUL) {
+                        newURLs.addAll(response.models);
+                    } else {
+                        JSONArray array = (JSONArray) MAP.getOrDefault(responseEnum, new JSONArray());
+                        JSONObject jsonObject = response.model.toJSON();
+                        array.add(jsonObject);
+                        MAP.put(responseEnum, array);
+                    }
+                });
+            } catch (Exception e) {
+                log.error("error when running parsing urlModels", e);
+            }
             return downloadLinks(directory, newURLs, iteration + 1);
         }
     }
-
-    private List<URL> getNewURLs(List<URL> urls) {
-        List <URL> newURLs = new ArrayList<>();
-        try {
-            List<Future<?>> futures = new ArrayList<>(urls.stream().map(url ->
-                    executorService.submit((Callable<Void>) () -> {
-                        log.info(url.toString());
-                        newURLs.addAll(getNewURLs(url));
-                        return null;
-                    })).toList());
-            for(Future<?> f: futures) { f.get(); }
-        } catch (Exception e) {
-            log.error("Exception while downloading links", e);
-        }
-        return newURLs;
-    }
-
-    private List<URL> getNewURLs(URL url) {
-        WebsiteEnum websiteEnum = WebsiteEnum.getByURL(url);
-        DownloadResponse response;
-        if (websiteEnum == null) {
-            response = new DownloadResponse(UNKNOWN);
-        } else {
-            response = websiteEnum.getURLs(url, client);
-        }
-        return getNewURLs(url, response);
-    }
-
-    private List<URL> getNewURLs(URL url, DownloadResponse response ) {
-        ResponseEnum responseEnum = response.responseEnum;
-        if (responseEnum == SUCCESSFUL) {
-            return new ArrayList<>(response.urls);
-        } else {
-            Set<String> set = getURLs(url, responseEnum);
-            MAP.put(responseEnum, set);
-            return new ArrayList<>();
-        }
-    }
-
-    private Set<String> getURLs(URL url, ResponseEnum responseEnum) {
-        Set<String> value = MAP.get(responseEnum);
-        if (value == null) {
-            value = Collections.singleton(url.toString());
-        } else {
-            value = new HashSet<>(value);
-            value.add(url.toString());
-        }
-        return value;
-    }
-
-//    private void printMap() {
-//        for (ResponseEnum responseEnum: MAP.keySet()) {
-//            MAP.get(responseEnum).forEach(this::printNestedURL);
-//        }
-//    }
-//
-//    private void printNestedURL(NestedURL nestedURL) {
-//        printNestedURL(nestedURL, EMPTY);
-//    }
-//
-//    private void printNestedURL(NestedURL nestedURL, String string) {
-//        if (nestedURL == null) {
-//            System.out.println(string);
-//        } else {
-//            String url = nestedURL.url.toString();
-//            NestedURL previous = nestedURL.previous;
-//            if (string.isEmpty()) {
-//                printNestedURL(previous, url);
-//            } else {
-//                printNestedURL(previous, url + " -> " + string);
-//            }
-//        }
-//    }
 
 }

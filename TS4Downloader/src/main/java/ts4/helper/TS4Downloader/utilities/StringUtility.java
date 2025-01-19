@@ -47,7 +47,7 @@ public abstract class StringUtility {
 
     public static String loadResource(String resource) {
         try {
-            URL contentURL = Resources.getResource("files/" + resource);
+            URL contentURL = Resources.getResource(resource);
             return Resources.toString(contentURL, StandardCharsets.UTF_8).strip();
         } catch (Exception e) {
             log.error("unable to locate resource: {}", resource, e);
