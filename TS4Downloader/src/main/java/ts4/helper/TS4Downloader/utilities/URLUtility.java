@@ -28,25 +28,25 @@ public abstract class URLUtility {
         }
     }
 
-    public static boolean download(URL source, File destination) {
-        File directory = new File(destination.getParent());
-        List<File> files = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
-        if (!files.contains(destination)) {
-            try(FileOutputStream fileOutputStream = new FileOutputStream(destination)) {
-                ReadableByteChannel readableByteChannel = Channels.newChannel(source.openStream());
-                FileChannel fileChannel = fileOutputStream.getChannel();
-                fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
-                log.info("downloaded url {} to {}", source, destination);
-                if (UnzipUtility.isZipFile(destination)) UnzipUtility.unzip(destination);
-                return true;
-            } catch (Exception e) {
-                log.error("unable to download url {} to {}", source, destination);
-                return false;
-            }
-        } else {
-            log.info("{} already exists", destination);
-            return true;
-        }
-    }
+//    public static boolean download(URL source, File destination) {
+//        File directory = new File(destination.getParent());
+//        List<File> files = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
+//        if (!files.contains(destination)) {
+//            try(FileOutputStream fileOutputStream = new FileOutputStream(destination)) {
+//                ReadableByteChannel readableByteChannel = Channels.newChannel(source.openStream());
+//                FileChannel fileChannel = fileOutputStream.getChannel();
+//                fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+//                log.info("downloaded url {} to {}", source, destination);
+//                if (UnzipUtility.isZipFile(destination)) UnzipUtility.unzip(destination);
+//                return true;
+//            } catch (Exception e) {
+//                log.error("unable to download url {} to {}", source, destination, e);
+//                return false;
+//            }
+//        } else {
+//            log.info("{} already exists", destination);
+//            return true;
+//        }
+//    }
 
 }

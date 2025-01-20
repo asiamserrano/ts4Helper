@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Callable;
-//import java.util.concurrent.*;
 
 import ts4.helper.TS4Downloader.threads.URLModelThread;
 import ts4.helper.TS4Downloader.enums.ResponseEnum;
@@ -87,31 +86,26 @@ public class EventController {
         } else {
             log.info("iteration: {} | # of urls: {}", iteration, urlModels.size());
             List <URLModel> newURLs = new ArrayList<>();
-            List <DownloadResponse> responses = new ArrayList<>();
             try(ExecutorService executor = Executors.newFixedThreadPool(EVENT_CONTROLLER_THREAD_POOL_SIZE)) {
-                urlModels.forEach(urlModel -> {
+                urlModels.parallelStream().forEach(urlModel -> {
                     try {
-                        log.info("downloading link {}", urlModel.url);
-                        Callable<DownloadResponse> worker = new URLModelThread(urlModel, client);
+                        Callable<DownloadResponse> worker = new URLModelThread(urlModel, client, directory);
                         DownloadResponse response = executor.submit(worker).get();
-                        responses.add(response);
+                        ResponseEnum responseEnum = response.responseEnum;
+                        if (responseEnum == SUCCESSFUL) {
+                            newURLs.addAll(response.models);
+                        } else {
+                            JSONArray array = (JSONArray) MAP.getOrDefault(responseEnum, new JSONArray());
+                            JSONObject jsonObject = response.model.toJSON();
+                            array.add(jsonObject);
+                            MAP.put(responseEnum, array);
+                        }
                     } catch (Exception e) {
                         log.error("unable to get future for url: {}", urlModel, e);
                     }
                 });
                 executor.shutdown();
                 while (!executor.isTerminated()) {}
-                responses.forEach(response -> {
-                    ResponseEnum responseEnum = response.responseEnum;
-                    if (responseEnum == SUCCESSFUL) {
-                        newURLs.addAll(response.models);
-                    } else {
-                        JSONArray array = (JSONArray) MAP.getOrDefault(responseEnum, new JSONArray());
-                        JSONObject jsonObject = response.model.toJSON();
-                        array.add(jsonObject);
-                        MAP.put(responseEnum, array);
-                    }
-                });
             } catch (Exception e) {
                 log.error("error when running parsing urlModels", e);
             }

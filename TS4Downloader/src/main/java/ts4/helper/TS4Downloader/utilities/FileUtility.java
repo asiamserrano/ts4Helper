@@ -87,7 +87,9 @@ public abstract class FileUtility {
 //    }
 
     public static void deleteFile(File theFile) {
-        if (!theFile.delete()) {
+        if (theFile.delete()) {
+            log.info("file deleted: {}", theFile);
+        } else {
             log.error("unable to delete file: {}", theFile);
         }
     }
