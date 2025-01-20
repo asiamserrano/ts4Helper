@@ -1,21 +1,9 @@
 package ts4.helper.TS4Downloader.utilities;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-import static ts4.helper.TS4Downloader.constants.StringConstants.FORWARD_SLASH;
-import static ts4.helper.TS4Downloader.enums.ExtensionEnum.ZIP;
-import static ts4.helper.TS4Downloader.enums.ExtensionEnum.PACKAGE;
-
-import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
 @Slf4j
 public class UnzipUtility {

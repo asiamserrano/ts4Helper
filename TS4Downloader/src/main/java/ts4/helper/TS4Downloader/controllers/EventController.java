@@ -35,7 +35,6 @@ import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTR
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_SAMPLE_GET_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING;
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_THREAD_POOL_SIZE;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.BACK_SLASHES;
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
@@ -84,9 +83,10 @@ public class EventController {
         if (urlModels.isEmpty()) {
             return MAP.toJSONString();
         } else {
-            log.info("iteration: {} | # of urls: {}", iteration, urlModels.size());
+            int size = urlModels.size();
+            log.info("iteration: {} | # of urls: {}", iteration, size);
             List <URLModel> newURLs = new ArrayList<>();
-            try(ExecutorService executor = Executors.newFixedThreadPool(EVENT_CONTROLLER_THREAD_POOL_SIZE)) {
+            try(ExecutorService executor = Executors.newFixedThreadPool(size)) {
                 urlModels.parallelStream().forEach(urlModel -> {
                     try {
                         Callable<DownloadResponse> worker = new URLModelThread(urlModel, client, directory);
