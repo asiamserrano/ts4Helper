@@ -1,14 +1,15 @@
 package ts4.helper.TS4Downloader.utilities;
 
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Objects;
 
+import static ts4.helper.TS4Downloader.constants.StringConstants.*;
+import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 import static ts4.helper.TS4Downloader.enums.ExtensionEnum.PACKAGE;
-import static ts4.helper.TS4Downloader.constants.StringConstants.DS_Store;
-import static ts4.helper.TS4Downloader.constants.StringConstants.NEW_LINE;
 
 @Slf4j
 public abstract class FileUtility {
@@ -17,8 +18,14 @@ public abstract class FileUtility {
 
     }
 
+    public static void writeToFile(File file, JSONObject jsonObject, boolean append) {
+        String jsonString = jsonObject.toJSONString().replaceAll(BACK_SLASHES, EMPTY);
+        writeToFile(file, jsonString, append);
+    }
+
     public static void writeToFile(File file, String string, boolean append) {
         try {
+            if (!file.exists()) file.createNewFile();
             FileWriter fileWriter = new FileWriter(file, append);
             fileWriter.write(string);
             fileWriter.write(NEW_LINE);

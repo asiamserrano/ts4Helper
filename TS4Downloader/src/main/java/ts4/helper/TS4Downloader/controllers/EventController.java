@@ -16,6 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,12 +31,9 @@ import ts4.helper.TS4Downloader.enums.ResponseEnum;
 import ts4.helper.TS4Downloader.models.DownloadResponse;
 import ts4.helper.TS4Downloader.models.URLModel;
 import ts4.helper.TS4Downloader.utilities.ConsolidateUtility;
+import ts4.helper.TS4Downloader.utilities.FileUtility;
 
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_REQUEST_MAPPING;
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_SAMPLE_GET_MAPPING;
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING;
-import static ts4.helper.TS4Downloader.constants.ControllerConstants.EVENT_CONTROLLER_CONSOLIDATE_POST_MAPPING;
-
+import static ts4.helper.TS4Downloader.constants.ControllerConstants.*;
 import static ts4.helper.TS4Downloader.constants.StringConstants.BACK_SLASHES;
 import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
@@ -69,13 +67,20 @@ public class EventController {
     @PostMapping(EVENT_CONTROLLER_DOWNLOAD_LINKS_POST_MAPPING)
     public String downloadLinks(@RequestParam String location, @RequestBody URL[] body) {
         MAP = new JSONObject();
-        File directory = new File(location);
         List<URLModel> urlModels = Arrays.stream(body).map(s -> new URLModel(s, EMPTY)).toList();
         ZonedDateTime START = ZonedDateTime.now();
-        String response = downloadLinks(directory, urlModels, 1);
-        ZonedDateTime END = ZonedDateTime.now();
-        log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
-        return response.replaceAll(BACK_SLASHES, EMPTY);
+        File directory = new File(location, "download_" + START.format(DATE_TIME_FORMATTER));
+        if (FileUtility.createDirectory(directory)) {
+            String response = downloadLinks(directory, urlModels, 1);
+            ZonedDateTime END = ZonedDateTime.now();
+            log.info("DOWNLOAD COMPLETED IN {} SECONDS", ChronoUnit.SECONDS.between(START, END));
+            File summary = new File(directory, "_summary.json");
+            FileUtility.writeToFile(summary, MAP, false);
+            return "done";
+        } else {
+            log.error("unable to create directory {}", directory.getAbsolutePath());
+            return MAP.toJSONString();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -101,7 +106,7 @@ public class EventController {
                             MAP.put(responseEnum, array);
                         }
                     } catch (Exception e) {
-                        log.error("unable to get future for url: {}", urlModel, e);
+                        log.error("unable to get future for url: {}", urlModel.url, e);
                     }
                 });
                 executor.shutdown();
