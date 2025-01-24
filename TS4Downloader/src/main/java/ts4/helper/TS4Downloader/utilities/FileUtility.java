@@ -1,10 +1,13 @@
 package ts4.helper.TS4Downloader.utilities;
 
+import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
+import ts4.helper.TS4Downloader.models.DownloadResponse;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.net.URL;
 import java.util.Objects;
 
 import static ts4.helper.TS4Downloader.constants.StringConstants.*;
@@ -16,6 +19,10 @@ public abstract class FileUtility {
 
     public static void main(String[] args) throws Exception {
 
+        URL url = URLUtility.createURL("https://www.baeldung.com/thread-pool-java-and-guava");
+        URL contentURL = Resources.getResource("sample.txt");
+        File file = new File(contentURL.getFile());
+        FileUtility.writeToFile(file, "HI!", true);
     }
 
     public static void writeToFile(File file, JSONObject jsonObject, boolean append) {
@@ -23,7 +30,8 @@ public abstract class FileUtility {
         writeToFile(file, jsonString, append);
     }
 
-    public static void writeToFile(File file, String string, boolean append) {
+    public static void writeToFile(File f, String string, boolean append) {
+        File file = new File(f.getAbsolutePath().replace("target/classes", "src/main/resources"));
         try {
             if (!file.exists()) file.createNewFile();
             FileWriter fileWriter = new FileWriter(file, append);

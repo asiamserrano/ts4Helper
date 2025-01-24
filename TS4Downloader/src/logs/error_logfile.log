@@ -1,0 +1,2 @@
+2025-01-23T23:17:37.008-05:00 ERROR 11348 --- [TS4Downloader] [pool-3-thread-3] t.h.T.consumers.MyTopicConsumer          : curse forge cookie is invalid. could not parse https://alenaivanisova.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
+2025-01-23T23:21:19.513-05:00 ERROR 11348 --- [TS4Downloader] [pool-2-thread-9] t.h.T.consumers.MyThirdTopicConsumer     : unable to unzip file /Users/asiaserrano/ChromeDownloads/SSalon - hair - G126.zip: java.io.FileNotFoundException: /Users/asiaserrano/ChromeDownloads/SSalon - hair - G126.zip (No such file or directory)

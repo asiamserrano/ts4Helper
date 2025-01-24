@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import ts4.helper.TS4Downloader.enums.WebsiteEnum;
 import ts4.helper.TS4Downloader.models.URLModel;
+import ts4.helper.TS4Downloader.models.WebsiteModel;
 
 import java.net.URL;
 import java.util.List;
@@ -44,6 +45,10 @@ public abstract class OkHttpUtility {
 
     public static String getContent(URLModel urlModel, OkHttpClient client) {
         return getContent(urlModel.url, client);
+    }
+
+    public static String getContent(WebsiteModel websiteModel, OkHttpClient client) {
+        return getContent(websiteModel.url, client);
     }
 
     public static String getContent(URL url, OkHttpClient client) {

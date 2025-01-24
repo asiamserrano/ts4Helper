@@ -34,9 +34,8 @@ import ts4.helper.TS4Downloader.utilities.ConsolidateUtility;
 import ts4.helper.TS4Downloader.utilities.FileUtility;
 
 import static ts4.helper.TS4Downloader.constants.ControllerConstants.*;
-import static ts4.helper.TS4Downloader.constants.StringConstants.BACK_SLASHES;
-import static ts4.helper.TS4Downloader.constants.StringConstants.EMPTY;
 
+import static ts4.helper.TS4Downloader.constants.StringConstants.*;
 import static ts4.helper.TS4Downloader.enums.ResponseEnum.SUCCESSFUL;
 
 @RestController
@@ -83,7 +82,7 @@ public class EventController {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(UNCHECKED)
     private String downloadLinks(File directory, List<URLModel> urlModels, int iteration) {
         if (urlModels.isEmpty()) {
             return MAP.toJSONString();
