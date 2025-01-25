@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
+import org.example.ts4package.classes.TS4ExecutorService;
 import org.example.ts4package.constructors.DomainPath;
 import org.example.ts4package.enums.ExtensionEnum;
 import org.example.ts4package.enums.TopicEnum;
@@ -25,7 +26,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 
 import static org.example.ts4package.constants.StringConstants.*;
@@ -36,13 +36,13 @@ import static org.example.ts4package.constants.StringConstants.*;
 @AllArgsConstructor
 public class MyTopicConsumer {
 
-    private ExecutorService consumer;
+    private TS4ExecutorService ts4ExecutorService;
     private KafkaTemplate<String, String> kafkaTemplate;
     private OkHttpClient client;
 
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void listenGroupFoo(String message) {
-        consumer.execute(() -> {
+        ts4ExecutorService.executorService.execute(() -> {
             log.info("received message: {}", message);
             String input = message.strip();
             if (!input.isEmpty()) {

@@ -3,6 +3,7 @@ package org.example.consumers;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.example.ts4package.classes.TS4ExecutorService;
 import org.example.ts4package.models.MessageModel;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -22,12 +23,12 @@ import java.util.concurrent.ExecutorService;
 @AllArgsConstructor
 public class MySecondTopicConsumer {
 
-    private final ExecutorService downloader;
+    private TS4ExecutorService ts4ExecutorService;
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void listenGroupFoo(String message) {
-        downloader.execute(() -> {
+        ts4ExecutorService.executorService.execute(() -> {
             log.info("received message: {}", message);
             MessageModel messageModel = MessageModel.Builder.parse(message).build();
             WebsiteModel websiteModel = messageModel.websiteModel;

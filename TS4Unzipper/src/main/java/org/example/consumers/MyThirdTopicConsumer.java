@@ -3,6 +3,7 @@ package org.example.consumers;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.lingala.zip4j.ZipFile;
+import org.example.ts4package.classes.TS4ExecutorService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.example.ts4package.enums.ExtensionEnum;
@@ -15,11 +16,11 @@ import java.util.concurrent.ExecutorService;
 @AllArgsConstructor
 public class MyThirdTopicConsumer {
 
-    private final ExecutorService unzipper;
+    private TS4ExecutorService ts4ExecutorService;
 
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void listenGroupFoo(String message) {
-        unzipper.execute(() -> {
+        ts4ExecutorService.executorService.execute(() -> {
             log.info("received message: {}", message);
             try {
                 File file = new File(message);

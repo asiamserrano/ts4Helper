@@ -1,5 +1,6 @@
 package org.example.configuration;
 
+import org.example.ts4package.classes.TS4ExecutorService;
 import org.example.ts4package.utilities.KafkaUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -37,8 +38,8 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ExecutorService downloader() {
-        return Executors.newFixedThreadPool(100);
+    public TS4ExecutorService ts4ExecutorService() {
+        return new TS4ExecutorService(100, TS4ExecutorService.Action.DOWNLOAD);
     }
 
 }
