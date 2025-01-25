@@ -3,8 +3,11 @@
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-*/.idea/*
 .idea/*
+*/.idea/*
+*/mvn/*
+*/.gitignore
+*/.gitattributes
 
 ### Eclipse ###
 .apt_generated
