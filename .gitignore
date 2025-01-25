@@ -1,25 +1,10 @@
-*/target/*
-
-!**/src/test/**/target/
-
 ### IntelliJ IDEA ###
 .idea/*
+*/target/*
 */.idea/*
 */.mvn/*
 */.gitignore
 */.gitattributes
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### VS Code ###
-.vscode/
 
 ### Mac OS ###
 .DS_Store
