@@ -1,12 +1,12 @@
 package org.example.ts4package.models;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.example.ts4package.utilities.URLUtility;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
-import java.net.URI;
 import java.net.URL;
+import java.util.Arrays;
 
 import static org.example.ts4package.constants.StringConstants.BACK_SLASHES;
 import static org.example.ts4package.constants.StringConstants.EMPTY;
@@ -15,51 +15,102 @@ import static org.example.ts4package.constants.StringConstants.UNCHECKED;
 @Slf4j
 public class WebsiteModel {
 
-    @Getter @Setter
-    public static class Builder {
+    public static class JSON extends JSONObject {
 
-        private String url;
-        private String name;
-        private Builder previous;
-
-        public Builder() {
-            this.url = null;
-            this.name = null;
-            this.previous = null;
+        @SuppressWarnings(UNCHECKED)
+        public JSON put(Keys keys, Object value) {
+            this.put(keys.name(), value);
+            return this;
         }
 
-        public void setUrl(URL url) {
-            this.url = url.toString();
+        public Object get(Keys keys) {
+            Object object = this.get(keys.name());
+            String value = object == null ? null : object.toString();
+            return value == null ? null : keys == Keys.previous ? Builder.parse(value) : value;
         }
 
-        public WebsiteModel build() {
-            try {
-                URL u = new URI(this.url).toURL();
-                String n = this.name == null ? EMPTY : this.name;
-                WebsiteModel p = this.previous.build();
-                return new WebsiteModel(u, n, p);
-            } catch (Exception e) {
-                return null;
-            }
-        }
-
-        public Builder(JSONObject jsonObject) {
-            this.url = jsonObject.get(WebsiteModel.Keys.url.toString()).toString();
-            this.name = jsonObject.get(WebsiteModel.Keys.name.toString()).toString();
-            this.previous = fromJSON(jsonObject.get(WebsiteModel.Keys.previous.toString()));
-        }
-
-        public static Builder fromJSON(Object object) {
-            if (object instanceof JSONObject) {
-                return new Builder((JSONObject) object);
-            } else {
-                return null;
-            }
+        @Override
+        public String toString() {
+            return this.toJSONString().replaceAll(BACK_SLASHES, EMPTY);
         }
 
     }
 
-    private enum Keys {
+    public static class Builder {
+
+        private final String url;
+        private String name;
+        private Builder previous;
+
+        private Builder(String url, String name, Builder previous) {
+            this.url = url;
+            this.name = name;
+            this.previous = previous;
+        }
+
+        private Builder(JSON json) {
+            this.url = json.get(Keys.url).toString();
+            this.name = json.get(Keys.name).toString();
+            this.previous = (Builder) json.get(Keys.previous);
+        }
+
+        public Builder(String url) {
+            this(url, null, null);
+        }
+
+        public Builder(URL url) {
+            this(url.toString(), null, null);
+        }
+
+        public static Builder parse(String message) {
+            try {
+                JSON json = new JSON();
+                JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
+                Arrays.stream(Keys.values()).forEach(key -> json.put(key, jsonObject.get(key.toString())));
+                return new Builder(json);
+            } catch (Exception e) {
+                log.error("unable to parse JSON object {}: {}", message, e.getMessage());
+                throw new RuntimeException(e);
+            }
+        }
+
+        public Builder setName(String name) {
+            this.name = name.strip();
+            return this;
+        }
+
+        public Builder setPrevious(WebsiteModel model) {
+            this.previous = model == null ? null : model.builder();
+            return this;
+        }
+
+        public WebsiteModel build() {
+            try {
+                URL u = URLUtility.createURLException(this.url);
+                String n = this.name == null ? EMPTY : this.name;
+                WebsiteModel p = this.previous == null ? null : this.previous.build();
+                return new WebsiteModel(u, n, p);
+            } catch (Exception e) {
+                log.error("error when building model: {}", e.getMessage());
+                return null;
+            }
+        }
+
+        @Override
+        public String toString() {
+            return this.toJSONModel().toString();
+        }
+
+        protected JSON toJSONModel() {
+            return new JSON()
+                    .put(Keys.url, this.url)
+                    .put(Keys.name, this.name)
+                    .put(Keys.previous, previous == null ? null : previous.toJSONModel());
+        }
+
+    }
+
+    public enum Keys {
         url, name, previous
     }
 
@@ -75,16 +126,11 @@ public class WebsiteModel {
 
     @Override
     public String toString() {
-        return this.toJSONObject().toString().replaceAll(BACK_SLASHES, EMPTY);
+        return this.builder().toString();
     }
 
-    @SuppressWarnings(UNCHECKED)
-    private JSONObject toJSONObject() {
-        JSONObject json = new JSONObject();
-        json.put(Keys.url.toString(), url.toString());
-        json.put(Keys.name.toString(), name);
-        json.put(Keys.previous.toString(), previous == null ? null : previous.toJSONObject());
-        return json;
+    protected Builder builder() {
+        return new Builder(url).setName(name).setPrevious(previous);
     }
 
 }

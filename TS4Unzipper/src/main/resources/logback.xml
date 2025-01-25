@@ -1,6 +1,6 @@
 <configuration>
 
-    <context>TS4Consumer</context>
+    <context>TS4Unzipper</context>
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
@@ -11,7 +11,7 @@
     <property name="CONSOLE_LOG_PATTERN"
               value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS, America/New_York}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
     <property name="logFilePath" value="./src/logs"/>
-    <property name="logFileName" value="ts4_consumer.log"/>
+    <property name="logFileName" value="ts4_unzipper.log"/>
     <property name="fileMaxSize" value="2"/>
     <property name="fileMaxHistory" value="10"/>
 

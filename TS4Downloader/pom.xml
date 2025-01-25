@@ -8,7 +8,7 @@
 		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ts4.helper</groupId>
+	<groupId>org.example</groupId>
 	<artifactId>TS4Downloader</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TS4Downloader</name>
@@ -31,6 +31,11 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.example.ts4package</groupId>
 			<artifactId>TS4Package</artifactId>
 			<version>1.0.0</version>
@@ -52,6 +57,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+			<version>1.18.36</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

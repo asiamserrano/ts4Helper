@@ -3,15 +3,19 @@ package org.example.ts4package.utilities;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 @Slf4j
 public abstract class URLUtility {
 
-    public static URL createURL(String url) {
+    public static URL createURLException(String url) throws Exception {
+        return new URI(url).toURL();
+    }
+
+    public static URL createURLNoException(String url) {
         try {
-            URI uri = new URI(url);
-            return uri.toURL();
+            return createURLException(url);
         } catch (Exception e) {
             log.error("unable to create URL for {}", url, e);
             return null;
