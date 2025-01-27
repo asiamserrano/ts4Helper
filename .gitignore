@@ -5,6 +5,8 @@
 */.mvn/*
 */.gitignore
 */.gitattributes
+*/out/*
+*.iml
 
 ### Mac OS ###
 .DS_Store

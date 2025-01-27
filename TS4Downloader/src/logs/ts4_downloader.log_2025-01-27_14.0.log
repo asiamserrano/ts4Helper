@@ -1,0 +1,185 @@
+[2m2025-01-27 14:13:19.490[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.Ts4DownloaderApplication    [0;39m [2m:[0;39m Starting Ts4DownloaderApplication using Java 21.0.5 with PID 5798 (/Users/asia/repos/ts4Helper/TS4Downloader/target/classes started by asia in /Users/asia/repos/ts4Helper/TS4Downloader)
+[2m2025-01-27 14:13:19.497[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.Ts4DownloaderApplication    [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-01-27 14:13:20.523[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 9081 (http)
+[2m2025-01-27 14:13:20.534[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2025-01-27 14:13:20.534[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.34]
+[2m2025-01-27 14:13:20.551[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-01-27 14:13:20.552[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 1004 ms
+[2m2025-01-27 14:13:20.690[0;39m [33m WARN[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36m.s.s.UserDetailsServiceAutoConfiguration[0;39m [2m:[0;39m 
+
+Using generated security password: 8306d3a9-5e3e-47f7-a0ed-14d902edb498
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2m2025-01-27 14:13:20.705[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mr$InitializeUserDetailsManagerConfigurer[0;39m [2m:[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2m2025-01-27 14:13:21.281[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 9081 (http) with context path '/'
+[2m2025-01-27 14:13:21.315[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-consumer-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = consumer-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+[2m2025-01-27 14:13:21.348[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-01-27 14:13:21.408[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-01-27 14:13:21.409[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-01-27 14:13:21.409[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738005201401
+[2m2025-01-27 14:13:21.418[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Subscribed to topic(s): my-second-topic
+[2m2025-01-27 14:13:21.439[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.Ts4DownloaderApplication    [0;39m [2m:[0;39m Started Ts4DownloaderApplication in 2.309 seconds (process running for 3.107)
+[2m2025-01-27 14:13:21.568[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-01-27 14:13:21.569[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:13:21.571[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-27 14:13:21.589[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb
+[2m2025-01-27 14:13:21.590[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-27 14:13:23.496[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully joined group with generation Generation{generationId=2, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:13:23.558[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully synced group in generation Generation{generationId=2, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:13:23.562[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Notifying assignor about the new Assignment(partitions=[my-second-topic-0])
+[2m2025-01-27 14:13:23.565[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Adding newly assigned partitions: my-second-topic-0
+[2m2025-01-27 14:13:23.569[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Found no committed offset for partition my-second-topic-0
+[2m2025-01-27 14:13:23.573[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Found no committed offset for partition my-second-topic-0
+[2m2025-01-27 14:13:23.585[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.SubscriptionState   [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting offset for partition my-second-topic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}.
+[2m2025-01-27 14:13:23.593[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions assigned: [my-second-topic-0]
+[2m2025-01-27 14:14:17.552[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: group is already rebalancing
+[2m2025-01-27 14:14:17.559[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Revoke previously assigned partitions my-second-topic-0
+[2m2025-01-27 14:14:17.563[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions revoked: [my-second-topic-0]
+[2m2025-01-27 14:14:17.564[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-27 14:14:17.571[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully joined group with generation Generation{generationId=3, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:14:17.966[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully synced group in generation Generation{generationId=3, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:14:17.967[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Notifying assignor about the new Assignment(partitions=[my-second-topic-0])
+[2m2025-01-27 14:14:17.967[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Adding newly assigned partitions: my-second-topic-0
+[2m2025-01-27 14:14:17.976[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerUtils       [0;39m [2m:[0;39m Setting offset for partition my-second-topic-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}
+[2m2025-01-27 14:14:17.976[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions assigned: [my-second-topic-0]
+[2m2025-01-27 14:14:38.583[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: group is already rebalancing
+[2m2025-01-27 14:14:38.584[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Revoke previously assigned partitions my-second-topic-0
+[2m2025-01-27 14:14:38.584[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions revoked: [my-second-topic-0]
+[2m2025-01-27 14:14:38.584[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-27 14:14:38.595[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully joined group with generation Generation{generationId=4, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:14:38.820[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Finished assignment for group at generation 4: {consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb=Assignment(partitions=[my-second-topic-0]), consumer-consumer-group-1-41235903-a447-4e4d-96f6-afcc97d6c908=Assignment(partitions=[my-third-topic-0])}
+[2m2025-01-27 14:14:38.842[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully synced group in generation Generation{generationId=4, memberId='consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb', protocol='range'}
+[2m2025-01-27 14:14:38.844[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Notifying assignor about the new Assignment(partitions=[my-second-topic-0])
+[2m2025-01-27 14:14:38.845[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Adding newly assigned partitions: my-second-topic-0
+[2m2025-01-27 14:14:38.861[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerUtils       [0;39m [2m:[0;39m Setting offset for partition my-second-topic-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}
+[2m2025-01-27 14:14:38.862[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions assigned: [my-second-topic-0]
+[2m2025-01-27 14:25:28.474[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: session timed out without receiving a heartbeat response. isDisconnected: false. Rediscovery will be attempted.
+[2m2025-01-27 14:25:28.531[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:25:28.533[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Client requested disconnect from node 2147483646
+[2m2025-01-27 14:25:28.559[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:25:28.559[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:25:28.559[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: false. Rediscovery will be attempted.
+[2m2025-01-27 14:25:28.560[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:25:28.678[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:29:06.922[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: session timed out without receiving a heartbeat response. isDisconnected: false. Rediscovery will be attempted.
+[2m2025-01-27 14:29:06.932[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:29:06.933[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Client requested disconnect from node 2147483646
+[2m2025-01-27 14:29:06.936[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:29:06.937[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:29:06.937[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: false. Rediscovery will be attempted.
+[2m2025-01-27 14:29:06.937[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:29:07.039[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-27 14:30:25.614[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Revoke previously assigned partitions my-second-topic-0
+[2m2025-01-27 14:30:25.615[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions revoked: [my-second-topic-0]
+[2m2025-01-27 14:30:25.615[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Member consumer-consumer-group-1-910cebe3-a241-4f6e-bc30-bcd70b73f7bb sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+[2m2025-01-27 14:30:25.617[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-27 14:30:25.617[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-27 14:30:25.617[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Unsubscribed all topics or patterns and assigned partitions
+[2m2025-01-27 14:30:25.620[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-27 14:30:25.620[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-27 14:30:26.030[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics scheduler closed
+[2m2025-01-27 14:30:26.031[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2m2025-01-27 14:30:26.031[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+[2m2025-01-27 14:30:26.031[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics reporters closed
+[2m2025-01-27 14:30:26.045[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m App info kafka.consumer for consumer-consumer-group-1 unregistered
+[2m2025-01-27 14:30:26.045[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: Consumer stopped
+[2m2025-01-27 14:30:26.048[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Commencing graceful shutdown. Waiting for active requests to complete
+[2m2025-01-27 14:30:28.071[0;39m [32m INFO[0;39m [35m5798[0;39m [2m---[0;39m [2m[tomcat-shutdown][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Graceful shutdown complete
