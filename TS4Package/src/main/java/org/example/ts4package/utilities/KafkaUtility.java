@@ -2,13 +2,15 @@ package org.example.ts4package.utilities;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.example.WebsiteModel;
 import org.example.ts4package.enums.TopicEnum;
-import org.example.ts4package.models.MessageModel;
-import org.example.ts4package.models.WebsiteModel;
+//import org.example.ts4package.models.MessageModel;
+//import org.example.ts4package.models.WebsiteModel;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -40,6 +42,17 @@ public abstract class KafkaUtility {
         return new KafkaTemplate<>(producerFactory);
     }
 
+    public static KafkaProducer<String, WebsiteModel> createKafkaProducer(String bootstrapServers) {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+                org.apache.kafka.common.serialization.StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+                io.confluent.kafka.serializers.KafkaAvroSerializer.class);
+        props.put("schema.registry.url", "http://localhost:8081");
+        return new KafkaProducer<>(props);
+    }
+
     public static ConcurrentKafkaListenerContainerFactory<String, String> createKafkaListenerContainerFactory
             (String bootstrapServers, String consumerGroup) {
         Map<String, Object> props = new HashMap<>();
@@ -58,15 +71,15 @@ public abstract class KafkaUtility {
         send(message, topic, template);
     }
 
-    public static void send(WebsiteModel model, TopicEnum topic, KafkaTemplate<String, String> template) {
-        String message = model.toString();
-        send(message, topic, template);
-    }
+//    public static void send(WebsiteModel model, TopicEnum topic, KafkaTemplate<String, String> template) {
+//        String message = model.toString();
+//        send(message, topic, template);
+//    }
 
-    public static void send(MessageModel model, TopicEnum topic, KafkaTemplate<String, String> template) {
-        String message = model.toString();
-        send(message, topic, template);
-    }
+//    public static void send(MessageModel model, TopicEnum topic, KafkaTemplate<String, String> template) {
+//        String message = model.toString();
+//        send(message, topic, template);
+//    }
 
     private static void send(String message, TopicEnum topicEnum, KafkaTemplate<String, String> kafkaTemplate) {
         try {

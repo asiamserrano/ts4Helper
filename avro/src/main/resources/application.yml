@@ -1,0 +1,14 @@
+spring:
+  application.name: TS4Avro
+  config.activate.on-profile: local
+  kafka:
+    template.default-topic: website-model-topic
+    consumer.group-id: consumer-group
+    bootstrap-servers: localhost:9092
+
+server.port: 9085
+
+logging:
+  config: classpath:logback.xml
+  level.root: info
+

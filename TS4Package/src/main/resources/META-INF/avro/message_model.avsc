@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "namespace": "org.example",
+  "type": "record",
+  "name": "MessageModel",
+  "fields": [
+    { "name": "directory", "type": "string" },
+    { "name": "timestamp", "type": "string" },
+    {"name": "websiteModel", "type": "MessageModel"}
+  ]
+}

@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.example.ts4package.enums.WebsiteEnum;
-import org.example.ts4package.models.WebsiteModel;
+//import org.example.ts4package.models.WebsiteModel;
 
 import java.net.URL;
 
@@ -45,9 +45,9 @@ public abstract class OkHttpUtility {
         }
     }
 
-    public static String getContent(WebsiteModel websiteModel, OkHttpClient client) {
-        return getContent(websiteModel.url, client);
-    }
+//    public static String getContent(WebsiteModel websiteModel, OkHttpClient client) {
+//        return getContent(websiteModel.getUrl(), client);
+//    }
 
     public static String getContent(URL url, OkHttpClient client) {
         try {

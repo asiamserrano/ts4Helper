@@ -2,17 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ts4.helper</groupId>
+
+    <groupId>org.example</groupId>
     <artifactId>TS4Avro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TS4Avro</name>
     <description>Project for downloading TS4 custom content</description>
+
     <url/>
     <licenses>
         <license/>
@@ -26,6 +29,9 @@
         <tag/>
         <url/>
     </scm>
+
+
+
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -59,6 +65,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.example.ts4package</groupId>-->
+<!--            <artifactId>TS4Package</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -103,6 +114,7 @@
             <artifactId>spring-kafka</artifactId>
             <version>3.3.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
@@ -112,51 +124,22 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.reef</groupId>
-            <artifactId>reef-webserver</artifactId>
-            <version>0.16.0</version>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.baeldung.spring.kafka.KafkaApplication</mainClass>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>1.12.0</version>
+                <version>1.11.1</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -169,7 +152,7 @@
                             <fieldVisibility>PRIVATE</fieldVisibility>
                             <stringType>String</stringType>
                             <imports>
-                                <import>${basedir}/src/main/resources/META-INF/avro/my_avro.avsc</import>
+                                <import>${basedir}/src/main/resources/META-INF/avro/website_model.avsc</import>
                             </imports>
                         </configuration>
                     </execution>

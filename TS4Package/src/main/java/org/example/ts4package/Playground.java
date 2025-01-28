@@ -1,8 +1,11 @@
 package org.example.ts4package;
 
 import com.google.common.io.Resources;
-import org.example.ts4package.models.MessageModel;
-import org.example.ts4package.models.WebsiteModel;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.errors.SerializationException;
+import org.example.MyAvroClass;
+import org.example.WebsiteModel;
 import org.example.ts4package.utilities.KafkaUtility;
 import org.springframework.kafka.core.KafkaTemplate;
 
@@ -14,8 +17,6 @@ import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.example.ts4package.enums.TopicEnum.MY_TOPIC;
-
 class Playground {
 
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
@@ -25,24 +26,68 @@ class Playground {
 
     public static void main(String[] args) throws Exception {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
-        String child = "donwload_" + ZonedDateTime.now().format(formatter);
-        File file = new File("/Users/asiaserrano/ChromeDownloads", child);
-        if (file.exists() || file.mkdir()) {
-            URL contentURL = Resources.getResource("input.txt");
-            Files.readAllLines(Paths.get(contentURL.toURI()), StandardCharsets.UTF_8).parallelStream()
-                    .map(str -> {
-                        try {
-                            WebsiteModel wm = new WebsiteModel.Builder(str).build();
-                            return new MessageModel.Builder(file, wm).build();
-                        } catch (Exception e) {
-                            System.out.println("unable to create website model " + e.getMessage());
-                            throw new RuntimeException(e);
-                        }
-                    })
-//                    .forEach(str -> System.out.println(str.toString()));
-                .forEach(str -> KafkaUtility.send(str, MY_TOPIC, KAFKA_TEMPLATE));
+//        MyAvroClass myAvroClass = new MyAvroClass("Asia", 13, "red", null);
+
+        WebsiteModel websiteModel = new WebsiteModel();
+        websiteModel.setUrl("https://www.google.com");
+        websiteModel.setDirectory("/Users/asia/zzz");
+        websiteModel.setFilename("myfile.txt");
+
+        KafkaProducer<String, WebsiteModel> kafkaProducer = KafkaUtility.createKafkaProducer(BOOTSTRAP_SERVERS);
+        ProducerRecord<String, WebsiteModel> record =
+                new ProducerRecord<>("website-model-topic", "website-model-key", websiteModel);
+        try {
+            kafkaProducer.send(record);
+        } catch(SerializationException e) {
+            System.out.println("cannot serialize record");
         }
+        finally {
+            kafkaProducer.flush();
+            kafkaProducer.close();
+            System.out.println("sent record");
+        }
+
+//        File personsListSerializedFile = new File("my_avros.avro");
+//        AvroSerializerUtility.serializeMyAvros(myAvros, personsListSerializedFile);
+//        System.out.println("done serializing");
+//        AvroDeserializerUtility.deserializeMyAvros(personsListSerializedFile).stream().map(MyAvroClass::toString)
+//                .forEach(System.out::println);
+//        System.out.println("done deserializing");
+//
+//        KafkaProducer kafkaProducer = KafkaUtility.createKafkaProducer(BOOTSTRAP_SERVERS);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
+//        String child = ZonedDateTime.now().format(formatter);
+//        File file = new File("/Users/asia/zzz", child);
+//        if (file.exists() || file.mkdir()) {
+//            URL contentURL = Resources.getResource("input.txt");
+//            Files.readAllLines(Paths.get(contentURL.toURI()), StandardCharsets.UTF_8).parallelStream()
+//                    .map(str -> {
+//                        try {
+//                            WebsiteModel websiteModel = new WebsiteModel();
+//                            websiteModel.setUrl(str);
+//                            websiteModel.setDirectory(file.getAbsolutePath());
+//                            return websiteModel;
+//                        } catch (Exception e) {
+//                            System.out.println("unable to create model " + e.getMessage());
+//                            throw new RuntimeException(e);
+//                        }
+//                    })
+////                    .forEach(str -> System.out.println(str.toString()));
+//                .forEach(websiteModel -> {
+//                            try {
+//                                ProducerRecord<Object, Object> record =
+//                                        new ProducerRecord<>("my-avro-topic", "record-key", websiteModel);
+//                                kafkaProducer.send(record);
+//                            } catch (SerializationException e) {
+//                                System.out.println("cannot serialize record");
+//                            } finally {
+//                                System.out.println("sent record");
+//                            }
+//
+//                    kafkaProducer.flush();
+//                    kafkaProducer.close();
+//                });
+//        }
 
 
 //        String message = "{\"previous\":{\"previous\":null,\"name\":\"Google\",\"url\":\"https://www.google.com\"},\"name\":\"MSN\",\"url\":\"https://www.msn.com\"}";
