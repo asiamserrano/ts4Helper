@@ -5,7 +5,7 @@ git add *.log
 git add *.avsc
 git add */pom.xml
 git add */logback.xml
-git add */application.yml
+git add *.yml
 git commit -m "${1:-updates}"  
 git push
 git status
