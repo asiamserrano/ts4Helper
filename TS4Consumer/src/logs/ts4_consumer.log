@@ -1,45 +1,834 @@
-[2m2025-01-25 03:03:12.679[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Node -1 disconnected.
-[2m2025-01-25 03:03:42.865[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ad | producer-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Producer clientId=producer-1] Node -1 disconnected.
-[2m2025-01-25 03:26:55.022[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: session timed out without receiving a heartbeat response. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:26:55.040[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:26:55.044[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Client requested disconnect from node 2147483646
-[2m2025-01-25 03:26:55.090[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:26:55.090[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:26:55.090[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:26:55.185[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:42:20.310[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: session timed out without receiving a heartbeat response. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:42:20.311[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:42:20.312[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Client requested disconnect from node 2147483646
-[2m2025-01-25 03:42:20.317[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:42:20.317[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:42:20.317[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:42:20.428[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:50:58.775[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Disconnecting from node 1 due to request timeout.
-[2m2025-01-25 03:50:58.877[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Cancelled in-flight FETCH request with correlation id 2791 due to node 1 being disconnected (elapsed time since creation: 513796ms, elapsed time since send: 513796ms, request timeout: 30000ms)
-[2m2025-01-25 03:50:58.885[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: session timed out without receiving a heartbeat response. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:50:58.885[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:50:58.885[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ consumer-group][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Client requested disconnect from node 2147483646
-[2m2025-01-25 03:50:58.888[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.clients.FetchSessionHandler   [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Error sending fetch request (sessionId=1325263398, epoch=2225) to node 1:
+2025-01-29 21:04:41.493  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://quirky-introvert.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
+2025-01-29 21:04:41.699  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=1&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:41.989  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=2&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:42.476  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=3&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:42.799  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=4&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:43.226  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=5&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:43.528  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=6&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:43.855  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=7&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:44.129  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=8&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:45.080  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=9&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:45.461  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=10&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:04:45.890  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=11&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:07:22.923  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://quirky-introvert.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
+2025-01-29 21:07:22.979  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=1&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:07:23.399  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=2&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:07:23.841  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=3&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+[2m2025-01-29 21:07:41.852[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Starting TS4ConsumerApplication using Java 21.0.2 with PID 25605 (/Users/asiaserrano/repos/ts4Helper/TS4Consumer/target/classes started by asiaserrano in /Users/asiaserrano/repos/ts4Helper/TS4Consumer)
+[2m2025-01-29 21:07:41.853[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-01-29 21:07:42.310[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9094]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-ts4-website-consumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = ts4-website-consumer
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
 
-org.apache.kafka.common.errors.DisconnectException: null
+[2m2025-01-29 21:07:42.327[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-01-29 21:07:42.337[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
 
-[2m2025-01-25 03:50:58.930[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:50:58.930[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Group coordinator localhost:9092 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable. isDisconnected: false. Rediscovery will be attempted.
-[2m2025-01-25 03:50:58.930[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Requesting disconnect from last known coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:50:59.045[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
-[2m2025-01-25 03:51:36.965[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Revoke previously assigned partitions my-topic-0
-[2m2025-01-25 03:51:36.968[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions revoked: [my-topic-0]
-[2m2025-01-25 03:51:36.969[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Member consumer-consumer-group-1-7dbac3aa-9a64-48b3-aec9-fcfc9e897f7d sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
-[2m2025-01-25 03:51:36.971[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
-[2m2025-01-25 03:51:36.971[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: consumer pro-actively leaving the group
-[2m2025-01-25 03:51:36.971[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Unsubscribed all topics or patterns and assigned partitions
-[2m2025-01-25 03:51:36.978[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting generation and member id due to: consumer pro-actively leaving the group
-[2m2025-01-25 03:51:36.978[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: consumer pro-actively leaving the group
-[2m2025-01-25 03:51:37.029[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics scheduler closed
-[2m2025-01-25 03:51:37.029[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.metrics.JmxReporter
-[2m2025-01-25 03:51:37.029[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
-[2m2025-01-25 03:51:37.029[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics reporters closed
-[2m2025-01-25 03:51:37.053[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m App info kafka.consumer for consumer-consumer-group-1 unregistered
-[2m2025-01-25 03:51:37.054[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: Consumer stopped
-[2m2025-01-25 03:51:37.060[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Commencing graceful shutdown. Waiting for active requests to complete
-[2m2025-01-25 03:51:37.067[0;39m [32m INFO[0;39m [35m42387[0;39m [2m---[0;39m [2m[tomcat-shutdown][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Graceful shutdown complete
+[2m2025-01-29 21:07:42.338[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-29 21:07:42.400[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+[2m2025-01-29 21:07:42.401[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-01-29 21:07:42.401[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-01-29 21:07:42.401[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738202862400
+[2m2025-01-29 21:07:42.402[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Subscribed to topic(s): ts4-website-topic
+[2m2025-01-29 21:07:42.409[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Started TS4ConsumerApplication in 0.687 seconds (process running for 1.126)
+[2m2025-01-29 21:07:42.633[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-01-29 21:07:42.635[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Discovered group coordinator localhost:9094 (id: 2147483646 rack: null)
+[2m2025-01-29 21:07:42.636[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:07:42.669[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: need to re-join with the given member-id: consumer-ts4-website-consumer-1-b8949db7-9a00-4b21-bc98-0cdcd0292eca
+[2m2025-01-29 21:07:42.669[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:07:42.684[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully joined group with generation Generation{generationId=1, memberId='consumer-ts4-website-consumer-1-b8949db7-9a00-4b21-bc98-0cdcd0292eca', protocol='range'}
+[2m2025-01-29 21:07:42.686[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Finished assignment for group at generation 1: {consumer-ts4-website-consumer-1-b8949db7-9a00-4b21-bc98-0cdcd0292eca=Assignment(partitions=[ts4-website-topic-0])}
+[2m2025-01-29 21:07:42.714[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully synced group in generation Generation{generationId=1, memberId='consumer-ts4-website-consumer-1-b8949db7-9a00-4b21-bc98-0cdcd0292eca', protocol='range'}
+[2m2025-01-29 21:07:42.715[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Notifying assignor about the new Assignment(partitions=[ts4-website-topic-0])
+[2m2025-01-29 21:07:42.716[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Adding newly assigned partitions: ts4-website-topic-0
+[2m2025-01-29 21:07:42.725[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Found no committed offset for partition ts4-website-topic-0
+[2m2025-01-29 21:07:42.736[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.SubscriptionState   [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting offset for partition ts4-website-topic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 1 rack: null)], epoch=0}}.
+[2m2025-01-29 21:07:42.736[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions assigned: [ts4-website-topic-0]
+[2m2025-01-29 21:09:39.896[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Revoke previously assigned partitions ts4-website-topic-0
+[2m2025-01-29 21:09:39.897[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions revoked: [ts4-website-topic-0]
+[2m2025-01-29 21:09:39.897[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Member consumer-ts4-website-consumer-1-b8949db7-9a00-4b21-bc98-0cdcd0292eca sending LeaveGroup request to coordinator localhost:9094 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+[2m2025-01-29 21:09:39.898[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:09:39.898[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:09:39.898[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Unsubscribed all topics or patterns and assigned partitions
+[2m2025-01-29 21:09:39.901[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:09:39.901[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:09:39.925[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics scheduler closed
+[2m2025-01-29 21:09:39.925[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2m2025-01-29 21:09:39.925[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+[2m2025-01-29 21:09:39.925[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics reporters closed
+[2m2025-01-29 21:09:39.942[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m App info kafka.consumer for consumer-ts4-website-consumer-1 unregistered
+[2m2025-01-29 21:09:39.942[0;39m [32m INFO[0;39m [35m25605[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: Consumer stopped
+[2m2025-01-29 21:09:43.036[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Starting TS4ConsumerApplication using Java 21.0.2 with PID 25759 (/Users/asiaserrano/repos/ts4Helper/TS4Consumer/target/classes started by asiaserrano in /Users/asiaserrano/repos/ts4Helper/TS4Consumer)
+[2m2025-01-29 21:09:43.037[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-01-29 21:09:43.421[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 9100 (http)
+[2m2025-01-29 21:09:43.426[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2025-01-29 21:09:43.426[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.34]
+[2m2025-01-29 21:09:43.438[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-01-29 21:09:43.438[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 386 ms
+[2m2025-01-29 21:09:43.507[0;39m [33m WARN[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36m.s.s.UserDetailsServiceAutoConfiguration[0;39m [2m:[0;39m 
+
+Using generated security password: 4bbf0254-f88a-4b7d-a637-9830096ad8a1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2m2025-01-29 21:09:43.515[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mr$InitializeUserDetailsManagerConfigurer[0;39m [2m:[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2m2025-01-29 21:09:43.757[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 9100 (http) with context path '/'
+[2m2025-01-29 21:09:43.773[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9094]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-ts4-website-consumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = ts4-website-consumer
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+[2m2025-01-29 21:09:43.791[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-01-29 21:09:43.802[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-29 21:09:43.802[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-29 21:09:43.867[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+[2m2025-01-29 21:09:43.867[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-01-29 21:09:43.867[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-01-29 21:09:43.867[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738202983867
+[2m2025-01-29 21:09:43.869[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Subscribed to topic(s): ts4-website-topic
+[2m2025-01-29 21:09:43.875[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Started TS4ConsumerApplication in 0.977 seconds (process running for 1.507)
+[2m2025-01-29 21:09:43.990[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-01-29 21:09:43.990[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Discovered group coordinator localhost:9094 (id: 2147483646 rack: null)
+[2m2025-01-29 21:09:43.991[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:09:44.001[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: need to re-join with the given member-id: consumer-ts4-website-consumer-1-feb6d4dd-6dff-450a-b6b5-aee58406b75a
+[2m2025-01-29 21:09:44.001[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:09:44.006[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully joined group with generation Generation{generationId=3, memberId='consumer-ts4-website-consumer-1-feb6d4dd-6dff-450a-b6b5-aee58406b75a', protocol='range'}
+[2m2025-01-29 21:09:44.008[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Finished assignment for group at generation 3: {consumer-ts4-website-consumer-1-feb6d4dd-6dff-450a-b6b5-aee58406b75a=Assignment(partitions=[ts4-website-topic-0])}
+[2m2025-01-29 21:09:44.015[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully synced group in generation Generation{generationId=3, memberId='consumer-ts4-website-consumer-1-feb6d4dd-6dff-450a-b6b5-aee58406b75a', protocol='range'}
+[2m2025-01-29 21:09:44.015[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Notifying assignor about the new Assignment(partitions=[ts4-website-topic-0])
+[2m2025-01-29 21:09:44.016[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Adding newly assigned partitions: ts4-website-topic-0
+[2m2025-01-29 21:09:44.019[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Found no committed offset for partition ts4-website-topic-0
+[2m2025-01-29 21:09:44.027[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.SubscriptionState   [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting offset for partition ts4-website-topic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 1 rack: null)], epoch=0}}.
+[2m2025-01-29 21:09:44.028[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions assigned: [ts4-website-topic-0]
+[2m2025-01-29 21:09:47.181[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2025-01-29 21:09:47.181[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2025-01-29 21:09:47.182[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 1 ms
+[2m2025-01-29 21:09:47.199[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteConstroller  [0;39m [2m:[0;39m sample endpoint was hit at 2025-01-29T21:09:47.199115-05:00[America/New_York]
+2025-01-29 21:10:01.506  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://quirky-introvert.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
+2025-01-29 21:10:01.612  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=1&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+2025-01-29 21:10:03.830  INFO   --- [           main] o.p.ts4.consumer.enums.CurseForgeEnum    : parsing search page: https://www.curseforge.com/members/ssalon1/projects?page=2&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
+[2m2025-01-29 21:10:04.397[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Revoke previously assigned partitions ts4-website-topic-0
+[2m2025-01-29 21:10:04.397[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions revoked: [ts4-website-topic-0]
+[2m2025-01-29 21:10:04.398[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Member consumer-ts4-website-consumer-1-feb6d4dd-6dff-450a-b6b5-aee58406b75a sending LeaveGroup request to coordinator localhost:9094 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+[2m2025-01-29 21:10:04.398[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:10:04.398[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:10:04.398[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Unsubscribed all topics or patterns and assigned partitions
+[2m2025-01-29 21:10:04.400[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:10:04.400[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-01-29 21:10:04.871[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics scheduler closed
+[2m2025-01-29 21:10:04.871[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2m2025-01-29 21:10:04.872[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+[2m2025-01-29 21:10:04.872[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics reporters closed
+[2m2025-01-29 21:10:04.878[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m App info kafka.consumer for consumer-ts4-website-consumer-1 unregistered
+[2m2025-01-29 21:10:04.879[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: Consumer stopped
+[2m2025-01-29 21:10:04.880[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Commencing graceful shutdown. Waiting for active requests to complete
+[2m2025-01-29 21:10:04.883[0;39m [32m INFO[0;39m [35m25759[0;39m [2m---[0;39m [2m[tomcat-shutdown][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Graceful shutdown complete
+[2m2025-01-29 21:10:52.028[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Starting TS4ConsumerApplication using Java 21.0.2 with PID 25855 (/Users/asiaserrano/repos/ts4Helper/TS4Consumer/target/classes started by asiaserrano in /Users/asiaserrano/repos/ts4Helper/TS4Consumer)
+[2m2025-01-29 21:10:52.029[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-01-29 21:10:52.504[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 9100 (http)
+[2m2025-01-29 21:10:52.509[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2025-01-29 21:10:52.509[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.34]
+[2m2025-01-29 21:10:52.520[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-01-29 21:10:52.520[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 474 ms
+[2m2025-01-29 21:10:52.589[0;39m [33m WARN[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36m.s.s.UserDetailsServiceAutoConfiguration[0;39m [2m:[0;39m 
+
+Using generated security password: 9f205444-c9d6-443f-a23f-0c0014286bf5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2m2025-01-29 21:10:52.596[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mr$InitializeUserDetailsManagerConfigurer[0;39m [2m:[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2m2025-01-29 21:10:52.866[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 9100 (http) with context path '/'
+[2m2025-01-29 21:10:52.885[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9094]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-ts4-website-consumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = ts4-website-consumer
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+[2m2025-01-29 21:10:52.907[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-01-29 21:10:52.920[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-29 21:10:52.920[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-29 21:10:52.992[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+[2m2025-01-29 21:10:52.993[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-01-29 21:10:52.993[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-01-29 21:10:52.993[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738203052993
+[2m2025-01-29 21:10:52.995[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Subscribed to topic(s): ts4-website-topic
+[2m2025-01-29 21:10:53.008[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Started TS4ConsumerApplication in 1.151 seconds (process running for 1.59)
+[2m2025-01-29 21:10:53.134[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-01-29 21:10:53.139[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Discovered group coordinator localhost:9094 (id: 2147483646 rack: null)
+[2m2025-01-29 21:10:53.139[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:10:53.148[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: need to re-join with the given member-id: consumer-ts4-website-consumer-1-56ea5510-01ba-4404-ac26-95f2cd957a37
+[2m2025-01-29 21:10:53.149[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-01-29 21:10:53.152[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully joined group with generation Generation{generationId=5, memberId='consumer-ts4-website-consumer-1-56ea5510-01ba-4404-ac26-95f2cd957a37', protocol='range'}
+[2m2025-01-29 21:10:53.155[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Finished assignment for group at generation 5: {consumer-ts4-website-consumer-1-56ea5510-01ba-4404-ac26-95f2cd957a37=Assignment(partitions=[ts4-website-topic-0])}
+[2m2025-01-29 21:10:53.161[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully synced group in generation Generation{generationId=5, memberId='consumer-ts4-website-consumer-1-56ea5510-01ba-4404-ac26-95f2cd957a37', protocol='range'}
+[2m2025-01-29 21:10:53.161[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Notifying assignor about the new Assignment(partitions=[ts4-website-topic-0])
+[2m2025-01-29 21:10:53.163[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Adding newly assigned partitions: ts4-website-topic-0
+[2m2025-01-29 21:10:53.167[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Found no committed offset for partition ts4-website-topic-0
+[2m2025-01-29 21:10:53.175[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.SubscriptionState   [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting offset for partition ts4-website-topic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9094 (id: 1 rack: null)], epoch=0}}.
+[2m2025-01-29 21:10:53.176[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions assigned: [ts4-website-topic-0]
+[2m2025-01-29 21:11:15.362[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2025-01-29 21:11:15.363[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2025-01-29 21:11:15.365[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 2 ms
+[2m2025-01-29 21:11:15.468[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteConstroller  [0;39m [2m:[0;39m received payload: {"url": "https://www.patreon.com/posts/wire-high-heels-113597759", "directory": null, "filename": "wire high heels | Patreon", "previous": null}
+[2m2025-01-29 21:19:53.181[0;39m [32m INFO[0;39m [35m25855[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Node -1 disconnected.

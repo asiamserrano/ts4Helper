@@ -1,0 +1,41 @@
+
+patreon.com/posts/
+patreon.com/file?
+
+simsfinds.com/downloads/
+simsfinds.com/continue?
+click.simsfinds.com/download?
+
+curseforge.com/sims4/create-a-sim/
+curseforge.com/members/
+my.curseforge.com/?
+curseforge.com/api/v1/mods/
+
+edge.forgecdn.net/files/
+
+
+
+
+
+### TRANSITION LINK
+--- DESTINATION ---                                     --- SOURCE ---
+[www.patreon.com/file?]                                 www.patreon.com/posts/
+www.simsfinds.com/continue?key=                         www.simsfinds.com/downloads/
+www.curseforge.com/api/v1/mods/                         www.curseforge.com/sims4/create-a-sim/
+
+click.simsfinds.com/download?flid=                      www.simsfinds.com/continue?
+*any*                                                   click.simsfinds.com/download?
+
+[www.curseforge.com/sims4/create-a-sim]                 www.curseforge.com/members/
+[edge.forgecdn.net/files/]                              alenaivanisova.my.curseforge.com/?
+
+### DIRECT DOWNLOAD
+www.patreon.com     www.patreon.com/file?
+www.curseforge.com  edge.forgecdn.net/files/
+www.curseforge.com  www.curseforge.com/api/v1/mods/
+www.simsfinds.com   click.simsfinds.com/download?
+
+### UNHANDLED LINK
+glammoosecc.tumblr.com/post/659007240863383552/dallasgirls-birkenstocks-non-hq-recolored-28
+overkillsimmer.blogspot.com/2022/08/alexia-shoes.html
+shushilda.com/catalog/sims-4-cc/shoes-sims4/adidas-superstar-ts4/

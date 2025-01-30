@@ -16,11 +16,11 @@ import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 
 import java.util.HashMap;
 
-//import static org.example.ts4package.constants.ConfigConstants.PROFILE;
+import static org.projects.ts4.utility.constants.ConfigConstants.PROFILE;
 
 @EnableKafka
 @Configuration
-@Profile("local")
+@Profile(PROFILE)
 public class KafkaConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")

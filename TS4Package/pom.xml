@@ -11,8 +11,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.example.ts4package</groupId>
-    <artifactId>TS4Package</artifactId>
+    <groupId>org.ts4</groupId>
+    <artifactId>pkg</artifactId>
     <version>1.0.0</version>
 
     <properties>
@@ -35,6 +35,14 @@
     </repositories>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.projects.ts4</groupId>
+            <artifactId>utility</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
@@ -89,6 +97,7 @@
             <scope>provided</scope>
             <version>1.18.36</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -118,12 +127,28 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        org.ts4.pkg
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.avro</groupId>
