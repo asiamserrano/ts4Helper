@@ -2,62 +2,78 @@ package org.projects.ts4.consumer.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.OkHttpClient;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.projects.ts4.avro.WebsiteModel;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.projects.ts4.consumer.utlities.WebsiteUtility;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.net.URL;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Callable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.projects.ts4.consumer.constants.ControllerConstants.CONTROLLER_REQUEST_MAPPING;
+import static org.projects.ts4.consumer.constants.ControllerConstants.SAMPLE_GET_MAPPING;
+import static org.projects.ts4.consumer.constants.ControllerConstants.LOAD_GET_MAPPING;
+
+import static org.projects.ts4.utility.constants.ConfigConstants.EST_ZONE_ID;
+import static org.projects.ts4.utility.constants.StringConstants.NEW_LINE;
 
 @RestController
-@RequestMapping("/ts4/consumer")
+@RequestMapping(CONTROLLER_REQUEST_MAPPING)
 @Slf4j
 @AllArgsConstructor
-public class WebsiteConstroller {
+public class WebsiteController {
 
-    public static void main(String[] args) {
-        System.out.println("hi");
-    }
+    private final WebsiteUtility websiteUtility;
 
-    @GetMapping("/sample")
+//    public WebsiteController(final WebsiteUtility websiteUtility) {
+//        this.websiteUtility = websiteUtility;
+//
+//    }
+
+    @GetMapping(SAMPLE_GET_MAPPING)
     public String sample() {
-        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("America/New_York"));
-        String value = String.format("sample endpoint was hit at %s", zdt);
-        log.info(value);
-        return value;
+        ZonedDateTime zdt = ZonedDateTime.now(EST_ZONE_ID);
+//        websiteUtility.setZonedDateTime(zdt);
+        String message = "sample endpoint was hit at";
+        log.info("{} {}", message, zdt);
+        return String.format("%s %s", message, zdt);
     }
 
-    @PostMapping("/load")
-    public String load(@RequestBody WebsiteModel websiteModel) {
-//        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("America/New_York"));
-//        String value = String.format("sample endpoint was hit at %s", zdt);
-//        log.info(value);
-//        return value;
-        log.info("received payload: {}", websiteModel);
-        return websiteModel.toString();
+    @PostMapping("/loadURLs")
+    public String load(@RequestBody String body) {
+        ZonedDateTime zdt = ZonedDateTime.now(EST_ZONE_ID);
+        String directory = websiteUtility.createDirectory(zdt);
+        List<WebsiteModel> models = new HashSet<>(Arrays.asList(body.split(NEW_LINE)))
+                .stream()
+                .map(url -> {
+                    WebsiteModel websiteModel = new WebsiteModel();
+                    websiteModel.setUrl(url);
+                    websiteModel.setDirectory(directory);
+                    return websiteModel;
+                })
+                .toList();
+        List<String> responses = models.stream().map(this::load).toList();
+        return String.join(NEW_LINE, responses);
     }
+
+    @PostMapping(LOAD_GET_MAPPING)
+    public String load(@RequestBody WebsiteModel model) {
+        log.info("received payload from controller: {}", model);
+        websiteUtility.consume(model);
+        return model.toString();
+    }
+
+
 
 }
-
-
 
 //
 //import lombok.AllArgsConstructor;

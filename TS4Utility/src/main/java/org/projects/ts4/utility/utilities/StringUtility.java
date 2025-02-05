@@ -17,6 +17,15 @@ import static org.projects.ts4.utility.constants.StringConstants.*;
 @Slf4j
 public abstract class StringUtility {
 
+    public static String last(Object object, String split) {
+        return last(object.toString(), split);
+    }
+
+    public static String last(String string, String split) {
+        String[] strings = string.split(prepareForRegex(split));
+        return strings[strings.length - 1];
+    }
+
     public static String getStringBetweenRegex(String content, String p1, String p2) {
         Matcher m = getRegexBetweenMatcher(content, p1, p2);
         if (m.find()) {
@@ -64,7 +73,7 @@ public abstract class StringUtility {
     }
 
     private static final List<String> ESCAPE_CHARACTERS = new ArrayList<>() {{
-        add("{"); add("}"); add("("); add(")"); add("&");
+        add("{"); add("}"); add("("); add(")"); add("&"); add("[");
     }};
 
     private static String prepareForRegex(String string) {

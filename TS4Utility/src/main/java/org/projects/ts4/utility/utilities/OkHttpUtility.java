@@ -30,7 +30,9 @@ public abstract class OkHttpUtility {
                     .url(url)
                     .build();
             Call call = client.newCall(request);
-            return call.execute();
+            Response response = call.execute();
+            Thread.sleep(1000);
+            return response;
         } catch (Exception e) {
             log.error("unable to send request for {}", url, e);
             throw new RuntimeException(e);

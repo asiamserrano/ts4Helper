@@ -4,6 +4,7 @@ public abstract class StringConstants {
     public static final String EMPTY = "";
     public static final String SINGLE_QUOTE = "\"";
     public static final String STANDARD_REGEX = "%s.*?%s";
+    public static final String COLON = ":";
     public static final String COMMA = ",";
     public static final String NEW_LINE = "\n";
     public static final String AMPERSAND = "&";
@@ -12,4 +13,5 @@ public abstract class StringConstants {
     public static final String BACK_SLASHES = "\\\\";
     public static final String UNCHECKED = "unchecked";
     public static final String PERIOD = ".";
+    public static final String OPEN_CURLY_BRACE = "{";
 }

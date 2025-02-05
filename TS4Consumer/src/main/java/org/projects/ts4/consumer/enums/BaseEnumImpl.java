@@ -1,12 +1,14 @@
 package org.projects.ts4.consumer.enums;
 
+import lombok.extern.slf4j.Slf4j;
 import org.projects.ts4.avro.WebsiteModel;
-import org.projects.ts4.utility.constructors.Domain;
 import org.projects.ts4.utility.constructors.WebsiteDomain;
+import org.projects.ts4.utility.utilities.StringUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public abstract class BaseEnumImpl implements BaseEnum {
 
     public final WebsiteDomain websiteDomain;
@@ -26,13 +28,17 @@ public abstract class BaseEnumImpl implements BaseEnum {
         return null;
     }
 
-    private boolean isValid(String url) {
-        return url.contains(websiteDomain.toString()) && url.contains(parameter);
-    }
-
     @Override
     public String getValue() {
         return this.value;
+    }
+
+    public String getStringBetweenTitleHeader(String content) {
+        return StringUtility.getStringBetweenRegex(content, "<title>", "</title>");
+    }
+
+    private boolean isValid(String url) {
+        return url.contains(websiteDomain.toString()) && url.contains(parameter);
     }
 
     private static List<BaseEnumImpl> all() {
