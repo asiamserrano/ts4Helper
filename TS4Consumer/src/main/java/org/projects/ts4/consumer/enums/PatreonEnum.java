@@ -3,24 +3,37 @@ package org.projects.ts4.consumer.enums;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.projects.ts4.avro.WebsiteModel;
-import org.projects.ts4.consumer.producers.WebsiteProducer;
-import org.projects.ts4.consumer.utlities.WebsiteUtility;
+import org.projects.ts4.consumer.classes.WebsiteLogger;
+import org.projects.ts4.utility.classes.Website;
 import org.projects.ts4.utility.constructors.WebsiteDomain;
 import org.projects.ts4.utility.enums.ResponseEnum;
-import org.projects.ts4.utility.utilities.OkHttpUtility;
 import org.projects.ts4.utility.utilities.StringUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.projects.ts4.utility.constants.StringConstants.COMMA;
-
+import static org.projects.ts4.utility.constants.StringConstants.*;
 import static org.projects.ts4.utility.constructors.SubDomain.WWW;
 import static org.projects.ts4.utility.constructors.SecondLevelDomain.PATREON;
 import static org.projects.ts4.utility.constructors.TopLevelDomain.COM;
 
 @Slf4j
 public class PatreonEnum extends BaseEnumImpl {
+
+//    public static void main(String[] args) {
+//        String content = StringUtility.loadResourceString("files/examples/PATREON_POSTS.html");
+//        content = StringUtility.getStringBetweenRegex(content, ">Attachments<", NEW_LINE);
+//        StringUtility.getSetBetweenRegex(content, "track-click", "</a></span>").stream().forEach(str -> {
+//            String name = StringUtility.last(str, ">");
+//            String h = StringUtility.getStringBetweenRegex(str, "h=", AMPERSAND);
+//            String m = StringUtility.getStringBetweenRegex(str, "m=", SPACE);
+//            String url = String.format("https://www.patreon.com/file?h=%s&m=%s", h, m);
+//
+//            System.out.println(name);
+//            System.out.println(url);
+//
+//        });
+//    }
 
     private static final WebsiteDomain websiteDomain = new WebsiteDomain(WWW, PATREON, COM);
 
@@ -48,35 +61,35 @@ public class PatreonEnum extends BaseEnumImpl {
     }
 
     @Override
-    public void parse(WebsiteModel websiteModel, WebsiteProducer websiteProducer) {
+    public void parse(WebsiteLogger websiteLogger) {
+        WebsiteModel websiteModel = websiteLogger.websiteModel;
         try {
             if (this == PatreonEnum.PATREON_FILE) {
-                WebsiteUtility.print(websiteModel, ResponseEnum.DOWNLOAD, websiteProducer);
+                websiteLogger.print(ResponseEnum.DOWNLOAD);
             } else {
-                String content = OkHttpUtility.getContent(websiteModel, websiteProducer.okHttpClient);
+                String content = websiteLogger.getContent();
                 String folder = getStringBetweenTitleHeader(content);
                 websiteModel.setFilename(folder);
-                List<WebsiteModel> models = StringUtility.getSetBetweenRegex(content, "{\"attributes\":{\"name\":\"", "\"},")
-                        .parallelStream().map(s -> {
-                            String name = s.split(COMMA)[0];
-                            String string = s.split("url:")[1].replace("\\u0026i", "&i");
-                            WebsiteModel singleton = new WebsiteModel();
-                            singleton.setUrl(string);
-                            singleton.setFilename(name);
-                            singleton.setDirectory(websiteModel.getDirectory());
-                            singleton.setPrevious(websiteModel);
-                            return singleton;
+                content = StringUtility.getStringBetweenRegex(content, ">Attachments<", NEW_LINE);
+                List<WebsiteModel> models = StringUtility
+                        .getSetBetweenRegex(content, "track-click", "</a></span>")
+                        .parallelStream().map(str -> {
+                            String name = StringUtility.last(str, GREATER_THAN);
+                            String h = StringUtility.getStringBetweenRegex(str, "h=", AMPERSAND);
+                            String m = StringUtility.getStringBetweenRegex(str, "m=", SPACE);
+                            String url = String.format("https://www.patreon.com/file?h=%s&m=%s", h, m);
+                            return Website.build(url, name, websiteModel);
                         }).toList();
                 if (models.isEmpty()) {
-                    WebsiteUtility.print(websiteModel, ResponseEnum.ERROR, websiteProducer);
+                    log.error("could not find attachments for patreon link: {}", websiteModel.getUrl());
+                    websiteLogger.print(ResponseEnum.INVALID);
                 } else {
-                    models.forEach(model -> PatreonEnum.PATREON_FILE.parse(model, websiteProducer));
+                    models.forEach(model -> PatreonEnum.PATREON_FILE.parse(websiteLogger.create(model)));
                 }
             }
         } catch (Exception e) {
-            WebsiteUtility.print(websiteModel, ResponseEnum.ERROR, websiteProducer);
+            websiteLogger.exception(e);
         }
     }
-
     
 }

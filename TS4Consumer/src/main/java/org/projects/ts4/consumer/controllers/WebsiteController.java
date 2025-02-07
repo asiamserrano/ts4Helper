@@ -5,18 +5,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.projects.ts4.avro.WebsiteModel;
 import org.projects.ts4.consumer.utlities.WebsiteUtility;
 
+import org.projects.ts4.utility.classes.Website;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.time.ZonedDateTime;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.projects.ts4.consumer.constants.ControllerConstants.CONTROLLER_REQUEST_MAPPING;
 import static org.projects.ts4.consumer.constants.ControllerConstants.SAMPLE_GET_MAPPING;
@@ -33,15 +34,9 @@ public class WebsiteController {
 
     private final WebsiteUtility websiteUtility;
 
-//    public WebsiteController(final WebsiteUtility websiteUtility) {
-//        this.websiteUtility = websiteUtility;
-//
-//    }
-
     @GetMapping(SAMPLE_GET_MAPPING)
     public String sample() {
         ZonedDateTime zdt = ZonedDateTime.now(EST_ZONE_ID);
-//        websiteUtility.setZonedDateTime(zdt);
         String message = "sample endpoint was hit at";
         log.info("{} {}", message, zdt);
         return String.format("%s %s", message, zdt);
@@ -50,15 +45,10 @@ public class WebsiteController {
     @PostMapping("/loadURLs")
     public String load(@RequestBody String body) {
         ZonedDateTime zdt = ZonedDateTime.now(EST_ZONE_ID);
-        String directory = websiteUtility.createDirectory(zdt);
+        File directory = websiteUtility.createDirectory(zdt);
         List<WebsiteModel> models = new HashSet<>(Arrays.asList(body.split(NEW_LINE)))
                 .stream()
-                .map(url -> {
-                    WebsiteModel websiteModel = new WebsiteModel();
-                    websiteModel.setUrl(url);
-                    websiteModel.setDirectory(directory);
-                    return websiteModel;
-                })
+                .map(url -> Website.build(url, directory))
                 .toList();
         List<String> responses = models.stream().map(this::load).toList();
         return String.join(NEW_LINE, responses);
@@ -70,8 +60,6 @@ public class WebsiteController {
         websiteUtility.consume(model);
         return model.toString();
     }
-
-
 
 }
 

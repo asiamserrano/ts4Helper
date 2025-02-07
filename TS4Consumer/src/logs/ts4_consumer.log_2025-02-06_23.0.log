@@ -1,0 +1,503 @@
+[2m2025-02-06 23:07:02.863[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Starting TS4ConsumerApplication using Java 21.0.2 with PID 83937 (/Users/asiaserrano/repos/ts4Helper/TS4Consumer/target/classes started by asiaserrano in /Users/asiaserrano/repos/ts4Helper/TS4Consumer)
+[2m2025-02-06 23:07:02.871[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-02-06 23:07:03.948[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 9100 (http)
+[2m2025-02-06 23:07:03.962[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2025-02-06 23:07:03.963[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.34]
+[2m2025-02-06 23:07:04.012[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-02-06 23:07:04.012[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 1105 ms
+[2m2025-02-06 23:07:04.585[0;39m [33m WARN[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36m.s.s.UserDetailsServiceAutoConfiguration[0;39m [2m:[0;39m 
+
+Using generated security password: 3c8ce0dc-dc03-4a25-bb19-8fdbfee9e39c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2m2025-02-06 23:07:04.599[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mr$InitializeUserDetailsManagerConfigurer[0;39m [2m:[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2m2025-02-06 23:07:05.375[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 9100 (http) with context path '/'
+[2m2025-02-06 23:07:05.423[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-ts4-website-consumer-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = ts4-website-consumer
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+[2m2025-02-06 23:07:05.502[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-02-06 23:07:05.551[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-02-06 23:07:05.552[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-02-06 23:07:05.665[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+[2m2025-02-06 23:07:05.666[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-02-06 23:07:05.667[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-02-06 23:07:05.667[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738901225666
+[2m2025-02-06 23:07:05.668[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Subscribed to topic(s): ts4-consumer-topic
+[2m2025-02-06 23:07:05.699[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.p.ts4.consumer.TS4ConsumerApplication [0;39m [2m:[0;39m Started TS4ConsumerApplication in 3.257 seconds (process running for 4.992)
+[2m2025-02-06 23:07:05.850[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-02-06 23:07:05.850[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-02-06 23:07:05.851[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-02-06 23:07:06.274[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: need to re-join with the given member-id: consumer-ts4-website-consumer-1-231fbf23-2fde-454f-942a-56d2f14d5169
+[2m2025-02-06 23:07:06.275[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] (Re-)joining group
+[2m2025-02-06 23:07:06.326[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully joined group with generation Generation{generationId=49, memberId='consumer-ts4-website-consumer-1-231fbf23-2fde-454f-942a-56d2f14d5169', protocol='range'}
+[2m2025-02-06 23:07:06.342[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Finished assignment for group at generation 49: {consumer-ts4-website-consumer-1-231fbf23-2fde-454f-942a-56d2f14d5169=Assignment(partitions=[ts4-consumer-topic-0])}
+[2m2025-02-06 23:07:06.423[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Successfully synced group in generation Generation{generationId=49, memberId='consumer-ts4-website-consumer-1-231fbf23-2fde-454f-942a-56d2f14d5169', protocol='range'}
+[2m2025-02-06 23:07:06.425[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Notifying assignor about the new Assignment(partitions=[ts4-consumer-topic-0])
+[2m2025-02-06 23:07:06.434[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Adding newly assigned partitions: ts4-consumer-topic-0
+[2m2025-02-06 23:07:06.449[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerUtils       [0;39m [2m:[0;39m Setting offset for partition ts4-consumer-topic-0 to the committed offset FetchPosition{offset=447, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}
+[2m2025-02-06 23:07:06.451[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions assigned: [ts4-consumer-topic-0]
+[2m2025-02-06 23:13:30.705[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2025-02-06 23:13:30.709[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2025-02-06 23:13:30.743[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 34 ms
+[2m2025-02-06 23:13:31.023[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteController   [0;39m [2m:[0;39m received payload from controller: {"uuid": "3c055b5d-5170-4628-aff5-ee0e38fdc7f3", "url": "https://www.patreon.com/posts/glazed-lipsticks-65854521", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.024[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteController   [0;39m [2m:[0;39m received payload from controller: {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m consuming {"uuid": "3c055b5d-5170-4628-aff5-ee0e38fdc7f3", "url": "https://www.patreon.com/posts/glazed-lipsticks-65854521", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteController   [0;39m [2m:[0;39m received payload from controller: {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteController   [0;39m [2m:[0;39m received payload from controller: {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m consuming {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m consuming {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:31.025[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[nio-9100-exec-2][0;39m [36mo.p.t.c.controllers.WebsiteController   [0;39m [2m:[0;39m received payload from controller: {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:33.099[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m consuming {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:33.099[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m consuming {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": null, "previous": null}
+[2m2025-02-06 23:13:33.202[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.k.clients.producer.ProducerConfig   [0;39m [2m:[0;39m ProducerConfig values: 
+	acks = -1
+	auto.include.jmx.reporter = true
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class io.confluent.kafka.serializers.KafkaAvroSerializer
+
+[2m2025-02-06 23:13:33.207[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-02-06 23:13:33.211[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mi.c.k.s.KafkaAvroSerializerConfig       [0;39m [2m:[0;39m KafkaAvroSerializerConfig values: 
+	auto.register.schemas = false
+	avro.reflection.allow.null = false
+	avro.remove.java.properties = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	use.latest.version = true
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-02-06 23:13:33.218[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.k.clients.producer.KafkaProducer    [0;39m [2m:[0;39m [Producer clientId=producer-1] Instantiated an idempotent producer.
+[2m2025-02-06 23:13:33.225[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.k.clients.producer.ProducerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, auto.register.schemas, use.latest.version]' were supplied but are not used yet.
+[2m2025-02-06 23:13:33.225[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-02-06 23:13:33.225[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-02-06 23:13:33.225[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738901613225
+[2m2025-02-06 23:13:33.254[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ad | producer-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Producer clientId=producer-1] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-02-06 23:13:33.356[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ad | producer-1][0;39m [36mo.a.k.c.p.internals.TransactionManager  [0;39m [2m:[0;39m [Producer clientId=producer-1] ProducerId set to 2039 with epoch 0
+[2m2025-02-06 23:13:33.807[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "31d4315f-3976-4e58-8c76-f1cf6fe084d0", "url": "https://www.patreon.com/file?h=65854521&m=151254953", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "TwistedCat_Liquorice_Lipstick.package", "previous": {"uuid": "3c055b5d-5170-4628-aff5-ee0e38fdc7f3", "url": "https://www.patreon.com/posts/glazed-lipsticks-65854521", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Glazed lipsticks 💄 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.809[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "882a5cd5-737b-49e6-8a5e-10cf63008b90", "url": "https://www.patreon.com/file?h=53145480&m=255388794", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS PRESETS F N20-29.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.810[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "d01098cd-3e20-4e80-b0b0-69ca301f5969", "url": "https://www.patreon.com/file?h=53145480&m=112895160", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N24.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.811[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "aaee40a6-c93e-410e-b1c7-8b497c78d75e", "url": "https://www.patreon.com/file?h=65854521&m=151254977", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "TwistedCat_Pudding_Lipstick.package", "previous": {"uuid": "3c055b5d-5170-4628-aff5-ee0e38fdc7f3", "url": "https://www.patreon.com/posts/glazed-lipsticks-65854521", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Glazed lipsticks 💄 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.812[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "4d98fd38-169e-44b6-931c-e5f131cc666f", "url": "https://www.patreon.com/file?h=53145480&m=112895142", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N22.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.814[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "b98d8073-8b86-426b-81da-6427c3ad8f91", "url": "https://www.patreon.com/file?h=53145480&m=194676562", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NORTHERN SIBERIA WINDS] BLUSH N3.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.816[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "927c2272-bdd4-4458-899f-6b88fb3f8658", "url": "https://www.patreon.com/file?h=53145480&m=112895166", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N25.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.816[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "b18049df-dee0-4619-bff3-7fe148f3bfd8", "url": "https://www.patreon.com/file?h=53145480&m=112895131", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N20.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.818[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "04a221a7-08d4-438e-8e6f-4a29ceb77338", "url": "https://www.patreon.com/file?h=53145480&m=112895136", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N21.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.818[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "cbae3aab-6d17-46ff-ac33-8000f034591a", "url": "https://www.patreon.com/file?h=53145480&m=112895152", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N23.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.819[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "84438eec-5476-4cf0-91e4-e1b2450f713a", "url": "https://www.patreon.com/file?h=53145480&m=112895120", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] EYELIDS N8.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.820[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "e60ef871-770a-4ef6-af51-80853e796a3d", "url": "https://www.patreon.com/file?h=53145480&m=128765098", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] EYEBAGS N1.package", "previous": {"uuid": "1512e388-e5ef-4a2e-8823-fb31e44484fb", "url": "https://www.patreon.com/posts/summer-time-53145480", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "SUMMER TIME COLLECTION | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.820[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "6a6bc62e-58f9-4214-bf9b-46958ca61c37", "url": "https://www.patreon.com/file?h=70364015&m=194675996", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NORTHERN SIBERIA WINDS] EYES N26.package", "previous": {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Make-up and Presets Set | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.821[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "19f33d76-79f3-4d1c-9c65-40e1075a542e", "url": "https://www.patreon.com/file?h=70364015&m=255391044", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS PRESET F N44.package", "previous": {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Make-up and Presets Set | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.821[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "10c4ebe7-2457-4e64-96f5-afa37347f1eb", "url": "https://www.patreon.com/file?h=70364015&m=255391045", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS PRESET F N42.package", "previous": {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Make-up and Presets Set | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.822[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "7c576aa2-b4a2-4867-8af1-5f5a779cd698", "url": "https://www.patreon.com/file?h=70364015&m=166570115", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS N39.package", "previous": {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Make-up and Presets Set | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:33.823[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "72267a02-3904-4f39-98ff-3065c15f882c", "url": "https://www.patreon.com/file?h=70364015&m=255391043", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "[NorthernSiberiaWinds] LIPS PRESET F N43.package", "previous": {"uuid": "61798f09-b6a8-48ec-a6ba-fa097ba934b1", "url": "https://www.patreon.com/posts/make-up-and-set-70364015", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Make-up and Presets Set | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.985[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "5c67dcec-f847-4a03-9205-36194b186bf1", "url": "https://www.patreon.com/file?h=96890668&m=267550678", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_top_77.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.985[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "949695db-809d-4cc1-8059-07d651d80c6d", "url": "https://www.patreon.com/file?h=96890668&m=267550509", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_Body_115_CollarColor.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.987[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "cfd6091e-496f-44d5-89b0-6dd00ec4644b", "url": "https://www.patreon.com/file?h=96890668&m=267549092", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_jan2024_ ALL.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.987[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "6839bbec-f779-45ee-82ed-a97f2448ddf2", "url": "https://www.patreon.com/file?h=96890668&m=267550515", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_calzado_54_b.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.989[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "0307f344-1e12-4e84-b9f7-abc6960e7698", "url": "https://www.patreon.com/file?h=96890668&m=267550504", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_hairsS4_533.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.989[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "fb563a9f-db47-4c87-a200-b2502ea76379", "url": "https://www.patreon.com/file?h=96890668&m=267550671", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_top_76_b.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.990[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "55bed890-47b6-4d90-8f48-cbbc7d3c714e", "url": "https://www.patreon.com/file?h=96890668&m=267550667", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_short_jeans_3b.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.990[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "551aaacb-bc29-4784-b933-36d521edb546", "url": "https://www.patreon.com/file?h=96890668&m=267550514", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_Body_115_b.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.992[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "71f48417-ed01-46f1-9a31-a28519224f04", "url": "https://www.patreon.com/file?h=96890668&m=267550647", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_short_jeans_3.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.992[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "8923d21b-74d4-42d9-9b28-4bbb7f4f6821", "url": "https://www.patreon.com/file?h=96890668&m=267550489", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_Body_115.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.994[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "73843ced-28a6-48a3-857d-f664d2e179c2", "url": "https://www.patreon.com/file?h=96890668&m=267550525", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_ChildShoes_01.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.994[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "618ff9a5-c79d-45e8-b1c2-04178b176521", "url": "https://www.patreon.com/file?h=96890668&m=267550517", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_calzado_54.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.996[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "55fb8aaf-2aff-45ca-a037-abb46d60d473", "url": "https://www.patreon.com/file?h=96890668&m=267550500", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_hairsS4_532.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.996[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "c24b6116-372b-4bd9-8460-2493f6639b42", "url": "https://www.patreon.com/file?h=96890668&m=267550640", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_panties_13.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.998[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "3e1ed2c6-a3e0-4ea5-aa3f-847e9d143f6c", "url": "https://www.patreon.com/file?h=96890668&m=267550648", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_MaleShoes_01.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:34.998[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "9e1bd3e9-d46e-4b7c-b2dc-8587caaa2ae9", "url": "https://www.patreon.com/file?h=96890668&m=267550674", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "Curbs_Patreon_top_76.package", "previous": {"uuid": "615321a9-4a97-4c4f-ae46-d76d914e9dc7", "url": "https://www.patreon.com/posts/january-2024-96890668", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "January 2024 | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.034[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "4fcd919b-442c-4620-bcb9-0767efc5f459", "url": "https://www.patreon.com/file?h=40506361&m=88256677", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "BARE Skintones Old Ver. [genetic] (before 12.07.20).zip", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.034[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "07f9bf89-1852-4663-b61c-94f710faed81", "url": "https://www.patreon.com/file?h=40506361&m=90767424", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_warm.package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.034[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "bb3fe258-e5e7-44cf-8dd2-4c6b5987a9d7", "url": "https://www.patreon.com/file?h=40506361&m=90767465", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_olive [genetic].package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.036[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "7fc8ec0e-181a-48e3-b65e-a9f9ebbbf55b", "url": "https://www.patreon.com/file?h=40506361&m=90767479", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_MERGED [genetic].package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.036[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "77f0db3f-a081-4fe3-9491-970c55d7acc8", "url": "https://www.patreon.com/file?h=40506361&m=90767466", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_warm [genetic].package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.036[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "09dc35ab-c730-4b79-80c3-0233570cebb3", "url": "https://www.patreon.com/file?h=40506361&m=88256674", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "BARE Skintones Old Ver. (before 12.07.20).zip", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.039[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "33f932d8-9c3b-41bb-9361-ed6536dbd762", "url": "https://www.patreon.com/file?h=40506361&m=90767421", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_cool.package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.039[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "99af691c-2269-4d18-b0a2-d104feb817a4", "url": "https://www.patreon.com/file?h=40506361&m=90767461", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_cool [genetic].package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.039[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "5bd4fe6d-d78a-4d51-a03e-e5d657be1eb9", "url": "https://www.patreon.com/file?h=40506361&m=90767457", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_neutral.package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.041[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-1][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "e4bb53db-540f-4c46-9a07-ab5ccc4e2e50", "url": "https://www.patreon.com/file?h=40506361&m=90767482", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_MERGED.package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.041[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-3][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "6e4ac096-86fe-406f-a0ea-0547940069e0", "url": "https://www.patreon.com/file?h=40506361&m=90767462", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_neutral [genetic].package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:35.041[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[pool-1-thread-2][0;39m [36mo.p.t.consumer.utlities.WebsiteUtility  [0;39m [2m:[0;39m Sent message=[{"uuid": "c2ccd5b8-6e4d-426f-953c-1f29523cd0f4", "url": "https://www.patreon.com/file?h=40506361&m=90767446", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "lamatisse_BARE_skintones_olive.package", "previous": {"uuid": "820d1521-0326-42cc-b830-d72501b705db", "url": "https://www.patreon.com/posts/bare-skintone-40506361", "directory": "/Users/asiaserrano/ChromeDownloads/download_2025-02-06_23.13.30", "filename": "bare; a skintone pack | Patreon", "previous": null}}] to topic ts4-downloader-topic
+[2m2025-02-06 23:13:36.000[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[   scheduling-1][0;39m [36mo.p.ts4.utility.classes.Scheduler       [0;39m [2m:[0;39m done in 3 seconds
+[2m2025-02-06 23:16:06.066[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Node -1 disconnected.
+[2m2025-02-06 23:23:03.311[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ad | producer-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Producer clientId=producer-1] Node -1 disconnected.
+[2m2025-02-06 23:26:06.356[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.NetworkClient  [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Node -1 disconnected.
+[2m2025-02-06 23:29:04.794[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Revoke previously assigned partitions ts4-consumer-topic-0
+[2m2025-02-06 23:29:04.801[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: partitions revoked: [ts4-consumer-topic-0]
+[2m2025-02-06 23:29:04.803[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Member consumer-ts4-website-consumer-1-231fbf23-2fde-454f-942a-56d2f14d5169 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+[2m2025-02-06 23:29:04.807[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-02-06 23:29:04.807[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-02-06 23:29:04.807[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Unsubscribed all topics or patterns and assigned partitions
+[2m2025-02-06 23:29:04.821[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2m2025-02-06 23:29:04.821[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-ts4-website-consumer-1, groupId=ts4-website-consumer] Request joining group due to: consumer pro-actively leaving the group
+[2m2025-02-06 23:29:05.248[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics scheduler closed
+[2m2025-02-06 23:29:05.249[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2m2025-02-06 23:29:05.249[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+[2m2025-02-06 23:29:05.250[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.apache.kafka.common.metrics.Metrics   [0;39m [2m:[0;39m Metrics reporters closed
+[2m2025-02-06 23:29:05.288[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m App info kafka.consumer for consumer-ts4-website-consumer-1 unregistered
+[2m2025-02-06 23:29:05.290[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m ts4-website-consumer: Consumer stopped
+[2m2025-02-06 23:29:05.297[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Commencing graceful shutdown. Waiting for active requests to complete
+[2m2025-02-06 23:29:05.310[0;39m [32m INFO[0;39m [35m83937[0;39m [2m---[0;39m [2m[tomcat-shutdown][0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown       [0;39m [2m:[0;39m Graceful shutdown complete

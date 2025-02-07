@@ -14,4 +14,7 @@ public abstract class StringConstants {
     public static final String UNCHECKED = "unchecked";
     public static final String PERIOD = ".";
     public static final String OPEN_CURLY_BRACE = "{";
+    public static final String SPACE = " ";
+    public static final String GREATER_THAN = ">";
+    public static final String LESS_THAN = "<";
 }

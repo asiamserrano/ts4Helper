@@ -1,9 +1,7 @@
 package org.projects.ts4.utility.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import okhttp3.Response;
-
 import java.io.File;
 
 import static org.projects.ts4.utility.constants.StringConstants.EMPTY;
@@ -12,7 +10,8 @@ import static org.projects.ts4.utility.constants.StringConstants.EMPTY;
 public enum ExtensionEnum {
 
     ZIP("zip", ".zip"),
-    PACKAGE("octet-stream", ".package");
+    PACKAGE("octet-stream", ".package"),
+    RAR("x-rar-compressed", ".rar");
 
     public final String type;
     public final String extension;
@@ -34,8 +33,7 @@ public enum ExtensionEnum {
 
     private static ExtensionEnum valueOf(String string, ValidationEnum validationEnum) {
         for (ExtensionEnum extensionEnum : ExtensionEnum.values())
-            if (validationEnum.validate(string, extensionEnum))
-                return extensionEnum;
+            if (validationEnum.validate(string, extensionEnum)) return extensionEnum;
         return null;
     }
 

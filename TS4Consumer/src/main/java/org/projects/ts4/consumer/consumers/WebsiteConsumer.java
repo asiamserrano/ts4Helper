@@ -10,8 +10,6 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ExecutorService;
-
 import static org.projects.ts4.utility.constants.ConfigConstants.PROFILE;
 
 @Service
@@ -21,15 +19,12 @@ import static org.projects.ts4.utility.constants.ConfigConstants.PROFILE;
 public class WebsiteConsumer {
 
     private final WebsiteUtility websiteUtility;
-    private final ExecutorService executorService;
 
     @KafkaListener(topics = "${spring.kafka.template.ts4.consumer.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void listenGroupFoo(@Payload WebsiteModel model, Acknowledgment acknowledgment) {
-        executorService.execute(() -> {
-            log.info("received payload from kafka: {}", model);
-            websiteUtility.consume(model);
-            acknowledgment.acknowledge();
-        });
+        log.info("received payload from kafka: {}", model);
+        acknowledgment.acknowledge();
+        websiteUtility.consume(model);
     }
 
 }

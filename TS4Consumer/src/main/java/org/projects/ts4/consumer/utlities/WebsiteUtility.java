@@ -1,20 +1,35 @@
 package org.projects.ts4.consumer.utlities;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.projects.ts4.avro.WebsiteModel;
+import org.projects.ts4.consumer.classes.WebsiteLogger;
 import org.projects.ts4.consumer.enums.BaseEnumImpl;
-import org.projects.ts4.consumer.producers.WebsiteProducer;
-import org.projects.ts4.utility.enums.KafkaTopicEnum;
+import org.projects.ts4.utility.classes.KafkaTopics;
+import org.projects.ts4.utility.classes.ResponseFiles;
+import org.projects.ts4.utility.classes.Scheduler;
+import org.projects.ts4.utility.enums.ServiceEnum;
 import org.projects.ts4.utility.enums.ResponseEnum;
+import org.projects.ts4.utility.utilities.OkHttpUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static org.projects.ts4.utility.constants.ConfigConstants.PROFILE;
 import static org.projects.ts4.utility.constants.StringConstants.EMPTY;
@@ -22,47 +37,39 @@ import static org.projects.ts4.utility.constants.StringConstants.EMPTY;
 @Slf4j
 @Component
 @Profile(PROFILE)
-@AllArgsConstructor
-public class WebsiteUtility {
+@EnableScheduling
+//@AllArgsConstructor
+public class WebsiteUtility extends Scheduler {
 
-//    public static void main(String[] args) {
-//        WebsiteModel websiteModel = new WebsiteModel();
-//        websiteModel.setDirectory("/src/files");
-//        websiteModel.setFilename("parent_file.txt");
-//        websiteModel.setUrl("https://www.google.com");
-//
-//        WebsiteModel websiteModel2 = new WebsiteModel();
-//        websiteModel2.setFilename("child_file.txt");
-//        websiteModel2.setUrl("https://www.google.com");
-//        websiteModel2.setPrevious(websiteModel);
-//
-//        WebsiteModel websiteModel3 = new WebsiteModel();
-//        websiteModel3.setFilename("child_2_file.txt");
-//        websiteModel3.setUrl("https://www.google.com");
-//        websiteModel3.setPrevious(websiteModel2);
-//
-//        WebsiteModel fixed = WebsiteUtility.setDirectory(websiteModel3);
-//
-//        if (fixed == null) {
-//            System.out.println("problem");
-//        } else {
-//            System.out.println(fixed);
-//        }
-//
-//    }
+    private final KafkaTemplate<String, WebsiteModel> kafkaTemplate;
+    private final KafkaTopics kafkaTopics;
+    public final OkHttpClient okHttpClient;
+    public final File directoryFile;
+    private final ResponseFiles responseFiles;
 
-    private final WebsiteProducer websiteProducer;
-    private final ExecutorService executorService;
+    @Autowired
+    public WebsiteUtility(final KafkaTemplate<String, WebsiteModel> kafkaTemplate,
+                          final KafkaTopics kafkaTopics,
+                          final OkHttpClient okHttpClient,
+                          final File directoryFile,
+                          final ResponseFiles responseFiles,
+                          final ExecutorService executorService) {
+        super(executorService);
+        this.kafkaTemplate = kafkaTemplate;
+        this.kafkaTopics = kafkaTopics;
+        this.okHttpClient = okHttpClient;
+        this.directoryFile = directoryFile;
+        this.responseFiles = responseFiles;
+    }
 
-    public String createDirectory(ZonedDateTime date) {
+    public File createDirectory(ZonedDateTime date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
         String child = "download_" + date.format(formatter);
-        File file = new File(websiteProducer.directoryFile, child);
-        String path = file.getAbsolutePath();
-
+        File file = new File(directoryFile, child);
         if (file.mkdir()) {
-            return path;
+            return file;
         } else {
+            String path = file.getAbsolutePath();
             log.error("Unable to create directory {}", path);
             throw new RuntimeException(path);
         }
@@ -72,27 +79,40 @@ public class WebsiteUtility {
         executorService.execute(() -> {
             log.info("consuming {}", websiteModel);
             BaseEnumImpl baseEnumImpl = BaseEnumImpl.valueOf(websiteModel);
+            WebsiteLogger websiteLogger = new WebsiteLogger(this, websiteModel);
             if (baseEnumImpl == null) {
-                WebsiteUtility.print(websiteModel, ResponseEnum.UNKNOWN, websiteProducer);
+                websiteLogger.print(ResponseEnum.UNKNOWN);
             } else {
-                baseEnumImpl.parse(websiteModel, websiteProducer);
+                baseEnumImpl.parse(websiteLogger);
             }
         });
     }
 
-    public static void print(WebsiteModel websiteModel, ResponseEnum responseEnum, WebsiteProducer websiteProducer) {
-        if (responseEnum == ResponseEnum.DOWNLOAD && websiteModel.getFilename().equals(EMPTY)) {
-            log.error("changing response from download to error");
-            responseEnum = ResponseEnum.ERROR;
-        }
+    public void send(WebsiteModel websiteModel, ServiceEnum topicEnum) {
+        executorService.execute(() -> {
+            try {
+                String topic = kafkaTopics.get(topicEnum);
+                CompletableFuture<SendResult<String, WebsiteModel>> future = kafkaTemplate
+                        .send(topic, websiteModel);
+                SendResult<String, WebsiteModel> sendResult = future.get();
+                RecordMetadata recordMetadata = sendResult.getRecordMetadata();
+                log.info("Sent message=[{}] to topic {}", websiteModel, recordMetadata.topic());
+            } catch (Exception ex) {
+                log.error("unable to send message=[{}] due to exception", websiteModel, ex);
+            }
+        });
+    }
 
-        String string = String.format("%-15s%s", responseEnum, websiteModel.toString());
+    public void write(ResponseEnum responseEnum, WebsiteModel websiteModel) {
+        executorService.execute(() -> responseFiles.write(responseEnum, websiteModel));
+    }
 
-        switch (responseEnum) {
-            case DOWNLOAD -> websiteProducer.send(websiteModel, KafkaTopicEnum.DOWNLOADER);
-            case ERROR, UNKNOWN, FAILURE -> log.error(string);
-            default -> log.info(string);
-        }
+    public Response getResponse(WebsiteModel websiteModel) {
+        return OkHttpUtility.sendRequest(websiteModel, okHttpClient);
+    }
+
+    public String getContent(WebsiteModel websiteModel) {
+        return OkHttpUtility.getContent(websiteModel, okHttpClient);
     }
 
 }

@@ -2,7 +2,7 @@ package org.projects.ts4.consumer.configs;
 
 import lombok.extern.slf4j.Slf4j;
 import org.projects.ts4.utility.classes.KafkaTopics;
-import org.projects.ts4.utility.enums.KafkaTopicEnum;
+import org.projects.ts4.utility.enums.ServiceEnum;
 import org.projects.ts4.utility.utilities.ConfigUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -51,8 +51,8 @@ public class KafkaConfig {
     @Bean
     public KafkaTopics kafkaTopics() {
         return new KafkaTopics.Builder()
-                .add(KafkaTopicEnum.DOWNLOADER, ts4DownloaderTopic)
-                .add(KafkaTopicEnum.CONSUMER, ts4ConsumerTopic)
+                .add(ServiceEnum.DOWNLOADER, ts4DownloaderTopic)
+                .add(ServiceEnum.CONSUMER, ts4ConsumerTopic)
                 .build();
     }
 

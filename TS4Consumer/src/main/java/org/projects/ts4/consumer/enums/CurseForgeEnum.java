@@ -3,15 +3,14 @@ package org.projects.ts4.consumer.enums;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.projects.ts4.avro.WebsiteModel;
-import org.projects.ts4.consumer.producers.WebsiteProducer;
-import org.projects.ts4.consumer.utlities.WebsiteUtility;
+import org.projects.ts4.consumer.classes.WebsiteLogger;
+import org.projects.ts4.utility.classes.Website;
 import org.projects.ts4.utility.constructors.WebsiteDomain;
 import org.projects.ts4.utility.enums.ResponseEnum;
-import org.projects.ts4.utility.utilities.OkHttpUtility;
+import org.projects.ts4.utility.utilities.FileUtility;
 import org.projects.ts4.utility.utilities.StringUtility;
-import org.projects.ts4.utility.utilities.URLUtility;
 
-import java.net.URL;
+import java.io.File;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -100,16 +99,6 @@ public class CurseForgeEnum extends BaseEnumImpl {
                 case CF_PROJECTS -> new WebsiteDomain(MY, CURSE_FORGE, COM);
                 default -> new WebsiteDomain(WWW, CURSE_FORGE, COM);
             };
-
-//            switch (this) {
-//                case CF_EDGE -> {
-//                    return new WebsiteDomain(EDGE, FORGE_CDN, NET);
-//                }
-//                case CF_PROJECTS -> {
-//                    return new WebsiteDomain(MY, CURSE_FORGE, COM);
-//                }
-//                default -> { return new WebsiteDomain(WWW, CURSE_FORGE, COM); }
-//            }
         }
     }
 
@@ -131,26 +120,22 @@ public class CurseForgeEnum extends BaseEnumImpl {
     }
 
     @Override
-    public void parse(WebsiteModel websiteModel, WebsiteProducer websiteProducer) {
+    public void parse(WebsiteLogger websiteLogger) {
+        WebsiteModel websiteModel = websiteLogger.websiteModel;
         try {
             switch (this.enumeration) {
                 case CF_CAS: {
-                    String content = OkHttpUtility.getContent(websiteModel, websiteProducer.okHttpClient);
-                    if (isContentInvalid(content)) {
-//                        log.error("curse forge cookie is invalid. cannot parse {}", websiteModel.getUrl());
-                        WebsiteUtility.print(websiteModel, ResponseEnum.FAILURE, websiteProducer);
+                    String content = websiteLogger.getContent();
+                    if (isContentInvalid(content, websiteModel)) {
+                        websiteLogger.print(ResponseEnum.INVALID);
                     } else {
                         String projectId = StringUtility.getStringBetweenRegex(content, "\"project\":{\"id\":", COMMA);
                         String info = StringUtility.getStringBetweenRegex(content, "\"sourceRepoType\":", "\"displayName\"");
                         String id = StringUtility.getStringBetweenRegex(info, "[{id:", ",fileName");
-                        String filename = StringUtility.getStringBetweenRegex(info, "fileName:", COMMA);
-                        String urlString = String.format("https://www.curseforge.com/api/v1/mods/%s/files/%s/download", projectId, id);
-                        WebsiteModel singleton = new WebsiteModel();
-                        singleton.setUrl(urlString);
-                        singleton.setFilename(filename);
-                        singleton.setPrevious(websiteModel);
-                        singleton.setDirectory(websiteModel.getDirectory());
-                        CurseForgeEnum.CURSE_FORGE_API.parse(singleton, websiteProducer);
+                        String name = StringUtility.getStringBetweenRegex(info, "fileName:", COMMA);
+                        String url = String.format("https://www.curseforge.com/api/v1/mods/%s/files/%s/download", projectId, id);
+                        WebsiteModel singleton = Website.build(url, name, websiteModel);
+                        CurseForgeEnum.CURSE_FORGE_API.parse(websiteLogger.create(singleton));
                     }
                     break;
                 }
@@ -159,13 +144,14 @@ public class CurseForgeEnum extends BaseEnumImpl {
                             StringUtility.getSetBetweenRegex(content, "\"downloadLink\":\"", SINGLE_QUOTE)
                                     .parallelStream()
                                     .map(str -> {
+                                        WebsiteLogger logger = websiteLogger.create(model);
                                         String url = str.replaceAll(BACK_SLASHES, EMPTY);
-                                        String[] parts = url.split(FORWARD_SLASH);
-                                        String filename = URLDecoder.decode(parts[parts.length - 1], StandardCharsets.UTF_8);
-                                        return parse(url, CurseForgeEnum.CURSE_FORGE_EDGE, filename, model, websiteProducer);
+                                        String name = StringUtility.last(url, FORWARD_SLASH);
+                                        String filename = URLDecoder.decode(name, StandardCharsets.UTF_8);
+                                        return parse(logger, url, CURSE_FORGE_EDGE, filename);
                                     })
                                     .toList();
-                    parse(websiteModel, "projectsPage=", parse, websiteProducer);
+                    parse(websiteLogger, "projectsPage=", parse);
                     break;
                 }
                 case CF_MEMBERS: {
@@ -173,61 +159,62 @@ public class CurseForgeEnum extends BaseEnumImpl {
                             StringUtility.getSetBetweenRegex(content, "<a class=\" download-cta btn-cta\" href=\"/", "/download")
                                     .parallelStream()
                                     .map(websiteDomain::getHttpUrl)
-                                    .map(httpurl -> parse(httpurl.toString(), CURSE_FORGE_CAS, EMPTY, model, websiteProducer))
+                                    .map(httpurl -> {
+                                        String url = httpurl.toString();
+                                        WebsiteLogger logger = websiteLogger.create(model);
+                                        return parse(logger, url, CURSE_FORGE_CAS, EMPTY);
+                                    })
                                     .toList();
-                    parse(websiteModel, "page=", parse, websiteProducer);
+                    parse(websiteLogger, "page=", parse);
                     break;
                 }
                 default: {
-                    WebsiteUtility.print(websiteModel, ResponseEnum.DOWNLOAD, websiteProducer);
+                    websiteLogger.print(ResponseEnum.DOWNLOAD);
                     break;
                 }
             }
         } catch (Exception e) {
-            WebsiteUtility.print(websiteModel, ResponseEnum.ERROR, websiteProducer);
+            websiteLogger.exception(e);
         }
     }
 
-    private WebsiteModel parse(String url, CurseForgeEnum curseForgeEnum, String filename, WebsiteModel model, WebsiteProducer websiteProducer) {
-        WebsiteModel singleton = new WebsiteModel();
-        singleton.setUrl(url);
-        singleton.setFilename(filename);
-        singleton.setPrevious(model.getPrevious());
-        singleton.setDirectory(model.getDirectory());
-        curseForgeEnum.parse(singleton, websiteProducer);
-        return singleton;
-    }
-
-    private void parse(WebsiteModel websiteModel, String marker, ParseFunction function, WebsiteProducer websiteProducer) {
-        URL url = URLUtility.createURL(websiteModel);
+    private void parse(WebsiteLogger websiteLogger, String marker, ParseFunction function) {
+        WebsiteModel websiteModel = websiteLogger.websiteModel;
+        String url = websiteModel.getUrl();
         log.info("parsing search page: {}", url);
-        String content = OkHttpUtility.getContent(url, websiteProducer.okHttpClient);
-        if (isContentInvalid(content)) {
-//            log.error("curse forge cookie is invalid. could not parse {}", url);
-            WebsiteUtility.print(websiteModel, ResponseEnum.FAILURE, websiteProducer);
+        String content = websiteLogger.getContent();
+        if (isContentInvalid(content, websiteModel)) {
+            websiteLogger.print(ResponseEnum.INVALID);
         } else {
             if (function.parse(websiteModel, content).isEmpty()) {
-//                log.info("no more results");
-                WebsiteUtility.print(websiteModel, ResponseEnum.COMPLETE, websiteProducer);
+                websiteLogger.print(ResponseEnum.COMPLETE);
             } else {
-                String url_string = url.toString();
                 try {
-                    String page_string = StringUtility.getStringBetweenRegex(url_string, marker, AMPERSAND);
+                    File dir = FileUtility.createDirectory(websiteModel.getDirectory());
+                    String page_string = StringUtility.getStringBetweenRegex(url, marker, AMPERSAND);
                     int page = Integer.parseInt(page_string);
                     int next = page + 1;
-                    String newWebsiteURL = url_string.replace(marker + page, marker + next);
-                    WebsiteModel singleton = new WebsiteModel();
-                    singleton.setUrl(newWebsiteURL);
-                    singleton.setDirectory(websiteModel.getDirectory());
-                    parse(singleton, websiteProducer);
-                } catch (Exception ex) {
-                    WebsiteUtility.print(websiteModel, ResponseEnum.ERROR, websiteProducer);
+                    url = url.replace(marker + page, marker + next);
+                    WebsiteModel singleton = Website.build(url, dir);
+                    parse(websiteLogger.create(singleton));
+                } catch (Exception e) {
+                    websiteLogger.exception(e);
                 }
             }
         }
     }
 
-    private static boolean isContentInvalid(String content) {
-        return content.contains("Just a moment...");
+    private WebsiteModel parse(WebsiteLogger websiteLogger, String url, CurseForgeEnum curseForgeEnum, String name) {
+        WebsiteModel model = websiteLogger.websiteModel;
+        WebsiteModel singleton = Website.build(url, name, model, false);
+        curseForgeEnum.parse(websiteLogger.create(singleton));
+        return singleton;
     }
+
+    private static boolean isContentInvalid(String content, WebsiteModel websiteModel) {
+        boolean result = content.contains("Just a moment...");
+        if (result) log.error("curse forge cookie is invalid. could not parse {}", websiteModel.getUrl());
+        return result;
+    }
+
 }

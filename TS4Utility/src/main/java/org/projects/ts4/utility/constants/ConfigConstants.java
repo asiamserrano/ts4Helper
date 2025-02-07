@@ -16,4 +16,6 @@ public abstract class ConfigConstants {
 
     public static final ZoneId EST_ZONE_ID = ZoneId.of("America/New_York");
 
+    public static final String USER_DIR = "user.dir";
+
 }

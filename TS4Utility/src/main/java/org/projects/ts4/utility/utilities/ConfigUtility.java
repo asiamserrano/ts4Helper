@@ -49,6 +49,8 @@ public abstract class ConfigUtility {
             put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
             put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
             put(SCHEMA_REGISTRY_URL_HEADER, SCHEMA_REGISTRY_URL_VALUE);
+            put("auto.register.schemas", false);
+            put("use.latest.version", true);
         }}));
     }
 
