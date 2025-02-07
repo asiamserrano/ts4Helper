@@ -6,6 +6,8 @@ https://www.curseforge.com/sims4/create-a-sim/vhsync-sneakers-male-a1
 https://quirky-introvert.my.curseforge.com/?projectsPage=1&projectsSearch=&projectsSort=9
 https://www.curseforge.com/members/ssalon1/projects?page=1&pageSize=20&sortBy=ReleaseDate&sortOrder=Desc
 https://shushilda.com/catalog/sims-4-cc/shoes-sims4/adidas-superstar-ts4/
+https://simfileshare.net/folder/151649/
+
 
 [
     "https://www.simsfinds.com/downloads/319350/snowflake-boots-sims4",
