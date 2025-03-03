@@ -1,115 +1,129 @@
 package org.example.ts4package;
 
-import com.google.common.io.Resources;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.errors.SerializationException;
-import org.example.MyAvroClass;
-import org.example.WebsiteModel;
-import org.example.ts4package.utilities.KafkaUtility;
-import org.springframework.kafka.core.KafkaTemplate;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
+import okhttp3.internal.http2.Header;
+import org.apache.commons.io.FileUtils;
+import org.example.ts4package.utilities.OkHttpUtility;
+import org.example.ts4package.utilities.StringUtility;
+import org.example.ts4package.utilities.URLUtility;
 
-import java.io.File;
+import java.io.*;
+import java.net.URI;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.nio.file.StandardCopyOption;
+import java.time.Duration;
+import java.util.*;
 
+@Slf4j
 class Playground {
 
-    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+    public static final String SPACE = " ";
+    public static final String UNDERSCORE = "_";
+    public static final String DASH = "-";
 
-    private static final KafkaTemplate<String, String> KAFKA_TEMPLATE =
-            KafkaUtility.createKafkaTemplate(BOOTSTRAP_SERVERS);
+    public static final OkHttpClient okHttpClient = new OkHttpClient();
+
+    public static int count = 0;
 
     public static void main(String[] args) throws Exception {
+        List<String> strings = StringUtility.loadResourceList("input.txt");
+        for (String s : strings) {
+            if (s.contains("/download/")) {
 
-//        MyAvroClass myAvroClass = new MyAvroClass("Asia", 13, "red", null);
-
-        WebsiteModel websiteModel = new WebsiteModel();
-        websiteModel.setUrl("https://www.google.com");
-        websiteModel.setDirectory("/Users/asia/zzz");
-        websiteModel.setFilename("myfile.txt");
-
-        KafkaProducer<String, WebsiteModel> kafkaProducer = KafkaUtility.createKafkaProducer(BOOTSTRAP_SERVERS);
-        ProducerRecord<String, WebsiteModel> record =
-                new ProducerRecord<>("website-model-topic", "website-model-key", websiteModel);
-        try {
-            kafkaProducer.send(record);
-        } catch(SerializationException e) {
-            System.out.println("cannot serialize record");
+                //https://cdn.simfileshare.net/download/2835904/?dl
+                String link = StringUtility.getStringBetweenRegex(s, "<a href=\"", "/\">");
+                link = String.format("https://cdn.simfileshare.net%s/?dl", link);
+                String fileName = StringUtility.getStringBetweenRegex(s, ">", "<");
+                download(link, fileName);
+            }
         }
-        finally {
-            kafkaProducer.flush();
-            kafkaProducer.close();
-            System.out.println("sent record");
-        }
+    }
 
-//        File personsListSerializedFile = new File("my_avros.avro");
-//        AvroSerializerUtility.serializeMyAvros(myAvros, personsListSerializedFile);
-//        System.out.println("done serializing");
-//        AvroDeserializerUtility.deserializeMyAvros(personsListSerializedFile).stream().map(MyAvroClass::toString)
-//                .forEach(System.out::println);
-//        System.out.println("done deserializing");
+    private static void download(String link, String fileName) throws Exception {
+        count++;
+        if (count <= 5) {
+            URL url = URLUtility.createURLNoException(link);
+            File file = new File("/Users/asia/ChromeDownloads/", fileName);
+            if (file.exists()) file.delete();
+            file.createNewFile();
+            Response response = OkHttpUtility.sendRequest(url, okHttpClient);
+            InputStream in = response.body().byteStream();
+            Files.copy(in, Paths.get(file.toURI()), StandardCopyOption.REPLACE_EXISTING);
+            response.close();
+        }
+    }
+
+//    public static final Map<String, Integer> map = new HashMap<>();
+//    public static String KEY = "";
+//    public static Integer VALUE = 0;
 //
-//        KafkaProducer kafkaProducer = KafkaUtility.createKafkaProducer(BOOTSTRAP_SERVERS);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
-//        String child = ZonedDateTime.now().format(formatter);
-//        File file = new File("/Users/asia/zzz", child);
-//        if (file.exists() || file.mkdir()) {
-//            URL contentURL = Resources.getResource("input.txt");
-//            Files.readAllLines(Paths.get(contentURL.toURI()), StandardCharsets.UTF_8).parallelStream()
-//                    .map(str -> {
-//                        try {
-//                            WebsiteModel websiteModel = new WebsiteModel();
-//                            websiteModel.setUrl(str);
-//                            websiteModel.setDirectory(file.getAbsolutePath());
-//                            return websiteModel;
-//                        } catch (Exception e) {
-//                            System.out.println("unable to create model " + e.getMessage());
-//                            throw new RuntimeException(e);
-//                        }
-//                    })
-////                    .forEach(str -> System.out.println(str.toString()));
-//                .forEach(websiteModel -> {
-//                            try {
-//                                ProducerRecord<Object, Object> record =
-//                                        new ProducerRecord<>("my-avro-topic", "record-key", websiteModel);
-//                                kafkaProducer.send(record);
-//                            } catch (SerializationException e) {
-//                                System.out.println("cannot serialize record");
-//                            } finally {
-//                                System.out.println("sent record");
-//                            }
+//    public static void main(String[] args) {
 //
-//                    kafkaProducer.flush();
-//                    kafkaProducer.close();
-//                });
+//        File file = new File("/Volumes/TS4SSD/The Sims 4/Mods/cc/CAS");
+//        listFiles(file).stream().sorted(Comparator.comparing(File::getName)).forEach(f -> {
+//            String fileName = f.getName().toLowerCase();
+//            if (fileName.contains("af".toLowerCase()) &&  !fileName.contains("] ")) {
+//                fileName = fileName
+//                        .strip()
+//                        .replaceAll(" - ", UNDERSCORE)
+//                        .replaceAll(SPACE, UNDERSCORE)
+//                        .replaceAll(DASH, UNDERSCORE)
+//                        .replaceAll("__", UNDERSCORE)
+////                        .replaceAll("trillqueen", "[trillqueen] ")
+//                        ;
+//
+//                System.out.println(fileName);
+////                renameFile(f, fileName);
+//
+////                if (fileName.contains(UNDERSCORE)) {
+////                    String k = fileName.split(UNDERSCORE)[0];
+////                    int v = map.getOrDefault(k, 0) + 1;
+////                    map.put(k, v);
+////                    if (v > VALUE) {
+////                        VALUE = v;
+////                        KEY = k;
+////                    }
+////                }
+//            }
+//        });
+//
+//        if (!KEY.isEmpty() && VALUE > 0) {
+//            System.out.println("largest key: " + KEY);
 //        }
+//    }
 
+    private static List<File> listFiles(File file) {
+        return listFiles(file, new ArrayList<>());
+    }
 
-//        String message = "{\"previous\":{\"previous\":null,\"name\":\"Google\",\"url\":\"https://www.google.com\"},\"name\":\"MSN\",\"url\":\"https://www.msn.com\"}";
-//        WebsiteModel.Builder wm = WebsiteModel.Builder.parse(message);
-//
-//        String dir = "/Users/asiaserrano/ChromeDownloads";
-//        ZonedDateTime now = ZonedDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm.ss");
-//        File directory = new File(dir, "download_" + formatter.format(now));
-//
-//        MessageModel model = new MessageModel.Builder(directory.getAbsolutePath(), wm).build();
-//
-//        System.out.println(model);
-//        System.out.println(directory.getAbsolutePath());
+    private static List<File> listFiles(File file, List<File> files) {
+        for (File f: Objects.requireNonNull(file.listFiles())) {
+            if (f.isDirectory()) {
+                files.addAll(listFiles(f));
+            } else {
+                if (!f.getName().equals(".DS_Store")) files.add(f);
+            }
+        }
+        return files;
+    }
 
-//        String message = "{\"previous\":{\"previous\":null,\"name\":\"Google\",\"url\":\"https://www.google.com\"},\"name\":\"MSN\",\"url\":\"https://www.msn.com\"}";
-//        WebsiteModel wm = WebsiteModel.Builder.parse(message).build();
-//        System.out.println(wm);
-//
-//        String message2 = "{\"previous\":null,\"name\":\"Google\",\"url\":\"https://www.google.com\"}";
-//        WebsiteModel wm2 = WebsiteModel.Builder.parse(message2).build();
-//        System.out.println(wm2);
+    private static void renameFile(File f, String fn) {
+        String old = f.getName();
+        File nf = new File(f.getParent(), fn);
+        if (f.renameTo(nf)) {
+            String format = String.format("renamed %-50s to %s", old, fn);
+            log.info(format);
+        } else {
+            log.error("unable to rename file: {}", old);
+        }
     }
 
 }

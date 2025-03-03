@@ -55,6 +55,17 @@ public abstract class StringUtility {
         }
     }
 
+    public static List<String> loadResourceList(String resource) {
+        try {
+            URL contentURL = Resources.getResource(resource);
+            String string = Resources.toString(contentURL, StandardCharsets.UTF_8).strip();
+            return List.of(string.split("\n"));
+        } catch (Exception e) {
+            log.error("unable to locate resource: {}", resource, e);
+            throw new RuntimeException(e);
+        }
+    }
+
     private static final List<String> ESCAPE_CHARACTERS = new ArrayList<>() {{
         add("{"); add("}"); add("("); add(")"); add("&");
     }};
