@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "namespace": "org.example",
+  "namespace": "org.ts4.avro",
   "type": "record",
   "name": "WebsiteModel",
   "fields": [

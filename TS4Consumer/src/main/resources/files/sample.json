@@ -1,0 +1,38 @@
+[
+  {
+    "id": 5919,
+    "dateModified": "2022-12-05T11:53:30.053Z",
+    "gameId": 78062,
+    "iconUrl": "https://media.forgecdn.net/avatars/641/41/638042890277291501.png",
+    "name": "Feminine",
+    "slug": "feminine",
+    "url": "https://www.curseforge.com/sims4/create-a-sim/body/feminine",
+    "classId": 5339,
+    "isClass": false,
+    "parentCategoryId": 5341
+  },
+  {
+    "id": 5341,
+    "dateModified": "2022-08-21T09:42:29.637Z",
+    "gameId": 78062,
+    "iconUrl": "https://media.forgecdn.net/avatars/551/980/637890725021055487.png",
+    "name": "Body",
+    "slug": "body",
+    "url": "https://www.curseforge.com/sims4/create-a-sim/body",
+    "classId": 5339,
+    "isClass": false,
+    "parentCategoryId": 5339
+  },
+  {
+    "id": 5606,
+    "dateModified": "2022-09-18T11:14:02.55Z",
+    "gameId": 78062,
+    "iconUrl": "https://media.forgecdn.net/avatars/609/696/637990964425475714.png",
+    "name": "Hairstyles",
+    "slug": "hairstyles",
+    "url": "https://www.curseforge.com/sims4/create-a-sim/body/hairstyles",
+    "classId": 5339,
+    "isClass": false,
+    "parentCategoryId": 5341
+  }
+]

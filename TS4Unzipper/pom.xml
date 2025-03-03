@@ -15,7 +15,7 @@
     <description>Project for downloading TS4 custom content</description>
     <url/>
     <licenses>
-        <license/>
+        <license/>import net.lingala.zip4j.ZipFile;
     </licenses>
     <developers>
         <developer/>

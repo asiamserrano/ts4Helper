@@ -1,0 +1,264 @@
+[2m2025-01-28 18:58:53.818[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.TS4AvroApplication          [0;39m [2m:[0;39m Starting TS4AvroApplication using Java 23.0.1 with PID 3715 (/Users/asiaserrano/repos/ts4Helper/avro/target/classes started by asiaserrano in /Users/asiaserrano/repos/ts4Helper/avro)
+[2m2025-01-28 18:58:53.819[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.TS4AvroApplication          [0;39m [2m:[0;39m The following 1 profile is active: "local"
+[2m2025-01-28 18:58:54.238[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 9085 (http)
+[2m2025-01-28 18:58:54.243[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2025-01-28 18:58:54.243[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.34]
+[2m2025-01-28 18:58:54.258[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-01-28 18:58:54.258[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 421 ms
+[2m2025-01-28 18:58:54.325[0;39m [33m WARN[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36m.s.s.UserDetailsServiceAutoConfiguration[0;39m [2m:[0;39m 
+
+Using generated security password: 0dcfa402-4f92-40a3-9007-5ee4c8350003
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+[2m2025-01-28 18:58:54.337[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mr$InitializeUserDetailsManagerConfigurer[0;39m [2m:[0;39m Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+[2m2025-01-28 18:58:54.610[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 9085 (http) with context path '/'
+[2m2025-01-28 18:58:54.626[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-consumer-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = consumer-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class io.confluent.kafka.serializers.KafkaAvroDeserializer
+
+[2m2025-01-28 18:58:54.644[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.t.i.KafkaMetricsCollector       [0;39m [2m:[0;39m initializing Kafka metrics collector
+[2m2025-01-28 18:58:54.655[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-28 18:58:54.655[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mi.c.k.s.KafkaAvroDeserializerConfig     [0;39m [2m:[0;39m KafkaAvroDeserializerConfig values: 
+	auto.register.schemas = true
+	avro.reflection.allow.null = false
+	avro.use.logical.type.converters = false
+	basic.auth.credentials.source = URL
+	basic.auth.user.info = [hidden]
+	bearer.auth.cache.expiry.buffer.seconds = 300
+	bearer.auth.client.id = null
+	bearer.auth.client.secret = null
+	bearer.auth.credentials.source = STATIC_TOKEN
+	bearer.auth.custom.provider.class = null
+	bearer.auth.identity.pool.id = null
+	bearer.auth.issuer.endpoint.url = null
+	bearer.auth.logical.cluster = null
+	bearer.auth.scope = null
+	bearer.auth.scope.claim.name = scope
+	bearer.auth.sub.claim.name = sub
+	bearer.auth.token = [hidden]
+	context.name.strategy = class io.confluent.kafka.serializers.context.NullContextNameStrategy
+	http.connect.timeout.ms = 60000
+	http.read.timeout.ms = 60000
+	id.compatibility.strict = true
+	key.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+	latest.cache.size = 1000
+	latest.cache.ttl.sec = -1
+	latest.compatibility.strict = true
+	max.schemas.per.subject = 1000
+	normalize.schemas = false
+	propagate.schema.tags = false
+	proxy.host = 
+	proxy.port = -1
+	rule.actions = []
+	rule.executors = []
+	rule.service.loader.enable = true
+	schema.format = null
+	schema.reflection = false
+	schema.registry.basic.auth.user.info = [hidden]
+	schema.registry.ssl.cipher.suites = null
+	schema.registry.ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	schema.registry.ssl.endpoint.identification.algorithm = https
+	schema.registry.ssl.engine.factory.class = null
+	schema.registry.ssl.key.password = null
+	schema.registry.ssl.keymanager.algorithm = SunX509
+	schema.registry.ssl.keystore.certificate.chain = null
+	schema.registry.ssl.keystore.key = null
+	schema.registry.ssl.keystore.location = null
+	schema.registry.ssl.keystore.password = null
+	schema.registry.ssl.keystore.type = JKS
+	schema.registry.ssl.protocol = TLSv1.3
+	schema.registry.ssl.provider = null
+	schema.registry.ssl.secure.random.implementation = null
+	schema.registry.ssl.trustmanager.algorithm = PKIX
+	schema.registry.ssl.truststore.certificates = null
+	schema.registry.ssl.truststore.location = null
+	schema.registry.ssl.truststore.password = null
+	schema.registry.ssl.truststore.type = JKS
+	schema.registry.url = [http://localhost:8081]
+	specific.avro.key.type = null
+	specific.avro.reader = true
+	specific.avro.value.type = null
+	use.latest.version = false
+	use.latest.with.metadata = null
+	use.schema.id = -1
+	value.subject.name.strategy = class io.confluent.kafka.serializers.subject.TopicNameStrategy
+
+[2m2025-01-28 18:58:54.723[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.clients.consumer.ConsumerConfig   [0;39m [2m:[0;39m These configurations '[schema.registry.url, specific.avro.reader]' were supplied but are not used yet.
+[2m2025-01-28 18:58:54.724[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka version: 3.7.1
+[2m2025-01-28 18:58:54.724[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka commitId: e2494e6ffb89f828
+[2m2025-01-28 18:58:54.724[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.kafka.common.utils.AppInfoParser    [0;39m [2m:[0;39m Kafka startTimeMs: 1738108734723
+[2m2025-01-28 18:58:54.725[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.a.k.c.c.internals.LegacyKafkaConsumer [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Subscribed to topic(s): website-model-topic
+[2m2025-01-28 18:58:54.732[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[           main][0;39m [36morg.example.TS4AvroApplication          [0;39m [2m:[0;39m Started TS4AvroApplication in 1.049 seconds (process running for 1.505)
+[2m2025-01-28 18:58:54.841[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36morg.apache.kafka.clients.Metadata       [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Cluster ID: MkU3OEVBNTcwNTJENDM2Qk
+[2m2025-01-28 18:58:54.842[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+[2m2025-01-28 18:58:54.843[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-28 18:58:54.857[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Request joining group due to: need to re-join with the given member-id: consumer-consumer-group-1-cd41b716-2535-4046-82f5-6e4ddbd6ba5c
+[2m2025-01-28 18:58:54.857[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] (Re-)joining group
+[2m2025-01-28 18:58:54.867[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully joined group with generation Generation{generationId=1, memberId='consumer-consumer-group-1-cd41b716-2535-4046-82f5-6e4ddbd6ba5c', protocol='range'}
+[2m2025-01-28 18:58:54.869[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Finished assignment for group at generation 1: {consumer-consumer-group-1-cd41b716-2535-4046-82f5-6e4ddbd6ba5c=Assignment(partitions=[website-model-topic-0])}
+[2m2025-01-28 18:58:54.875[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Successfully synced group in generation Generation{generationId=1, memberId='consumer-consumer-group-1-cd41b716-2535-4046-82f5-6e4ddbd6ba5c', protocol='range'}
+[2m2025-01-28 18:58:54.875[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Notifying assignor about the new Assignment(partitions=[website-model-topic-0])
+[2m2025-01-28 18:58:54.876[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mk.c.c.i.ConsumerRebalanceListenerInvoker[0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Adding newly assigned partitions: website-model-topic-0
+[2m2025-01-28 18:58:54.887[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.ConsumerCoordinator [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Found no committed offset for partition website-model-topic-0
+[2m2025-01-28 18:58:54.898[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.a.k.c.c.internals.SubscriptionState   [0;39m [2m:[0;39m [Consumer clientId=consumer-consumer-group-1, groupId=consumer-group] Resetting offset for partition website-model-topic-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}.
+[2m2025-01-28 18:58:54.898[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.s.k.l.KafkaMessageListenerContainer   [0;39m [2m:[0;39m consumer-group: partitions assigned: [website-model-topic-0]
+[2m2025-01-28 18:59:41.226[0;39m [32m INFO[0;39m [35m3715[0;39m [2m---[0;39m [2m[ntainer#0-0-C-1][0;39m [36mo.example.consumers.MyAvroTopicConsumer [0;39m [2m:[0;39m received payload: {"url": "https://www.google.com", "directory": "/Users/asiaserrano/ChromeDownloads", "filename": "myfile.txt", "previous": null}

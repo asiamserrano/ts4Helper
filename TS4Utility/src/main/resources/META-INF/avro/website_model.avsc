@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "namespace": "org.projects.ts4.avro",
+  "type": "record",
+  "name": "WebsiteModel",
+  "fields": [
+    { "name": "uuid", "type": "string" },
+    { "name": "url", "type": "string" },
+    { "name": "directory", "type": "string" },
+    { "name": "filename", "type": [ "null", "string"], "default":  null},
+    {"name": "previous", "type": [ "null", "WebsiteModel"], "default":  null}
+  ]
+}

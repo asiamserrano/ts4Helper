@@ -12,18 +12,17 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-//import static org.example.ts4package.constants.ConfigConstants.*;
+import static org.projects.ts4.utility.constants.ConfigConstants.SECURITY_CONFIG_POLICY;
+import static org.projects.ts4.utility.constants.ConfigConstants.SECURITY_CONFIG_ANT_MATCHERS;
 
+import static org.projects.ts4.utility.constants.ConfigConstants.PROFILE;
 
 @EnableMethodSecurity
 @EnableWebSecurity
-@Profile("local")
+@Profile(PROFILE)
 @Configuration
 @Slf4j
 public class SecurityConfig {
-
-    private static final String SECURITY_CONFIG_POLICY = "script-src 'self'";
-    private static final String[] SECURITY_CONFIG_ANT_MATCHERS = new String[] { "/**" };
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) {
